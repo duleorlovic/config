@@ -18,13 +18,17 @@
 
 # This startup script is used only if PulseAudio is started in system
 # mode.
+load-module module-alsa-sink device="hw:1,3" sink_name=seat2
+load-module module-alsa-sink device="hw:2,3" sink_name=seat0
+load-module module-alsa-sink device="hw:3,3" sink_name=seat1
+#load-module module-alsa-sink device="hw:0,0" sink_name=seat3
 
 ### Automatically load driver modules depending on the hardware available
 .ifexists module-udev-detect.so
-load-module module-udev-detect
+load-module module-udev-detect 
 .else
 ### Use the static hardware detection module (for systems that lack udev/hal support)
-load-module module-detect
+#load-module module-detect
 .endif
 
 ### Load several protocols
@@ -61,4 +65,4 @@ load-module module-suspend-on-idle
 ### Enable positioned event sounds
 load-module module-position-event-sounds
 
-load-module module-device-manager
+#load-module module-device-manager
