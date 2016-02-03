@@ -1,0 +1,11 @@
+# -*- shell-script -*-
+
+"echo -e 'KeyStrRelease bracketright\nKeyStrPress Prior\nKeyStrRelease Prior\n' | xmacroplay ':0.0'"
+  Shift+Mod2+bracketright
+
+"echo -e 'KeyStrRelease bracketleft\nKeyStrPress Next\nKeyStrRelease Next\n' | xmacroplay ':0.0'"
+  Shift+Mod2+bracketleft
+
+"echo -e 'KeyStrRelease F6\nKeyStrPress a\nKeyStrRelease a' | xmacroplay :0"
+  F6
+

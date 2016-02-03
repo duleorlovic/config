@@ -1,9 +1,9 @@
-#/bin/bash -x
+#!/bin/bash -x
 
 # xwininfo
 # xdotool search --classname
 # xprop
-# wm
+# wmctrl
 # bash -l  # rvm asks for login
 
 DEFALT_PROJECT=~/rails/race-time-sampling
@@ -101,13 +101,13 @@ qa()
   done
 }
 
-bind_to_key()
+b()
 {
   key=$1
   if [ -z "$key" ];
   then
     echo please provide parameter shortcut_key
-    echo example usage: bind_to_key j, bind_to_key_semicolon
+    echo example usage: b j, b_semicolon
   else
     echo click on windows to bind to key class_$key
     xprop -f WM_CLASS 8s -set WM_CLASS class_$key

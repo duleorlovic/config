@@ -40,3 +40,13 @@ export MAIL_INTERCEPTOR_EMAIL=asd@asd.asd
 export MANDRILL_API_KEY=asdasd
 HERE_DOC
 ~~~
+
+# Xdotool
+
+[xbindkeys](https://wiki.archlinux.org/index.php/Xbindkeys)
+
+~~~
+gnome-session-properties # or search dash with Startup applications
+# add command: xbindkeys
+ln -s ~/config/.xbindkeysrc
+~~~
