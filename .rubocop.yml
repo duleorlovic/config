@@ -1,0 +1,34 @@
+# .rubocop.yml
+AllCops:
+  Exclude:
+    - config/unicorn.rb
+    - db/**
+    - /home/orlovic/.rvm/**/*
+    - schema.rb
+
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/TrailingCommaInLiteral:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/FileName:
+  Enabled: false
+
+Rails/Output:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 40 # default was 15
+
+Metrics/MethodLength:
+  Max: 20 # default was 10
+
+Metrics/LineLength:
+  Max: 100 # default was 80
