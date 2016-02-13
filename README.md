@@ -41,12 +41,16 @@ export MANDRILL_API_KEY=asdasd
 HERE_DOC
 ~~~
 
-# Xdotool
+# Keyboard shortcuts for windows
+
+I'm using some
+[xdotool](http://www.semicomplete.com/projects/xdotool/xdotool.xhtml)
+so you need to manually add some [keyboard
+shortcuts](https://github.com/duleorlovic/config/blob/master/bashrc/window_shortcuts.sh#L34)
+
+# Keyboard remapping
 
 [xbindkeys](https://wiki.archlinux.org/index.php/Xbindkeys)
+Add as [startup
+application](https://github.com/duleorlovic/config/blob/master/.xbindkeysrc#L3)
 
-~~~
-gnome-session-properties # or search dash with Startup applications
-# add command: xbindkeys
-ln -s ~/config/.xbindkeysrc
-~~~

@@ -1,11 +1,30 @@
 # -*- shell-script -*-
+#
+# sudo apt-get install xbindkeys xmacro
+# gnome-session-properties # or search dash with Startup applications
+# # add command: xbindkeys
+# cd ~ && ln -s ~/config/.xbindkeysrc
+#
+# pkill xbindkeys # remove current binding, that is needed before each xbindkeys
+# xbindkeys -d > ~/.xbindkeysrc # create default configuration file
+# xbindkeys_show # to test configuration file
+# xbindkeys-config # gui
+# xbindkeys -k # too see command for your key combination
+# xbindkeys -v -n # to run in non deamon mode and print log
+#
+# xmacrorec2 # press esc and than your keys and esc
+# xmacroplay :0 < key.txt # to play
+#
+# To simulate key on Alt+something you need to release Alt first
+# You need both with Numlock and without (Mod2)
+#
+# I tried to bind to Alt+bracketleft but xbindkeys -n -v reports warning
 
-"echo -e 'KeyStrRelease bracketright\nKeyStrPress Prior\nKeyStrRelease Prior\n' | xmacroplay ':0.0'"
-  Shift+Mod2+bracketright
+"echo -e 'KeyStrRelease bracketleft\nKeyStrRelease Control\nKeyStrPress Shift_L\nKeyStrPress Prior\nKeyStrRelease Prior\nKeyStrRelease Shift_L' | xmacroplay :0"
+ Control + bracketleft
 
-"echo -e 'KeyStrRelease bracketleft\nKeyStrPress Next\nKeyStrRelease Next\n' | xmacroplay ':0.0'"
-  Shift+Mod2+bracketleft
+"echo -e 'KeyStrRelease bracketright\nKeyStrRelease Control\nKeyStrPress Shift_L\nKeyStrPress Next\nKeyStrRelease Next\nKeyStrRelease Shift_L' | xmacroplay :0"
+ Control + bracketright
 
-"echo -e 'KeyStrRelease F6\nKeyStrPress a\nKeyStrRelease a' | xmacroplay :0"
+"echo -e 'KeyStrRelease F6\nKeyStrPress b\nKeyStrRelease b' | xmacroplay :0"
   F6
-

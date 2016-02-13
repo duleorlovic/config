@@ -1,5 +1,6 @@
 #!/bin/bash -x
 
+# sudo apt-get install xdotool chromium-browser
 # xwininfo
 # xdotool search --classname
 # xprop
@@ -31,7 +32,7 @@ s()
 {
   if [ "$1" == "-h" ]; then
     cat <<-HERE_DOC
-    Hi, this is start function for windows with shortcut keys ALT+hjkl
+    Hi, this is start function for windows with shortcut keys ALT+hjkl semicolon
         with help of System Settings-Keyboard-Shortcuts and command
         xdotool search --classname class_j windowactivate
     example usage: s folder key geometry command
@@ -48,7 +49,7 @@ s()
   class=class_${2-j}
   geometry=${3-300x30+0-0}
   command=${4-vim .}
-  echo opening editor in $folder and bing to $class and set size $geometry and \
+  echo opening editor in $folder and bind to $class and set size $geometry and \
     run command $command
   gnome-terminal --geometry=$geometry -x bash --login -c "\
     cd $folder;\

@@ -171,6 +171,7 @@ set history=1000
 nnoremap gr :grep <cword> * -I -R --exclude-dir={log,spec,public,features,tmp,vendor,assets,db}<CR>
 " grep yanked word
 nnoremap gy :grep "<c-r>"" * --exclude-dir={log,public,tmp,vendor} -R -I<CR>
+set hlsearch
 " this is for tab completion , to stop cycle press CTRL+E than tab
 set wildmode=longest,list,full
 " search selected text, press // while in visual mode
@@ -178,6 +179,7 @@ vnorem // y/<c-r>"<cr>
 " change paste toggle key to F12 since F11 is maximize
 set pastetoggle=<F12>
 
+" http://modal.us/blog/2013/07/27/back-to-vim-with-nerdtree-nope-netrw/
 " Toggle Vexplore with Ctrl-E
 function! ToggleVExplorer()
   if exists("t:expl_buf_num")
