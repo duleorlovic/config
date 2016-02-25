@@ -1,10 +1,9 @@
-# .rubocop.yml
+# http://blog.trk.in.rs/2015/12/01/vim-tips/
 AllCops:
   Exclude:
     - config/unicorn.rb
-    - db/**
+    - db/schema.rb
     - /home/orlovic/.rvm/**/*
-    - schema.rb
 
 Rails:
   Enabled: true
@@ -13,6 +12,9 @@ Style/Documentation:
   Enabled: false
 
 Style/TrailingCommaInLiteral:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
   Enabled: false
 
 Style/StringLiterals:

@@ -1,0 +1,4 @@
+// http://blog.trk.in.rs/2015/12/01/vim-tips/
+{
+  preset: "airbnb",
+}

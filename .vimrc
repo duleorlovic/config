@@ -168,7 +168,7 @@ execute pathogen#infect()
 " to save history between vim session
 set history=1000
 " grep current word
-nnoremap gr :grep <cword> * -I -R --exclude-dir={log,spec,public,features,tmp,vendor,assets,db}<CR>
+nnoremap gw :grep <cword> * -I -R --exclude-dir={log,spec,public,features,tmp,vendor,assets,db,bower_components,coverage,node_modules}<CR>
 " grep yanked word
 nnoremap gy :grep "<c-r>"" * --exclude-dir={log,public,tmp,vendor} -R -I<CR>
 set hlsearch
@@ -316,35 +316,6 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb"
 " Make it so that a curly brace automatically inserts an indented line
 inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
 
-" https://github.com/scrooloose/syntastic#3-recommended-settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline+=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height = 3
-
-" let g:syntastic_debug = 1
-
-"let g:syntastic_ruby_exec = '/home/orlovic/.rvm/rubies/ruby-2.2.3/bin/ruby'
-let g:syntastic_ruby_checkers = ['rubocop'] ",'mri']
-let g:syntastic_eruby_ruby_quiet_messages =
-    \ {'regex': 'possibly useless use of a variable in void context'}
-" https://github.com/bbatsov/rubocop/issues/2162
-let g:syntastic_ruby_rubocop_args = '--force-exclusion --display-cop-names'
-
-let g:syntastic_scss_sass_quiet_messages = 
-    \ { 'regex': [
-    \ 'Undefined mixin',
-    \ 'Invalid CSS after "@charset',
-    \ ] }
-
-let g:syntastic_javascript_checkers = ['eslint']
-
 set clipboard=unnamed
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " for backup a.txt~
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " for swap .a.txt.swp
@@ -366,3 +337,8 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-stand
 " reformat with gq
 set textwidth=80
 set colorcolumn=+1
+
+" select my-name as it select my_name as words
+set iskeyword+=-
+
+source $HOME/config/vim/syntastic.vim
