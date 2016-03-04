@@ -26,7 +26,11 @@ function d {
   then
     echo Default is middle value: d 0.5
   fi
-  xrandr --output DFP1 --brightness ${1:-0.5}
+  # to find your crtc number use xrandr --verbose
+  xrandr --output ${CRTC:DFP1} --brightness ${1:-0.5}
+  # when error is xrandr: Need crtc to set gamma on.
+  # sudo apt-get install xbackligh
+  # xbacklight -dec 2 # or -inc %
 }
 alias dim=d
 
