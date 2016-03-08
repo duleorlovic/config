@@ -1,5 +1,5 @@
 #!/bin/bash -x
-
+# http://blog.trk.in.rs/2016/02/01/bash/#tocAnchor-1-3
 # sudo apt-get install xdotool chromium-browser
 # xwininfo
 # xdotool search --classname
@@ -9,11 +9,34 @@
 
 DEFALT_PROJECT=~/rails/race-time-sampling
 
+# http://askubuntu.com/questions/41093/is-there-a-command-to-go-a-specific-workspace
+# http://stackoverflow.com/questions/17336915/return-value-in-bash-script
+# use with vp_number=$(get_current_viewport)
+get_current_viewport()
+{
+  SIZE=`wmctrl -d | awk '{print $6}'`
+  # http://stackoverflow.com/questions/23663963/split-string-into-multiple-variables-in-bash
+  IFS=',' read vp_width vp_height <<< $SIZE
+  if [ "$vp_width" = "0" ] && [ "$vp_height" = "0" ]; then
+    echo 1
+  else
+    if [ "$vp_height" = "0" ]; then
+      echo 2
+    else
+      if [ "$vp_width" = "0" ]; then
+        echo 3
+      else
+        echo 4
+      fi
+    fi
+  fi
+}
+
 a()
 {
   project=${1-$DEFALT_PROJECT}
 
-  s $project
+  s $project j
 
   s $project k 120x24-10+200 "echo 'run here'"
 
@@ -21,11 +44,11 @@ a()
 
   s ~/jekyll/blog semicolon 80x24-400+100
 
-  echo opening browser preview and bint to class_h
+  echo opening browser preview and bint to h
   chromium-browser http://localhost:3000 &
   sleep 1
-  wmctrl -e 0,0,0,-1,-1 -r Chromium
-  xprop -f WM_CLASS 8s -set WM_CLASS class_h -id `wmctrl -l | grep Chromium | awk '{print $1}'`
+  wmctrl -e 0,0,0,-1,-1 -r Chromium # move
+  xprop -f WM_CLASS 8s -set WM_CLASS vp_$(get_current_viewport)_class_h -id `wmctrl -l | grep Chromium | awk '{print $1}'`
 }
 
 s()
@@ -34,10 +57,10 @@ s()
     cat <<-HERE_DOC
     Hi, this is start function for windows with shortcut keys ALT+hjkl semicolon
         with help of System Settings-Keyboard-Shortcuts and command
-        xdotool search --classname class_j windowactivate
+        xdotool search --classname vp_$(get_current_viewport)_class_j windowactivate
     example usage: s folder key geometry command
     folder: default is .
-    key: default is j, could be h,j,k,l,semicolon... you can add any shortcut
+    key: default is i, could be h,j,k,l,semicolon... you can add any shortcut
     geometry: chars x rows x pixels_from_left x pixels_from_top
               if negative pixels than it is pixes_from_right/bottom
               default is 300x30+0-0
@@ -46,7 +69,7 @@ s()
     return
   fi
   folder=${1-.}
-  class=class_${2-j}
+  class=vp_$(get_current_viewport)_class_${2-j}
   geometry=${3-300x30+0-0}
   command=${4-vim .}
   echo opening editor in $folder and bind to $class and set size $geometry and \

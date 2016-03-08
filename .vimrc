@@ -168,9 +168,9 @@ execute pathogen#infect()
 " to save history between vim session
 set history=1000
 " grep current word
-nnoremap gw :grep <cword> * -I -R --exclude-dir={log,spec,public,features,tmp,vendor,assets,db,bower_components,coverage,node_modules}<CR>
+nnoremap gw :grep <cword> * -I -R --exclude-dir={log,spec,public,features,tmp,vendor,assets,db,bower_components,coverage,node_modules,dist}<CR>
 " grep yanked word
-nnoremap gy :grep "<c-r>"" * --exclude-dir={log,public,tmp,vendor} -R -I<CR>
+nnoremap gy :grep "<c-r>"" * --exclude-dir={log,spec,public,features,tmp,vendor,assets,db,bower_components,coverage,node_modules,dist} -R -I<CR>
 set hlsearch
 " this is for tab completion , to stop cycle press CTRL+E than tab
 set wildmode=longest,list,full

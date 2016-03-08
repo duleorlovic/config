@@ -33,4 +33,4 @@ let g:syntastic_scss_sass_quiet_messages =
     \ ] }
 
 " JAVASCRIPT
-" let g:syntastic_javascript_checkers = ['jscs']
+let g:syntastic_javascript_checkers = ['eslint']
