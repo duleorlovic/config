@@ -34,3 +34,6 @@ let g:syntastic_scss_sass_quiet_messages =
 
 " JAVASCRIPT
 let g:syntastic_javascript_checkers = ['eslint']
+
+au BufRead,BufNewFile *.json set filetype=json
+let g:syntastic_json_checkers=['jsonlint']
