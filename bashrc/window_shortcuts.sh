@@ -133,8 +133,8 @@ b()
     echo please provide parameter shortcut_key
     echo example usage: b j, b_semicolon
   else
-    echo click on windows to bind to key class_$key
-    xprop -f WM_CLASS 8s -set WM_CLASS class_$key
+    echo click on windows to bind to key $key
+    xprop -f WM_CLASS 8s -set WM_CLASS vp_$(get_current_viewport)_class_$key
     echo thanks. shortcut is ALT+$key
     echo multiple windows with the same classname toggles between them
   fi
