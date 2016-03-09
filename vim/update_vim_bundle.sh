@@ -24,6 +24,9 @@ list=(
   git://github.com/digitaltoad/vim-pug.git # jade syntax highlight
 )
 if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
+  mkdir -p ~/.vim/autoload ~/.vim/bundle
+  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
   cd ~/.vim/bundle
   # http://www.cyberciti.biz/faq/bash-for-loop-array/
   for bundle_link in "${list[@]}"

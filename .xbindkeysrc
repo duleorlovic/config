@@ -20,10 +20,10 @@
 #
 # I tried to bind to Alt+bracketleft but xbindkeys -n -v reports warning
 
-"echo -e 'KeyStrRelease bracketleft\nKeyStrRelease Control\nKeyStrPress Shift_L\nKeyStrPress Prior\nKeyStrRelease Prior\nKeyStrRelease Shift_L' | xmacroplay :0"
+"echo -e 'KeyStrRelease bracketleft\nKeyStrRelease Control\nKeyStrPress Shift_L\nKeyStrPress Next\nKeyStrRelease Next\nKeyStrRelease Shift_L' | xmacroplay :0"
  Control + bracketleft
 
-"echo -e 'KeyStrRelease bracketright\nKeyStrRelease Control\nKeyStrPress Shift_L\nKeyStrPress Next\nKeyStrRelease Next\nKeyStrRelease Shift_L' | xmacroplay :0"
+"echo -e 'KeyStrRelease bracketright\nKeyStrRelease Control\nKeyStrPress Shift_L\nKeyStrPress Prior\nKeyStrRelease Prior\nKeyStrRelease Shift_L' | xmacroplay :0"
  Control + bracketright
 
 "echo -e 'KeyStrRelease F6\nKeyStrPress b\nKeyStrRelease b' | xmacroplay :0"
