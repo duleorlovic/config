@@ -22,6 +22,7 @@ list=(
   https://github.com/ctrlpvim/ctrlp.vim.git # <c-p> <c-j> <c-k> <c-f> <c-b> <c-v>
   https://github.com/othree/html5.vim # html5 indent correct
   git://github.com/digitaltoad/vim-pug.git # jade syntax highlight
+  https://github.com/tpope/vim-markdown.git # markdown 
 )
 if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
   mkdir -p ~/.vim/autoload ~/.vim/bundle
