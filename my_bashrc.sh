@@ -50,3 +50,6 @@ ionic_publish(){
     echo keytool -genkey -v -keystore ~/config/keys/my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
   fi
 }
+
+# copy line to clipboard
+bind '"\C-l": "\C-e\C-u xsel --clipboard <<"EOF"\n\C-y\nEOF\n\C-y"'

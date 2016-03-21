@@ -40,9 +40,9 @@ a()
 
   s $project k 120x24-10+200 "echo 'run here'"
 
-  s $project l 80x24-0+0 "git pull && rake db:migrate && rails s"
+  s $project l 100x24-0+0 "git pull && rake db:migrate && rails s"
 
-  s ~/jekyll/blog semicolon 80x24-400+100
+  s ~/jekyll/blog semicolon 80x24-0+100
 
   echo opening browser preview and bint to h
   chromium-browser http://localhost:3000 &
