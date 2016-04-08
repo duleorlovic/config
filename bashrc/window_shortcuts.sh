@@ -45,10 +45,10 @@ a()
   s ~/jekyll/blog semicolon 80x24-0+100
 
   echo opening browser preview and bint to h
-  chromium-browser http://localhost:3000 &
+  chromium-browser http://localhost:3000 --new-window & # this --new-window option is not in man file
   sleep 1
   wmctrl -e 0,0,0,-1,-1 -r Chromium # move
-  xprop -f WM_CLASS 8s -set WM_CLASS vp_$(get_current_viewport)_class_h -id `wmctrl -l | grep Chromium | awk '{print $1}'`
+  xprop -f WM_CLASS 8s -set WM_CLASS vp_$(get_current_viewport)_class_h -id `wmctrl -l | grep Chromium | awk '{print $1}' | tail -n1`
 }
 
 s()
