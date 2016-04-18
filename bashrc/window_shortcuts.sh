@@ -127,11 +127,30 @@ qa()
 
 b()
 {
+  if [ "$1" == "-h" ]; then
+    cat <<-HERE_DOC
+    Hi, bind windows to specifix key.
+      b h # bind ALT+h to the mouse selected window
+      b # bind current window to the prompted key
+	HERE_DOC
+    return
+  fi
   key=$1
   if [ -z "$key" ];
   then
-    echo please provide parameter shortcut_key
-    echo example usage: b j, b_semicolon
+    echo "please press the character (like h or . or /)"
+    read -n1 char
+    if [ "$char" == "." ]; then
+      key="dot"
+    elif [ "$char" == "," ]; then
+      key="colon"
+    elif [ "$char" == "/" ]; then
+      key="slash"
+    else
+      key=$char
+    fi
+    xprop -f WM_CLASS 8s -set WM_CLASS vp_$(get_current_viewport)_class_$key -id `xdotool getwindowfocus`
+    echo " ... thanks. shortcut is ALT+$key"
   else
     echo click on windows to bind to key $key
     xprop -f WM_CLASS 8s -set WM_CLASS vp_$(get_current_viewport)_class_$key
