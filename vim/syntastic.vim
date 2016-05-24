@@ -32,6 +32,8 @@ let g:syntastic_ruby_rubocop_args = '--force-exclusion --display-cop-names'
 " http://stackoverflow.com/questions/29041876/fixing-syntasticcheck-bootstrap-error-vim-syntastic-plugin
 " problem File to import not found can be solved with
 let g:syntastic_scss_sass_args="--load-path ~/.rvm/gems/ruby-2.2.3/gems/bootstrap-generators-3.3.4/vendor/twitter/bootstrap/sass"
+      \ " --load-path vendor/assets/components"
+      \ " --load-path vendor/assets/bower_components"
 let g:syntastic_scss_sass_quiet_messages = 
     \ { 'regex': [
     \ 'Undefined mixin',

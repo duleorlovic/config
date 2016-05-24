@@ -9,10 +9,13 @@
 #   /home/orlovic/config/bashrc/screenlock_hooks.sh
 # fi
 # stop script with: pkill screenlock # not with dbus-monitor
+
+#CAMERA_IP=192.168.0.3
+CAMERA_IP=192.168.0.2:8002
 SCREEN_LOCKED="echo 'Screen locked'"
 SCREEN_UNLOCKED="echo 'Screen unlocked'"
-STOP_CAMERA_DETECTION="curl 'http://192.168.0.3/form/enet?enet_source=md.asp&enet_avs_md_enable=No' -H 'Authorization: Basic $CAMERA_AUTHORIZATION'"
-START_CAMERA_DETECTION="curl 'http://192.168.0.3/form/enet?enet_source=md.asp&enet_avs_md_enable=Yes' -H 'Authorization: Basic $CAMERA_AUTHORIZATION'"
+STOP_CAMERA_DETECTION="curl 'http://$CAMERA_IP/form/enet?enet_source=md.asp&enet_avs_md_enable=No' -H 'Authorization: Basic $CAMERA_AUTHORIZATION'"
+START_CAMERA_DETECTION="curl 'http://$CAMERA_IP/form/enet?enet_source=md.asp&enet_avs_md_enable=Yes' -H 'Authorization: Basic $CAMERA_AUTHORIZATION'"
 # http://unix.stackexchange.com/questions/28181/run-script-on-screen-lock-unlock
 echo Start monitoring locked screen
 dbus-monitor --session "type='signal',interface='com.ubuntu.Upstart0_6'" | \
