@@ -23,6 +23,7 @@ list=(
   https://github.com/othree/html5.vim # html5 indent correct
   git://github.com/digitaltoad/vim-pug.git # jade syntax highlight
   https://github.com/tpope/vim-markdown.git # markdown 
+  https://github.com/lilydjwg/colorizer # highlight color #rgb #rrggbb
 )
 if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
   mkdir -p ~/.vim/autoload ~/.vim/bundle
@@ -37,7 +38,8 @@ if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
   done
   cd -
 fi
-for d in `ls ~/.vim/bundle`; do
+echo start updating: `ls ~/.vim/bundle`
+for d in `ls -d ~/.vim/bundle/*`; do
   if [[ -d "${d}/.git" ]]; then
     echo "updating ${d}"
     cd $d
