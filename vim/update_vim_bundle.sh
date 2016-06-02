@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+pushd .
 if [ "$1" = "-h" ]; then
   echo Update vim bundles. Use param --install to sync with the list
   exit 1
@@ -44,6 +45,6 @@ for d in `ls -d ~/.vim/bundle/*`; do
     echo "updating ${d}"
     cd $d
     git pull
-    cd -
   fi
 done
+popd
