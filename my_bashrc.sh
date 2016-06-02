@@ -18,7 +18,10 @@ export EDITOR=vim
 
 # Add Android SDK tools to PATH
 export ANDROID_HOME=/home/orlovic/Android/Sdk/
+# for android
 export PATH="$PATH:$HOME/Android/Sdk/tools"
+# for adb
+export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
 export SECRET_KEY_BASE=123asd
 
 function d {
@@ -48,6 +51,21 @@ ionic_publish(){
   else
     echo You need to create keys in ~/config/keys/my-release-key.keystore
     echo keytool -genkey -v -keystore ~/config/keys/my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+  fi
+}
+
+ionic_find_package_name(){
+  if [ -z $1 ]
+  then
+    echo Default apk file is: my_app.apk
+  fi
+  apk_file=${1:-my_app.apk}
+  if [ -f $apk_file ]
+  then
+    $ANDROID_HOME/build-tools/21.1.2/aapt dump badging $apk_file | sed -n "s/package: name='\(\S*\)'.*/\1/p"
+
+  else
+    echo Can not find $apk_file
   fi
 }
 
