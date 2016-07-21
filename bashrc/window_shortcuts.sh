@@ -1,4 +1,6 @@
 #!/bin/bash -x
+#
+# This is used to open windows on specific keyboard shortcuts
 # http://blog.trk.in.rs/2016/02/01/bash/#tocAnchor-1-3
 # sudo apt-get install xdotool chromium-browser
 # xwininfo
@@ -35,20 +37,27 @@ get_current_viewport()
 a()
 {
   project=${1-$DEFALT_PROJECT}
+  port=300$(get_current_viewport)
+  url=http://localhost:$port
 
   s $project j
 
   s $project k 120x24-10+200 "echo 'run here'"
 
-  s $project l 100x24-0+0 "git pull && rake db:migrate && rails s"
+  s $project l 100x24-0+0 "git pull && rake db:migrate && rails s -p $port"
 
   s ~/jekyll/blog semicolon 80x24-0+100
 
-  echo opening browser preview and bint to h
-  chromium-browser http://localhost:3000 --new-window & # this --new-window option is not in man file
-  sleep 1
-  wmctrl -e 0,0,0,-1,-1 -r Chromium # move
-  xprop -f WM_CLASS 8s -set WM_CLASS vp_$(get_current_viewport)_class_h -id `wmctrl -l | grep Chromium | awk '{print $1}' | tail -n1`
+  vp_port_h=vp_$(get_current_viewport)_class_h
+  echo $vp_port_h opening browser
+  chromium-browser $url --new-window &
+  # this --new-window option is not in man file
+  # do not put in background with &
+  sleep 2
+  window_id=`wmctrl -l | grep $url | awk '{print $1}' | tail -n1`
+  echo move and mark window_id=$window_id
+  wmctrl -e 0,0,0,-1,-1 -r $url # move
+  xprop -f WM_CLASS 8s -set WM_CLASS $vp_port_h -id $window_id
 }
 
 s()
@@ -72,7 +81,7 @@ s()
   class=vp_$(get_current_viewport)_class_${2-j}
   geometry=${3-300x30+0-0}
   command=${4-vim .}
-  echo opening editor in $folder and bind to $class and set size $geometry and \
+  echo $class $folder set size $geometry and \
     run command $command
   gnome-terminal --geometry=$geometry -x bash --login -c "\
     cd $folder;\

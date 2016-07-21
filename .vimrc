@@ -171,7 +171,6 @@ set history=1000
 nnoremap gw :grep <cword> * -I -R --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist}<CR>
 " grep yanked word
 nnoremap gy :grep "<c-r>"" * --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist} -R -I<CR>
-set hlsearch
 " this is for tab completion , to stop cycle press CTRL+E than tab
 set wildmode=longest,list,full
 " search selected text, press // while in visual mode
@@ -308,6 +307,12 @@ set colorcolumn=+1
 
 " select my-name as it select my_name as words
 set iskeyword+=-
+
+" jump with jk to the first non blank line in the same column
+" http://superuser.com/questions/755122/vim-move-to-first-non-blank-in-same-column
+nnoremap <leader>j m':exec '/\%' . col(".") . 'c\S'<CR>``n
+nnoremap <leader>k m':exec '?\%' . col(".") . 'c\S'<CR>``n
+nnoremap <Leader>l :nohl<CR>
 
 source $HOME/config/vim/syntastic.vim
 source $HOME/config/vim/netrw.vim

@@ -11,38 +11,37 @@ AllCops:
 Rails:
   Enabled: true
 
-Style/Documentation:
-  Enabled: false
-
+# [1,]
 Style/TrailingCommaInLiteral:
-  Enabled: false
-
-Style/TrailingCommaInArguments:
-  Enabled: false
-
-Style/TrailingComma:
-  Enabled: false
-
-Style/StringLiterals:
-  Enabled: false
-
-Style/FileName:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
   Enabled: false
 
 Rails/Output:
   Enabled: false
 
-Metrics/AbcSize:
-  Max: 40 # default was 15
-
-Metrics/MethodLength:
-  Max: 20 # default was 10
-
-Metrics/LineLength:
-  Max: 115 # default was 80
-
-Metrics/ClassLength:
-  Max: 120 # default was 100
+# Style/Documentation:
+#   Enabled: false
+# 
+# Style/TrailingCommaInArguments:
+#   Enabled: false
+# 
+# Style/StringLiterals:
+#   Enabled: false
+# 
+# Style/FileName:
+#   Enabled: false
+# 
+# Style/FrozenStringLiteralComment:
+#   Enabled: false
+# 
+# 
+# Metrics/AbcSize:
+#   Max: 40 # default was 15
+# 
+# Metrics/MethodLength:
+#   Max: 20 # default was 10
+# 
+# Metrics/LineLength:
+#   Max: 115 # default was 80
+# 
+# Metrics/ClassLength:
+#   Max: 120 # default was 100

@@ -22,6 +22,11 @@ export ANDROID_HOME=/home/orlovic/Android/Sdk/
 export PATH="$PATH:$HOME/Android/Sdk/tools"
 # for adb
 export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
+# for genymotion
+export PATH="$PATH:$HOME/Programs/genymotion"
+# for studio.sh
+export PATH="$PATH:$HOME/Programs/android-studio/bin"
+
 export SECRET_KEY_BASE=123asd
 
 function d {
