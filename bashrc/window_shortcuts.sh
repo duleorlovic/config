@@ -48,16 +48,44 @@ a()
 
   s ~/jekyll/blog semicolon 80x24-0+100
 
-  vp_port_h=vp_$(get_current_viewport)_class_h
-  echo $vp_port_h opening browser
+  start_browser h $url
+}
+
+start_browser()
+{
+  if [ "$1" == "-h" ]; then
+    cat <<-HERE_DOC
+    Hi, this function starts browser and assign shortcut keys ALT+hjkl semicolon
+        with help of System Settings-Keyboard-Shortcuts and command xdotool
+    example usage: start_browser h http://localhost:3000
+    key: default is h, could be h,j,k,l,semicolon... you can add any shortcut
+    url: default is http://localhost:3000
+	HERE_DOC
+    return
+  fi
+  key=${1-h}
+  url=${2-http://localhost:3000}
+  class=vp_$(get_current_viewport)_class_$key
+
+  echo opening browser at url=$url and key=$key $class
   chromium-browser $url --new-window &
   # this --new-window option is not in man file
-  # do not put in background with &
-  sleep 2
-  window_id=`wmctrl -l | grep $url | awk '{print $1}' | tail -n1`
-  echo move and mark window_id=$window_id
-  wmctrl -e 0,0,0,-1,-1 -r $url # move
-  xprop -f WM_CLASS 8s -set WM_CLASS $vp_port_h -id $window_id
+  attempts=0
+  while [ $attempts -lt 20 ] || [ -z "$window_id" ]
+  do
+    printf '.'
+    sleep 1
+    window_id=`wmctrl -l | grep $url | awk '{print $1}' | tail -n1`
+    attempts=$[$attempts+1]
+  done
+  if [ -n "$window_id" ]
+  then
+    echo move found $url at window_id=$window_id
+    wmctrl -e 0,0,0,-1,-1 -r $url # move
+    xprop -f WM_CLASS 8s -set WM_CLASS $class -id $window_id
+  else
+    echo can not find $url
+  fi
 }
 
 s()
