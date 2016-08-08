@@ -9,8 +9,6 @@
 # wmctrl
 # bash -l  # rvm asks for login
 
-DEFALT_PROJECT=~/rails/race-time-sampling
-
 # http://askubuntu.com/questions/41093/is-there-a-command-to-go-a-specific-workspace
 # http://stackoverflow.com/questions/17336915/return-value-in-bash-script
 # use with vp_number=$(get_current_viewport)
@@ -36,7 +34,7 @@ get_current_viewport()
 
 a()
 {
-  project=${1-$DEFALT_PROJECT}
+  project=${1-$(pwd)}
   port=300$(get_current_viewport)
   url=http://localhost:$port
 
@@ -49,6 +47,20 @@ a()
   s ~/jekyll/blog semicolon 80x24-0+100
 
   start_browser h $url
+}
+
+u()
+{
+  project=${1-$(pwd)}
+  s $project m  100x24-600-100 "echo m"
+  s $project colon  100x24-300-50 "echo ,"
+  s $project dot  100x24-0-0 "echo ."
+}
+
+au()
+{
+  u ${1}
+  a ${1}
 }
 
 start_browser()
