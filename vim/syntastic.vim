@@ -17,7 +17,10 @@ let g:syntastic_loc_list_height = 3
 "let g:syntastic_ruby_exec = '/home/orlovic/.rvm/rubies/ruby-2.2.3/bin/ruby'
 let g:syntastic_ruby_checkers = ['rubocop'] ",'mri']
 let g:syntastic_eruby_ruby_quiet_messages =
-    \ {'regex': 'possibly useless use of a variable in void context'}
+    \ {'regex': [
+    \ 'possibly useless use of a variable in void context',
+    \ 'shadowing outer local variable',
+    \ ]}
 " this quit messages are also defined in ~/.rubocop.yml
 let g:syntastic_ruby_rubocop_quiet_messages =
     \ {'regex': [

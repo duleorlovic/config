@@ -40,11 +40,11 @@ a()
 
   s $project j
 
-  s $project k 120x24-10+200 "echo 'run here'"
+  s $project k 120x24+830+200 "echo 'run here'"
 
-  s $project l 100x24-0+0 "git pull && rake db:migrate && rails s -p $port"
+  s $project l 100x24-0+0 "git pull && rake db:migrate && rails s -b 0.0.0.0 -p $port"
 
-  s ~/jekyll/blog semicolon 80x24-0+100
+  s ~/jekyll/blog semicolon 80x24+1250+100
 
   start_browser h $url
 }
@@ -52,8 +52,8 @@ a()
 u()
 {
   project=${1-$(pwd)}
-  s $project m  100x24-600-100 "echo m"
-  s $project colon  100x24-300-50 "echo ,"
+  s $project m  100x24+700-100 "echo m"
+  s $project colon  100x24+900-50 "echo ,"
   s $project dot  100x24-0-0 "echo ."
 }
 
@@ -75,26 +75,49 @@ start_browser()
 	HERE_DOC
     return
   fi
-  key=${1-h}
+  browser_key=${1-h}
+  developer_tools_key=u
   url=${2-http://localhost:3000}
-  class=vp_$(get_current_viewport)_class_$key
+  dt_class=vp_$(get_current_viewport)_class_$developer_tools_key
+  browser_class=vp_$(get_current_viewport)_class_$browser_key
 
-  echo opening browser at url=$url and key=$key $class
+  echo opening Chrome browser at url=$url and developer_tools_key=$developer_tools_key dt_class=$dt_class
+  # google-chrome $url --new-window --auto-open-devtools-for-tabs &
+  # auto-open-devtools-for-tabs will open for each new tab :(
+  # chromium-browser $url --new-window & # --new-window option is not in man
   chromium-browser $url --new-window &
-  # this --new-window option is not in man file
   attempts=0
-  while [ $attempts -lt 20 ] || [ -z "$window_id" ]
+  browser_window_id=
+  while [ $attempts -lt 20 ] && [ -z "$browser_window_id" ]
   do
     printf '.'
     sleep 1
-    window_id=`wmctrl -l | grep $url | awk '{print $1}' | tail -n1`
+    browser_window_id=`wmctrl -l | grep $url | awk '{print $1}' | head -n1`
     attempts=$[$attempts+1]
   done
-  if [ -n "$window_id" ]
+  if [ -n "$browser_window_id" ]
   then
-    echo move found $url at window_id=$window_id
+    echo found $url at browser_window_id=$browser_window_id and mark \
+         browser_class=$browser_class
     wmctrl -e 0,0,0,-1,-1 -r $url # move
-    xprop -f WM_CLASS 8s -set WM_CLASS $class -id $window_id
+    xprop -f WM_CLASS 8s -set WM_CLASS $browser_class -id $browser_window_id
+    echo open developer tools
+    xdotool search --name $url windowactivate windowfocus key F12
+    # xdotool search --name $url getwindowpid # pid is different than window_id
+    attempts=0
+    dt_window_id=
+    while [ $attempts -lt 20 ] && [ -z "$dt_window_id" ]
+    do
+      printf '.'
+      sleep 1
+      dt_window_id=`wmctrl -l | grep 'Developer Tools' | awk '{print $1}' | tail -n1`
+      attempts=$[$attempts+1]
+    done
+    if [ -n "$dt_window_id" ]
+    then
+      echo mark dt_window_id=$dt_window_id dt_class=$dt_class
+      xprop -f WM_CLASS 8s -set WM_CLASS $dt_class -id $dt_window_id
+    fi
   else
     echo can not find $url
   fi

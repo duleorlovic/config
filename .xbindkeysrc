@@ -9,7 +9,7 @@
 # xbindkeys -d > ~/.xbindkeysrc # create default configuration file
 # xbindkeys_show # to test configuration file
 # xbindkeys-config # gui
-# xbindkeys -k # too see command for your key combination
+# xbindkeys -k # too see your key combination
 # xbindkeys -v -n # to run in non deamon mode and print log
 #
 # xmacrorec2 # press esc and than your keys and esc
@@ -20,11 +20,15 @@
 #
 # I tried to bind to Alt+bracketleft but xbindkeys -n -v reports warning
 
-"echo -e 'KeyStrRelease bracketleft\nKeyStrRelease Control\nKeyStrPress Shift_L\nKeyStrPress Next\nKeyStrRelease Next\nKeyStrRelease Shift_L' | xmacroplay :0"
- Control + bracketleft
+"echo -e 'KeyStrRelease bracketleft\nKeyStrRelease Control_L\nKeyStrPress Shift_L\nKeyStrPress Next\nKeyStrRelease Next\nKeyStrRelease Shift_L\nKeyStrPress Control_L' | xmacroplay :0"
+  Control + bracketleft
 
-"echo -e 'KeyStrRelease bracketright\nKeyStrRelease Control\nKeyStrPress Shift_L\nKeyStrPress Prior\nKeyStrRelease Prior\nKeyStrRelease Shift_L' | xmacroplay :0"
- Control + bracketright
+"echo -e 'KeyStrRelease bracketright\nKeyStrRelease Control_L\nKeyStrPress Shift_L\nKeyStrPress Prior\nKeyStrRelease Prior\nKeyStrRelease Shift_L\nKeyStrPress Control_L' | xmacroplay :0 &"
+  Control + bracketright
 
-"echo -e 'KeyStrRelease F6\nKeyStrPress b\nKeyStrRelease b' | xmacroplay :0"
+# "echo -e 'KeyStrRelease bracketright\nKeyStrRelease Control_L\nKeyStrPress b\nKeyStrRelease b\nKeyStrPress Control_L' | xmacroplay :0 &"
+#   Control + mod2 + bracketright
+
+"echo -e 'KeyStrRelease F6\nKeyStrPress t\nKeyStrRelease t' | xmacroplay :0 &"
   F6
+

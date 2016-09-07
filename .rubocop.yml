@@ -18,20 +18,22 @@ Style/TrailingCommaInLiteral:
 Rails/Output:
   Enabled: false
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
 # Style/Documentation:
 #   Enabled: false
 # 
 # Style/TrailingCommaInArguments:
 #   Enabled: false
 # 
-# Style/StringLiterals:
-#   Enabled: false
 # 
 # Style/FileName:
 #   Enabled: false
 # 
-# Style/FrozenStringLiteralComment:
-#   Enabled: false
 # 
 # 
 # Metrics/AbcSize:
