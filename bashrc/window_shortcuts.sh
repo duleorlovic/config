@@ -34,15 +34,21 @@ get_current_viewport()
 
 a()
 {
-  project=${1-$(pwd)}
+  projectPath=${1-$(pwd)}
   port=300$(get_current_viewport)
   url=http://localhost:$port
 
-  s $project j
+  s $projectPath j
 
-  s $project k 120x24+830+200 "echo 'run here'"
+  s $projectPath k 120x24+830+200 "echo 'run here'"
 
-  s $project l 100x24-0+0 "git pull && rake db:migrate && rails s -b 0.0.0.0 -p $port"
+  projectName=`basename $projectPath`
+  s $projectPath l 100x24-0+0 "git pull && \
+    if [ -f ~/config/keys/$projectName.sh ];then
+      source ~/config/keys/$projectName.sh
+    fi
+    rake db:migrate && \
+    rails s -b 0.0.0.0 -p $port"
 
   s ~/jekyll/blog semicolon 80x24+1250+100
 
@@ -51,10 +57,10 @@ a()
 
 u()
 {
-  project=${1-$(pwd)}
-  s $project m  100x24+700-100 "echo m"
-  s $project colon  100x24+900-50 "echo ,"
-  s $project dot  100x24-0-0 "echo ."
+  projectPath=${1-$(pwd)}
+  s $projectPath m  100x24+700-100 "echo m"
+  s $projectPath colon  100x24+900-50 "echo ,"
+  s $projectPath dot  100x24-0-0 "echo ."
 }
 
 au()

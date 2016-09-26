@@ -6,6 +6,7 @@
 # cd ~ && ln -s ~/config/.xbindkeysrc
 #
 # pkill xbindkeys # remove current binding, that is needed before each xbindkeys
+# xbindkeys # start in deamon mode
 # xbindkeys -d > ~/.xbindkeysrc # create default configuration file
 # xbindkeys_show # to test configuration file
 # xbindkeys-config # gui

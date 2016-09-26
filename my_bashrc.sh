@@ -49,3 +49,14 @@ last_migration(){
 
 # copy line to clipboard
 bind '"\C-l": "\C-e\C-u xsel --clipboard <<"EOF"\n\C-y\nEOF\n\C-y"'
+
+function echo_red {
+  tput setaf 1
+  echo $@
+  tput sgr0
+}
+
+function echo_and_run {
+  echo_red $@
+  $@
+}

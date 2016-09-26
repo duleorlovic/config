@@ -4,27 +4,33 @@
 #
 
 ionic_publish(){
+  tput setaf 1
   if [ -f ~/config/keys/my-release-key.keystore ]
   then
-    echo Hi, we are building for android release
-    cordova build --release android
+    echo_and_run cordova build --release android
     target_file=${1:-platforms/android/build/outputs/apk/android-release-unsigned.apk}
-    echo using target_file $target_file
+    echo_red using target_file $target_file
     if [ -f my_app.apk ]
     then
-      echo move old my_app.apk to ~/Downloads
-      mv my_app.apk ~/Downloads
+      echo_and_run mv my_app.apk ~/Downloads
     fi
-    echo it might ask you for a password to use your key
-    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ~/config/keys/my-release-key.keystore $target_file alias_name # this will change the file inline
-    echo 0
-    $ANDROID_HOME/build-tools/21.1.2/zipalign -v 4 $target_file my_app.apk
-    echo my_app.apk stored in current folder, use: adb install my_app.apk
-    echo 1
+    echo_red it might ask you for a password to use your key
+    if echo $JAR_PASSWORD | jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ~/config/keys/my-release-key.keystore $target_file alias_name # this will change the file inline
+    then
+      echo_red signed successfully
+      echo_and_run $ANDROID_HOME/build-tools/21.1.2/zipalign -v 4 $target_file my_app.apk
+      echo_red my_app.apk stored in current folder
+      echo_and_run adb -d uninstall `ionic_find_package_name my_app.apk`
+      echo_and_run adb -d install my_app.apk
+      echo_and_run adb -d shell am start -a android.intent.action.MAIN -n `ionic_find_package_name my_app.apk`/.MainActivity
+    else
+      echo_red failed to sign $target_file
+    fi
   else
-    echo You need to create keys in ~/config/keys/my-release-key.keystore
-    echo keytool -genkey -v -keystore ~/config/keys/my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+    echo_red You need to create keys in ~/config/keys/my-release-key.keystore
+    echo_red keytool -genkey -v -keystore ~/config/keys/my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
   fi
+  echo_red bye
 }
 
 ionic_find_package_name(){

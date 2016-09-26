@@ -168,9 +168,9 @@ execute pathogen#infect()
 " to save history between vim session
 set history=1000
 " grep current word
-nnoremap gw :vsplit<CR>:grep <cword> * -I -R --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist} --exclude=_*<CR>
+nnoremap gw :vsplit<CR>:grep <cword> * -I -R --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist} --exclude=_coffeescript_build.js<CR>
 " grep yanked word
-nnoremap gy :grep "<c-r>"" * --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist} -R -I --exclude=_*<CR>
+nnoremap gy :grep "<c-r>"" * --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist} -R -I --exclude=_coffeescript_build.js<CR>
 " this is for tab completion , to stop cycle press CTRL+E than tab
 set wildmode=longest,list,full
 " search selected text, press // while in visual mode
