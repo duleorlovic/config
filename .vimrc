@@ -178,6 +178,11 @@ vnorem // y/<c-r>"<cr>
 " change paste toggle key to F12 since F11 is maximize
 set pastetoggle=<F12>
 
+" remap leader to space
+let mapleader = ' '
+
+map <leader>e :NERDTreeToggle<CR>
+
 " http://vim.wikia.com/wiki/Saving_a_file
 noremap <Leader>s :update<CR>
 noremap <Leader>q :q<CR>
@@ -283,6 +288,7 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb"
 " Make it so that a curly brace automatically inserts an indented line
 inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
 
+" yank and paste will interact with system clipboard so you can paste in browser
 set clipboard=unnamed
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " for backup a.txt~
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " for swap .a.txt.swp
@@ -312,7 +318,14 @@ set iskeyword+=-
 " http://superuser.com/questions/755122/vim-move-to-first-non-blank-in-same-column
 nnoremap <leader>j m':exec '/\%' . col(".") . 'c\S'<CR>``n
 nnoremap <leader>k m':exec '?\%' . col(".") . 'c\S'<CR>``n
-nnoremap <Leader>l :nohl<CR>
+" remove any existing search highlight
+nnoremap <Leader>/ :nohl<CR>
+
+" highlight current line
+set cursorline
+" highlight current column
+" set cuc cul"
+
 
 source $HOME/config/vim/syntastic.vim
 source $HOME/config/vim/netrw.vim

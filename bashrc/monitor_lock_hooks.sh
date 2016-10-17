@@ -5,8 +5,8 @@
 # export CAMERA_AUTHORIZATION=123123 in config/keys/my_keys.sh
 # don't forget chmod +x /home/orlovic/config/bashrc/screen_lock_hooks.sh
 # if [ "`pgrep dbus-monitor`" == "" ];then
-#   echo Starting screenlock_hooks
-#   /home/orlovic/config/bashrc/screenlock_hooks.sh
+#   echo Starting monitor_lock_hooks
+#   /home/orlovic/config/bashrc/monitor_lock_hooks.sh
 # fi
 # stop script with: pkill screenlock # not with dbus-monitor
 
@@ -32,4 +32,4 @@ dbus-monitor --session "type='signal',interface='com.ubuntu.Upstart0_6'" | \
       eval $STOP_CAMERA_DETECTION
     fi
   done
-) 2>&1 > /tmp/screenlock_hooks &
+) 2>&1 > /tmp/monitor_lock_hooks &

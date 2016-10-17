@@ -43,14 +43,15 @@ a()
   s $projectPath k 120x24+830+200 "echo 'run here'"
 
   projectName=`basename $projectPath`
-  s $projectPath l 100x24-0+0 "git pull && \
+  win_width=`expr $(monitor_size) / 36` # 7200 / 36 = 200
+  s $projectPath l ${win_width}x24-0+0 "git pull && \
     if [ -f ~/config/keys/$projectName.sh ];then
       source ~/config/keys/$projectName.sh
     fi
     rake db:migrate && \
     rails s -b 0.0.0.0 -p $port"
 
-  s ~/jekyll/blog semicolon 80x24+1250+100
+  s ~/jekyll/blog semicolon 80x24-0+100 # 80x24+1250+100
 
   start_browser h $url
 }
@@ -60,7 +61,8 @@ u()
   projectPath=${1-$(pwd)}
   s $projectPath m  100x24+700-100 "echo m"
   s $projectPath colon  100x24+900-50 "echo ,"
-  s $projectPath dot  100x24-0-0 "echo ."
+  win_width=`expr $(monitor_size) / 36` # 7200 / 36 = 200
+  s $projectPath dot  ${win_width}x24-0-0 "echo ."
 }
 
 au()
@@ -237,4 +239,10 @@ b()
     echo thanks. shortcut is ALT+$key
     echo multiple windows with the same classname toggles between them
   fi
+}
+
+monitor_size() {
+  size=`wmctrl -d | awk -F'x| ' '{print $5}'`
+  # on two monitors it is 7200
+  echo $size
 }

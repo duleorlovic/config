@@ -33,6 +33,22 @@ ionic_publish(){
   echo_red bye
 }
 
+ionic_install(){
+  if [ -z $1 ]
+  then
+    echo Default apk file is: my_app.apk
+  fi
+  apk_file=${1:-my_app.apk}
+  if [ -f $apk_file ]
+  then
+   echo_and_run adb -d uninstall `ionic_find_package_name $apk_file`
+   echo_and_run adb -d install $apk_file
+   echo_and_run adb -d shell am start -a android.intent.action.MAIN -n `ionic_find_package_name $apk_file`/.MainActivity
+  else
+    echo Can not find $apk_file
+  fi
+}
+
 ionic_find_package_name(){
   if [ -z $1 ]
   then
@@ -52,9 +68,34 @@ ionic_log(){
   if [ "$1" == "-h" ]; then
     cat <<-HERE_DOC
     Hi, this function show log from android device connected with usb
+    use -d (default) or -e option, for log from device or emulator
 	HERE_DOC
     return
   fi
-  echo 'starting logcat for device: adb -d logcat | grep "chromium\|Web Console"'
-  adb -d logcat | grep 'chromium\|Web Console' # new androids use chromium
+  if [ "$1" == "-e" ]; then
+    target=e
+  else
+    target=d
+  fi
+  # old android use we console, new android use chromium
+  echo_and_run adb -$target logcat | grep 'chromium\|Web Console'
+}
+
+ionic_push_hosts() {
+  if [ "$1" == "-h" ]; then
+    cat <<-HERE_DOC
+    Hi, this function that will remount and push hosts file to android emulator
+    Params are:
+    emulator_name (default is googleapi21)
+    host_file (default is ./hosts)
+	HERE_DOC
+    return
+  fi
+  emulator_name=${1-googleapi21}
+  hosts_file=${2-hosts}
+  echo_and_run emulator -avd $emulator_name -partition-size 512 &
+  echo_and_run adb -e wait-for-device
+  echo_and_run adb -e remount
+  echo_and_run adb -e push hosts /system/etc
+  echo_and_run adb -e shell cat /etc/hosts
 }
