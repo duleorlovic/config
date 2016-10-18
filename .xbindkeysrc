@@ -19,13 +19,14 @@
 # To simulate key on Alt+something you need to release Alt first
 # You need both with Numlock and without (Mod2)
 #
-# I tried to bind to Alt+bracketleft but xbindkeys -n -v reports warning
+# I tried to bind to Alt+bracketleft, Alt_L + bracketleft, Alt+plus
+# but xbindkeys -n does not reports anyhing (it does not detect that Alt combin)
 
-"echo -e 'KeyStrRelease bracketleft\nKeyStrRelease Control_L\nKeyStrPress Shift_L\nKeyStrPress Next\nKeyStrRelease Next\nKeyStrRelease Shift_L\nKeyStrPress Control_L' | xmacroplay :0"
-  Control + bracketleft
+"echo -e 'KeyStrRelease minus\nKeyStrRelease Control_L\nKeyStrPress Shift_L\nKeyStrPress Next\nKeyStrRelease Next\nKeyStrRelease Shift_L\nKeyStrPress Control_L' | xmacroplay :0"
+  Control + minus
 
-"echo -e 'KeyStrRelease bracketright\nKeyStrRelease Control_L\nKeyStrPress Shift_L\nKeyStrPress Prior\nKeyStrRelease Prior\nKeyStrRelease Shift_L\nKeyStrPress Control_L' | xmacroplay :0 &"
-  Control + bracketright
+"echo -e 'KeyStrRelease equal\nKeyStrRelease Control_L\nKeyStrPress Shift_L\nKeyStrPress Prior\nKeyStrRelease Prior\nKeyStrRelease Shift_L\nKeyStrPress Control_L' | xmacroplay :0 &"
+  Control + equal
 
 # "echo -e 'KeyStrRelease bracketright\nKeyStrRelease Control_L\nKeyStrPress b\nKeyStrRelease b\nKeyStrPress Control_L' | xmacroplay :0 &"
 #   Control + mod2 + bracketright
