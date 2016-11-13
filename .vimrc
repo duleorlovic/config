@@ -305,7 +305,6 @@ let g:ctrlp_working_path_mode = 'wa' " check working directory with :pwd
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] " this has problem with unknown .git/
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 
-
 " https://robots.thoughtbot.com/wrap-existing-text-at-80-characters-in-vim
 " reformat with gq
 set textwidth=80
@@ -326,6 +325,9 @@ set cursorline
 " highlight current column
 " set cuc cul"
 
+" source current (probably) vim file
+nnoremap <leader>sop :source %<cr>
 
 source $HOME/config/vim/syntastic.vim
 source $HOME/config/vim/netrw.vim
+source $HOME/config/vim/snippets/snippets.vim

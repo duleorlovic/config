@@ -5,17 +5,34 @@
 
 ionic_publish(){
   tput setaf 1
-  if [ -f ~/config/keys/my-release-key.keystore ]
+  default_keystore_file=~/config/keys/my-release-key.keystore
+  if [ "$1" == "-h" ]; then
+    cat <<-HERE_DOC
+    Hi, this function that package the apk
+    Params are:
+    your-key.keystore (default is config/keys/my-release-key.keystore)
+    jar_password (default is $JAR_PASSWORD)
+    unsigned.apk (default is platforms/android/build/outputs/apk/android-release-unsigned.apk)
+	HERE_DOC
+    return
+  fi
+  if [ -z $1 ]
+  then
+    echo Default keystore is: $default_keystore_file
+  fi
+  keystore_file=${1:-$default_keystore_file}
+  if [ -f $keystore_file ]
   then
     echo_and_run cordova build --release android
-    target_file=${1:-platforms/android/build/outputs/apk/android-release-unsigned.apk}
+    jar_password=${2:-$JAR_PASSWORD}
+    target_file=${3:-platforms/android/build/outputs/apk/android-release-unsigned.apk}
     echo_red using target_file $target_file
     if [ -f my_app.apk ]
     then
       echo_and_run mv my_app.apk ~/Downloads
     fi
     echo_red it might ask you for a password to use your key
-    if echo $JAR_PASSWORD | jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ~/config/keys/my-release-key.keystore $target_file alias_name # this will change the file inline
+    if echo $jar_password | jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $keystore_file $target_file alias_name # this will change the file inline
     then
       echo_red signed successfully
       echo_and_run $ANDROID_HOME/build-tools/21.1.2/zipalign -v 4 $target_file my_app.apk
@@ -27,8 +44,8 @@ ionic_publish(){
       echo_red failed to sign $target_file
     fi
   else
-    echo_red You need to create keys in ~/config/keys/my-release-key.keystore
-    echo_red keytool -genkey -v -keystore ~/config/keys/my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+    echo_red You need to create keys in $keystore_file
+    echo_red keytool -genkey -v -keystore $keystore_file -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
   fi
   echo_red bye
 }

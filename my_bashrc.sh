@@ -2,6 +2,7 @@ MY_FILES=(
   ~/config/keys/my_keys.sh
   ~/config/bashrc/window_shortcuts.sh
   ~/config/bashrc/ionic.sh
+  ~/config/bashrc/rails.sh
 )
 
 for my_file in ${MY_FILES[*]}; do
@@ -42,10 +43,6 @@ function d {
   # xbacklight -dec 2 # or -inc %
 }
 alias dim=d
-
-last_migration(){
-  vim db/migrate/$(ls db/migrate/ | sort | tail -1)
-}
 
 # copy line to clipboard
 bind '"\C-l": "\C-e\C-u xsel --clipboard <<"EOF"\n\C-y\nEOF\n\C-y"'
