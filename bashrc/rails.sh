@@ -58,6 +58,9 @@ function load_dump() {
   fi
   rails_env=${2:-development}
   db_name=$(rails runner "puts ActiveRecord::Base.configurations['$rails_env']['database']")
-  echo_red Loading to $db_name for $rails_env
+  echo_red Drop $db_name for $rails_env
+  RAILS_ENV=$rails_env rake db:drop
+  RAILS_ENV=$rails_env rake db:create db:migrate
   sudo su postgres -c "pg_restore -d $db_name --clean --no-acl --no-owner -h localhost $dump_file"
+  echo_red "Finish loading"
 }

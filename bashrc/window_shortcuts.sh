@@ -44,11 +44,11 @@ a()
 
   projectName=`basename $projectPath`
   win_width=`expr $(monitor_size) / 36` # 7200 / 36 = 200
-  s $projectPath l ${win_width}x24-0+0 "git pull && \
+  s $projectPath l ${win_width}x24-0+0 "git pull; \
     if [ -f ~/config/keys/$projectName.sh ];then
       source ~/config/keys/$projectName.sh
     fi
-    rake db:migrate && \
+    rake db:migrate; \
     rails s -b 0.0.0.0 -p $port"
 
   s ~/jekyll/blog semicolon 80x24-0+100 # 80x24+1250+100
@@ -152,13 +152,18 @@ s()
   class=vp_$(get_current_viewport)_class_${2-j}
   geometry=${3-300x30+0-0}
   command=${4-vim .}
+  # to run command and stays in that shell I tried to simply `$command; bash -l`
+  # but than history is empty or `au`, so we need to execute with --rcfile and
+  # to manually add to `history -s` for last string command (last ;)
+  # http://superuser.com/questions/135651/how-can-i-add-a-command-to-the-bash-history-without-executing-it
+  # http://stackoverflow.com/questions/7120426/invoke-bash-run-commands-inside-new-shell-then-give-control-back-to-user
+  # http://stackoverflow.com/questions/3162385/how-to-split-a-string-in-shell-and-get-the-last-field
   echo $class $folder set size $geometry and \
     run command $command
   gnome-terminal --geometry=$geometry -x bash --login -c "\
     cd $folder;\
     xprop -f WM_CLASS 8s -set WM_CLASS $class -id \$(xdotool getwindowfocus);\
-    $command;\
-    bash -l"
+    bash --rcfile <(echo '. ~/.bashrc;history -s ${command##*;};$command')"
   sleep 0.5
 }
 
