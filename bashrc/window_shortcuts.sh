@@ -152,18 +152,17 @@ s()
   class=vp_$(get_current_viewport)_class_${2-j}
   geometry=${3-300x30+0-0}
   command=${4-vim .}
-  # to run command and stays in that shell I tried to simply `$command; bash -l`
-  # but than history is empty or `au`, so we need to execute with --rcfile and
-  # to manually add to `history -s` for last string command (last ;)
-  # http://superuser.com/questions/135651/how-can-i-add-a-command-to-the-bash-history-without-executing-it
-  # http://stackoverflow.com/questions/7120426/invoke-bash-run-commands-inside-new-shell-then-give-control-back-to-user
-  # http://stackoverflow.com/questions/3162385/how-to-split-a-string-in-shell-and-get-the-last-field
   echo $class $folder set size $geometry and \
     run command $command
+  echo_red put command in bash history so we have it
+  # http://stackoverflow.com/questions/3162385/how-to-split-a-string-in-shell-and-get-the-last-field
+  echo_and_run history -s ${command##*;}
+  history -a
   gnome-terminal --geometry=$geometry -x bash --login -c "\
     cd $folder;\
     xprop -f WM_CLASS 8s -set WM_CLASS $class -id \$(xdotool getwindowfocus);\
-    bash --rcfile <(echo '. ~/.bashrc;history -s ${command##*;};$command')"
+    $command;\
+    bash -l"
   sleep 0.5
 }
 
