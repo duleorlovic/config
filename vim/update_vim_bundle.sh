@@ -30,6 +30,8 @@ list=(
   https://github.com/garbas/vim-snipmate.git # snipmate
   https://github.com/honza/vim-snippets.git # spipmate snippets
   https://github.com/scrooloose/nerdtree.git # file explorer better than netrw
+  #https://github.com/sheerun/vim-polyglot.git # syntax indent for multiple lang
+  #https://bitbucket.org/ludovicchabant/vim-gutentags # to generate tags
 )
 if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
   mkdir -p ~/.vim/autoload ~/.vim/bundle

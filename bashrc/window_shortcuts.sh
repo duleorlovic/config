@@ -40,7 +40,7 @@ a()
 
   s $projectPath j
 
-  s $projectPath k 120x24+830+200 "echo 'run here'"
+  s $projectPath k 120x24+830+100 "echo 'run here'"
 
   projectName=`basename $projectPath`
   win_width=`expr $(monitor_size) / 36` # 7200 / 36 = 200
@@ -154,7 +154,7 @@ s()
   command=${4-vim .}
   echo $class $folder set size $geometry and \
     run command $command
-  echo_red put command in bash history so we have it
+  echo put command in bash history so we have it when we stop the proccess
   # http://stackoverflow.com/questions/3162385/how-to-split-a-string-in-shell-and-get-the-last-field
   echo_and_run history -s ${command##*;}
   history -a

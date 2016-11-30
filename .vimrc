@@ -168,9 +168,9 @@ execute pathogen#infect()
 " to save history between vim session
 set history=1000
 " grep current word
-nnoremap gw :vsplit<CR>:grep <cword> * -I -R --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist} --exclude=_coffeescript_build.js<CR>
+nnoremap gw :vsplit<CR>:grep <cword> * -I -R --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist} --exclude={_coffeescript_build.js,tags}<CR>
 " grep yanked word
-nnoremap gy :grep "<c-r>"" * --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist} -R -I --exclude=_coffeescript_build.js<CR>
+nnoremap gy :grep "<c-r>"" * --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist} -R -I --exclude={_coffeescript_build.js,tags}<CR>
 " this is for tab completion , to stop cycle press CTRL+E than tab
 set wildmode=longest,list,full
 " search selected text, press // while in visual mode
@@ -327,6 +327,9 @@ set cursorline
 
 " source current (probably) vim file
 nnoremap <leader>sop :source %<cr>
+
+" set folder for gutentags vim plugin
+let g:gutentags_cache_dir = '~/.tags_cache'
 
 source $HOME/config/vim/syntastic.vim
 source $HOME/config/vim/netrw.vim
