@@ -36,7 +36,8 @@ function d {
   then
     echo Default is middle value: d 0.5
   fi
-  # to find your crtc number use xrandr --verbose
+  # to find your crtc number use xrandr --verbose, something like HDMI-0, LVDS1
+  xrandr --auto
   xrandr --output ${CRTC:DFP1} --brightness ${1:-0.5}
   # when error is xrandr: Need crtc to set gamma on.
   # sudo apt-get install xbackligh

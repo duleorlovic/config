@@ -96,11 +96,20 @@ start_browser()
   chromium-browser $url --new-window &
   attempts=0
   browser_window_id=
+  url_without_protocol=${url#*//} # remove http://
+  url_only_domain=${url_without_protocol%:*} # remove :3000
+  echo trying to find url_without_protocol=$url_without_protocol
+  echo if windows with same name exists, last one will be used
   while [ $attempts -lt 20 ] && [ -z "$browser_window_id" ]
   do
     printf '.'
     sleep 1
-    browser_window_id=`wmctrl -l | grep $url | awk '{print $1}' | head -n1`
+    if [ $attempts -lt 5 ];then
+      browser_window_id=`wmctrl -l | grep $url_without_protocol | awk '{print $1}' | tail -n1`
+    else
+      echo_red trying to locate based on domain. Could fetch some old windows
+      browser_window_id=`wmctrl -l | grep $url_only_domain | awk '{print $1}' | tail -n1`
+    fi
     attempts=$[$attempts+1]
   done
   if [ -n "$browser_window_id" ]
@@ -109,8 +118,8 @@ start_browser()
          browser_class=$browser_class
     wmctrl -e 0,0,0,-1,-1 -r $url # move
     xprop -f WM_CLASS 8s -set WM_CLASS $browser_class -id $browser_window_id
-    echo open developer tools
-    xdotool search --name $url windowactivate windowfocus key F12
+    echo open developer tools, if same window name exists than first is used
+    xdotool search --name $url_without_protocol windowactivate windowfocus key F12
     # xdotool search --name $url getwindowpid # pid is different than window_id
     attempts=0
     dt_window_id=

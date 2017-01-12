@@ -325,6 +325,10 @@ set cursorline
 " highlight current column
 " set cuc cul"
 
+" http://stackoverflow.com/questions/10723700/how-can-vim-keep-the-content-of-register-when-pasting-over-selected-text
+" keep current content of register when pasting
+vnoremap <Leader>p "_dP
+
 " source current (probably) vim file
 nnoremap <leader>sop :source %<cr>
 

@@ -30,6 +30,7 @@ list=(
   https://github.com/garbas/vim-snipmate.git # snipmate
   https://github.com/honza/vim-snippets.git # spipmate snippets
   https://github.com/scrooloose/nerdtree.git # file explorer better than netrw
+  git@github.com:tonekk/vim-ruby-capybara.git # capybara highlight
   #https://github.com/sheerun/vim-polyglot.git # syntax indent for multiple lang
   #https://bitbucket.org/ludovicchabant/vim-gutentags # to generate tags
 )
