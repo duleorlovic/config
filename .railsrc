@@ -1,0 +1,2 @@
+# -T # skip minitests
+# -d postgresql # use postgresql

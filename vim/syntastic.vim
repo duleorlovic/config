@@ -15,7 +15,7 @@ let g:syntastic_loc_list_height = 3
 
 " RUBY
 "let g:syntastic_ruby_exec = '/home/orlovic/.rvm/rubies/ruby-2.2.3/bin/ruby'
-let g:syntastic_ruby_checkers = ['rubocop'] ",'mri']
+let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {'regex': [
     \ 'possibly useless use of a variable in void context',
@@ -46,5 +46,13 @@ let g:syntastic_scss_sass_quiet_messages =
 " JAVASCRIPT
 let g:syntastic_javascript_checkers = ['eslint']
 
+" JSON
 au BufRead,BufNewFile *.json set filetype=json
 let g:syntastic_json_checkers=['jsonlint']
+
+" CSS
+"let g:syntastic_scss_sass_args="--load-path ~/.rvm/gems/ruby-2.2.3/gems/normalize-rails-3.0.3/vendor/assets/stylesheets"
+let g:syntastic_scss_checkers=['']
+
+" Markdown
+let g:syntastic_markdown_checkers=['']

@@ -19,11 +19,13 @@ fi
 export EDITOR=vim
 
 # Add Android SDK tools to PATH
-export ANDROID_HOME=/home/orlovic/Android/Sdk/
-# for android
-export PATH="$PATH:$HOME/Android/Sdk/tools"
+export ANDROID_HOME=/media/orlovic/bf12a7e5-a5d4-4532-8612-a3984f90b56c/shared/Android/Sdk
+# issue with unable to load driver https://stackoverflow.com/questions/35911302/cannot-launch-emulator-on-linux-ubuntu-15-10/36625175#36625175
+export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+# for android command
+export PATH="$PATH:$ANDROID_HOME/tools"
 # for adb
-export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
 # for genymotion
 export PATH="$PATH:$HOME/Programs/genymotion"
 # for studio.sh

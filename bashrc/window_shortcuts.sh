@@ -8,6 +8,7 @@
 # xprop
 # wmctrl
 # bash -l  # rvm asks for login
+browser=google-chrome
 
 # http://askubuntu.com/questions/41093/is-there-a-command-to-go-a-specific-workspace
 # http://stackoverflow.com/questions/17336915/return-value-in-bash-script
@@ -32,7 +33,7 @@ get_current_viewport()
   fi
 }
 
-a()
+upper()
 {
   projectPath=${1-$(pwd)}
   port=300$(get_current_viewport)
@@ -44,31 +45,33 @@ a()
 
   projectName=`basename $projectPath`
   win_width=`expr $(monitor_size) / 36` # 7200 / 36 = 200
-  s $projectPath l ${win_width}x24-0+0 "git pull; \
+  s $projectPath semicolon ${win_width}x24-0+0 "git pull; \
     if [ -f ~/config/keys/$projectName.sh ];then
       source ~/config/keys/$projectName.sh
     fi
+    rake db:create
     rake db:migrate; \
     rails s -b 0.0.0.0 -p $port"
 
-  s ~/jekyll/blog semicolon 80x24-0+100 # 80x24+1250+100
+  s ~/jekyll/blog l 80x24+1250+0 # right: 80x24-0+100 # 80x24+1250+100
 
   start_browser h $url
 }
 
-u()
+under()
 {
   projectPath=${1-$(pwd)}
   s $projectPath m  100x24+700-100 "echo m"
   s $projectPath colon  100x24+900-50 "echo ,"
+  s $projectPath dot  100x24-1100-0 "echo ."
   win_width=`expr $(monitor_size) / 36` # 7200 / 36 = 200
-  s $projectPath dot  ${win_width}x24-0-0 "echo ."
+  s $projectPath slash  ${win_width}x35-0-0 "echo /"
 }
 
-au()
+all()
 {
-  u ${1}
-  a ${1}
+  under ${1}
+  upper ${1}
 }
 
 start_browser()
@@ -93,11 +96,10 @@ start_browser()
   # google-chrome $url --new-window --auto-open-devtools-for-tabs &
   # auto-open-devtools-for-tabs will open for each new tab :(
   # chromium-browser $url --new-window & # --new-window option is not in man
-  chromium-browser $url --new-window &
+  $browser $url --new-window &
   attempts=0
   browser_window_id=
   url_without_protocol=${url#*//} # remove http://
-  url_only_domain=${url_without_protocol%:*} # remove :3000
   echo trying to find url_without_protocol=$url_without_protocol
   echo if windows with same name exists, last one will be used
   while [ $attempts -lt 20 ] && [ -z "$browser_window_id" ]
@@ -107,8 +109,8 @@ start_browser()
     if [ $attempts -lt 5 ];then
       browser_window_id=`wmctrl -l | grep $url_without_protocol | awk '{print $1}' | tail -n1`
     else
-      echo_red trying to locate based on domain. Could fetch some old windows
-      browser_window_id=`wmctrl -l | grep $url_only_domain | awk '{print $1}' | tail -n1`
+      echo_red trying to locate last Chrom. Could fetch some other windows
+      browser_window_id=`wmctrl -l | grep "Chrom" | awk '{print $1}' | tail -n1`
     fi
     attempts=$[$attempts+1]
   done
@@ -185,8 +187,7 @@ qa()
   fi
   xdotool getactivewindow windowminimize
   echo windowkill Chrome
-  xdotool search Chromium windowkill
-  xdotool search "Google Chrome" windowkill
+  xdotool search Chrom windowkill
   last_name=start
   while true; do
     name=`xdotool getactivewindow getwindowname`

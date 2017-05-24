@@ -163,7 +163,7 @@ nnoremap <C-L> :nohl<CR><C-L>
 set cmdheight=1  " 2 is to more
 set number! " unset number
 
-"custom 
+"custom
 execute pathogen#infect()
 " to save history between vim session
 set history=1000
@@ -272,7 +272,7 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
-" RSpec.vim mappings
+" RSpec.vim mappings for tests
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
@@ -293,13 +293,6 @@ set clipboard=unnamed
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " for backup a.txt~
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " for swap .a.txt.swp
 
-au BufRead,BufNewFile *.json set filetype=json
-let g:syntastic_json_checkers=['jsonlint']
-
-"let g:syntastic_scss_sass_args="--load-path ~/.rvm/gems/ruby-2.2.3/gems/normalize-rails-3.0.3/vendor/assets/stylesheets"
-"let g:syntastic_scss_checkers=['']
-let g:syntastic_markdown_checkers=['']
-
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'wa' " check working directory with :pwd
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] " this has problem with unknown .git/
@@ -309,6 +302,8 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-stand
 " reformat with gq
 set textwidth=80
 set colorcolumn=+1
+" for html use double size
+autocmd BufRead,BufNewFile *.html setlocal textwidth=160
 
 " select my-name as it select my_name as words
 set iskeyword+=-

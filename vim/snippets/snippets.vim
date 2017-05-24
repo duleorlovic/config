@@ -19,3 +19,6 @@ nnoremap ,hacker :-1read $HOME/config/vim/snippets/hacker.rb<CR>
 
 " not really snippet, just replace :word => value with word: value
 nnoremap ,: bhxelc2w: <ESC>
+
+" rspec
+nnoremap ,have_a ait { is_expected.to have_attribute  }<ESC>hi:

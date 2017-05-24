@@ -1,12 +1,12 @@
 # http://blog.trk.in.rs/2015/12/01/vim-tips/
 AllCops:
+  TargetRubyVersion: 2.3
   Exclude:
     - config/unicorn.rb
     - db/schema.rb
     - /home/orlovic/.rvm/**/*
     - node_modules/**/*
     - db/migrate/*
-  TargetRubyVersion: 2.3
 
 Rails:
   Enabled: true
