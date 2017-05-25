@@ -11,10 +11,10 @@ for my_file in ${MY_FILES[*]}; do
   fi
 done
 
-if [ "`pgrep dbus-monitor`" == "" ];then
-  echo Starting monitor_lock_hooks
-  /home/orlovic/config/bashrc/monitor_lock_hooks.sh
-fi
+# if [ "`pgrep dbus-monitor`" == "" ];then
+#   echo Starting monitor_lock_hooks
+#   /home/orlovic/config/bashrc/monitor_lock_hooks.sh
+# fi
 
 export EDITOR=vim
 
