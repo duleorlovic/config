@@ -197,9 +197,9 @@ vmap <F2> <Esc><F2>gv
 " does not work when is in paste mode
 imap <F2> <c-o><F2>
 
-function Test() range
-  echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| pbcopy')
-endfunction
+" function Test() range
+"   echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| pbcopy')
+" endfunction
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
@@ -290,6 +290,7 @@ inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
 
 " yank and paste will interact with system clipboard so you can paste in browser
 set clipboard=unnamed
+" set backup folder. first one which exists will be used
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " for backup a.txt~
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " for swap .a.txt.swp
 
@@ -333,3 +334,6 @@ let g:gutentags_cache_dir = '~/.tags_cache'
 source $HOME/config/vim/syntastic.vim
 source $HOME/config/vim/netrw.vim
 source $HOME/config/vim/snippets/snippets.vim
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>

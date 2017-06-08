@@ -23,7 +23,7 @@ list=(
   https://github.com/ctrlpvim/ctrlp.vim.git # <c-p> <c-j> <c-k> <c-f> <c-b> <c-v>
   https://github.com/othree/html5.vim # html5 indent correct
   git://github.com/digitaltoad/vim-pug.git # jade syntax highlight
-  https://github.com/tpope/vim-markdown.git # markdown 
+  https://github.com/tpope/vim-markdown.git # markdown
   https://github.com/lilydjwg/colorizer # highlight color #rgb #rrggbb
   https://github.com/tomtom/tlib_vim.git # snipmate requirement
   https://github.com/MarcWeber/vim-addon-mw-utils.git # snipmate requirement
@@ -33,6 +33,11 @@ list=(
   git@github.com:tonekk/vim-ruby-capybara.git # capybara highlight
   #https://github.com/sheerun/vim-polyglot.git # syntax indent for multiple lang
   #https://bitbucket.org/ludovicchabant/vim-gutentags # to generate tags
+  https://github.com/tpope/vim-rhubarb.git
+)
+install_commands=(
+  # https://github.com/tpope/vim-rhubarb
+  "vim -u NONE -c 'helptags vim-rhubarb/doc' -c q"
 )
 if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
   mkdir -p ~/.vim/autoload ~/.vim/bundle
@@ -46,6 +51,12 @@ if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
     git clone $bundle_link
   done
   cd -
+
+  for install_command in "${install_commands[@]}"
+  do
+    echo $install_command
+    $install_command
+  done
 fi
 echo start updating: `ls ~/.vim/bundle`
 for d in `ls -d ~/.vim/bundle/*`; do
