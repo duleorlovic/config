@@ -337,3 +337,11 @@ source $HOME/config/vim/snippets/snippets.vim
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+iabbrev command ⌘
+iabbrev option ⌥
+
+inoremap jk <esc>
+inoremap <esc> <nop>
+inoremap § `
+inoremap ± ~

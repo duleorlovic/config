@@ -11,14 +11,15 @@ If you make a lot of changes to initial file make sure you mv original files
 to back backup
 
 ~~~
-# find ~/config/ -maxdepth 1 -type f -printf "%f\n" | xargs mv -t ~/config/backup/
-# ignore errors if some file does not exists
+find ~/config/ -maxdepth 1 -type f -printf "%f\n" | xargs mv -t ~/config/backup/
+find ~/config/ -maxdepth 1 -type f -exec basename {} \; | xargs mv -t ~/config/backup/
+# ignore errors if some file does not exists because we will create those files
 
 # create link for each file in config
-# find ~/config/ -maxdepth 1 -type f -exec ln -s {} \;
+find ~/config/ -maxdepth 1 -type f -exec ln -s {} \;
 ~~~
 
-## Bashrc
+Add to your `.bashrc` (or `.bash_profile` for MAC)
 
 ~~~
 cat >> .bashrc <<HERE_DOC
@@ -26,6 +27,12 @@ if [ -f ~/config/my_bashrc.sh ]; then
   source ~/config/my_bashrc.sh
 fi
 HERE_DOC
+~~~
+
+Install vim pathogen and plugins
+
+~~~
+source ~/config/vim/update_vim_bundle.sh --install
 ~~~
 
 ## Secret keys
