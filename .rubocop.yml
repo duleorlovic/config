@@ -24,11 +24,11 @@ Style/FrozenStringLiteralComment:
 Style/StringLiterals:
   Enabled: false
 
+Style/TrailingCommaInArguments:
+  Enabled: false
 # Style/Documentation:
 #   Enabled: false
 # 
-# Style/TrailingCommaInArguments:
-#   Enabled: false
 # 
 # 
 # Style/FileName:
@@ -47,3 +47,5 @@ Style/StringLiterals:
 # 
 # Metrics/ClassLength:
 #   Max: 120 # default was 100
+# Style/DotPosition:
+#   EnforcedStyle: trailing

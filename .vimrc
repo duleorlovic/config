@@ -180,6 +180,7 @@ set pastetoggle=<F12>
 
 " remap leader to space
 let mapleader = ' '
+let maplocalleader = '_'
 
 map <leader>e :NERDTreeToggle<CR>
 
@@ -196,6 +197,8 @@ nmap <F2> :update<CR>
 vmap <F2> <Esc><F2>gv
 " does not work when is in paste mode
 imap <F2> <c-o><F2>
+
+nnoremap <leader>w :w<cr>
 
 " function Test() range
 "   echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| pbcopy')
@@ -315,11 +318,24 @@ nnoremap <leader>j m':exec '/\%' . col(".") . 'c\S'<CR>``n
 nnoremap <leader>k m':exec '?\%' . col(".") . 'c\S'<CR>``n
 " remove any existing search highlight
 nnoremap <Leader>/ :nohl<CR>
+" search for next header in markdown file, so you can navigate with n and N
+nnoremap <leader># /^#.*\n\n<cr>
 
 " highlight current line
 set cursorline
 " highlight current column
 " set cuc cul"
+
+" http://vim.wikia.com/wiki/Search_across_multiple_lines#Searching_over_multiple_lines_with_a_user_command
+" Search for the ... arguments separated with whitespace (if no '!'),
+" or with non-word characters (if '!' added to command).
+function! SearchMultiLine(bang, ...)
+  if a:0 > 0
+    let sep = (a:bang) ? '\_W\+' : '\_s\+'
+    let @/ = join(a:000, sep)
+  endif
+endfunction
+command! -bang -nargs=* -complete=tag S call SearchMultiLine(<bang>0, <f-args>)|normal! /<C-R>/<CR>
 
 " http://stackoverflow.com/questions/10723700/how-can-vim-keep-the-content-of-register-when-pasting-over-selected-text
 " keep current content of register when pasting
@@ -338,10 +354,11 @@ source $HOME/config/vim/snippets/snippets.vim
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-iabbrev command ⌘
+" iabbrev command ⌘
 iabbrev option ⌥
 
-inoremap jk <esc>
-inoremap <esc> <nop>
+" mac move those keys from standard position so remap them
 inoremap § `
 inoremap ± ~
+
+autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
