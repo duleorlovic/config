@@ -340,8 +340,3 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 iabbrev command ⌘
 iabbrev option ⌥
-
-inoremap jk <esc>
-inoremap <esc> <nop>
-inoremap § `
-inoremap ± ~
