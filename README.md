@@ -32,6 +32,8 @@ HERE_DOC
 Install vim pathogen and plugins
 
 ~~~
+sudo apt install vim curl xsel git vim-gtk xdotool
+mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 source ~/config/vim/update_vim_bundle.sh --install
 ~~~
 
@@ -50,7 +52,7 @@ HERE_DOC
 
 # Keyboard shortcuts for windows
 
-I'm using some
+I am using some
 [xdotool](http://www.semicomplete.com/projects/xdotool/xdotool.xhtml)
 so you need to manually add some [keyboard
 shortcuts](https://github.com/duleorlovic/config/blob/master/bashrc/window_shortcuts.sh#L34)

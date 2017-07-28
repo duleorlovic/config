@@ -9,6 +9,7 @@ list=(
   git://github.com/tpope/vim-rails.git # example: Rview
   git://github.com/tpope/vim-bundler.git # Bopen
   git://github.com/tpope/vim-fugitive.git # Gblame, Gbrowse: vim -u NONE -c "helptags vim-fugitive/doc" -c q
+  https://github.com/tommcdo/vim-fubitive # support for bitbucket
   git://github.com/tpope/vim-sensible.git # search before enter
   git://github.com/tpope/vim-cucumber.git # cucumber syntax highlight
   https://github.com/thoughtbot/vim-rspec.git # rspec shortcuts <Leader>tsla
