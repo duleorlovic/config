@@ -170,7 +170,7 @@ set history=1000
 " grep current word
 nnoremap gw :vsplit<CR>:grep <cword> * -I -R --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist} --exclude={_coffeescript_build.js,tags}<CR>
 " grep yanked word
-nnoremap gy :grep "<c-r>"" * --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist} -R -I --exclude={_coffeescript_build.js,tags}<CR>
+nnoremap gy :grep "<c-r>"" * --exclude-dir={log,public,tmp,vendor,db,bower_components,coverage,node_modules,dist} -R -I --exclude={_coffeescript_build.js,tags}<CR>
 " this is for tab completion , to stop cycle press CTRL+E than tab
 set wildmode=longest,list,full
 " search selected text, press // while in visual mode
@@ -362,3 +362,16 @@ inoremap § `
 inoremap ± ~
 
 autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+
+nnoremap <F5> :UndotreeToggle<cr>
+
+" configure vim-rails to jump to /spec instead of /test
+" https://github.com/tpope/vim-rails/issues/426
+let g:rails_projections = {
+      \  'app/*.rb': {
+      \     'alternate': 'spec/{}_spec.rb',
+      \   },
+      \  'spec/*_spec.rb': {
+      \     'alternate': 'app/{}.rb',
+      \   }
+      \}

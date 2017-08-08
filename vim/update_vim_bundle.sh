@@ -35,6 +35,7 @@ list=(
   #https://github.com/sheerun/vim-polyglot.git # syntax indent for multiple lang
   #https://bitbucket.org/ludovicchabant/vim-gutentags # to generate tags
   https://github.com/tpope/vim-rhubarb.git
+  git@github.com:mbbill/undotree.git # vim graphical undo tree
 )
 install_commands=(
   # https://github.com/tpope/vim-rhubarb

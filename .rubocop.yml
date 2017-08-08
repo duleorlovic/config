@@ -12,20 +12,23 @@ Rails:
   Enabled: true
 
 # [1,]
-Style/TrailingCommaInLiteral:
-  Enabled: false
+# Style/TrailingCommaInLiteral:
+#   Enabled: false
 
-Rails/Output:
-  Enabled: false
+# Rails/Output:
+#   Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/StringLiterals:
+Rails/FilePath:
   Enabled: false
-
-Style/TrailingCommaInArguments:
-  Enabled: false
+#
+# Style/StringLiterals:
+#   Enabled: false
+#
+#  Style/TrailingCommaInArguments:
+#    Enabled: false
 # Style/Documentation:
 #   Enabled: false
 # 
