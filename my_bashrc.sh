@@ -47,8 +47,21 @@ function d {
 }
 alias dim=d
 
+function is_mac_os {
+  if [ "$(uname)" == "Darwin" ]; then
+    # 0 is true
+    return 0
+  else
+    # 1 is false
+    return 1
+  fi
+}
 # copy line to clipboard
-bind '"\C-l": "\C-e\C-u xsel --clipboard <<"EOF"\n\C-y\nEOF\n\C-y"'
+if is_mac_os; then
+  bind '"\C-l": "\C-e\C-u pbcopy <<"EOF"\n\C-y\nEOF\n\C-y"'
+else
+  bind '"\C-l": "\C-e\C-u xsel --clipboard <<"EOF"\n\C-y\nEOF\n\C-y"'
+fi
 
 function echo_red {
   tput setaf 1

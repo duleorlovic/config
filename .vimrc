@@ -180,7 +180,7 @@ set pastetoggle=<F12>
 
 " remap leader to space
 let mapleader = ' '
-let maplocalleader = '_'
+let maplocalleader = '\'
 
 map <leader>e :NERDTreeToggle<CR>
 
@@ -286,10 +286,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+nnoremap <C-g> <C-w>h<C-w>h<C-w>h<C-w>h<C-w>h
+nnoremap <C-;> <C-w>l<C-w>l<C-w>l<C-w>l<C-w>l
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb"
-
-" Make it so that a curly brace automatically inserts an indented line
-inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
 
 " yank and paste will interact with system clipboard so you can paste in browser
 set clipboard=unnamed
@@ -375,3 +374,12 @@ let g:rails_projections = {
       \     'alternate': 'app/{}.rb',
       \   }
       \}
+
+augroup filetype_html
+    autocmd!
+    autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+augroup END
+
+" operator pending search for end, delete block
+onoremap b /end<cr>
+onoremap in( :<c-u>normal! f(vi(<cr>
