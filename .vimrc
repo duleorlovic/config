@@ -140,7 +140,7 @@ set expandtab
 " Indentation settings for using hard tabs for indent. Display tabs as
 " two characters wide.
 "set shiftwidth=2
-"set tabstop=2
+set tabstop=2
 
 
 "------------------------------------------------------------
@@ -193,7 +193,7 @@ nmap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <Esc><c-s>
 
-nmap <F2> :update<CR>
+nmap <F2> :write<CR>
 vmap <F2> <Esc><F2>gv
 " does not work when is in paste mode
 imap <F2> <c-o><F2>
@@ -383,3 +383,8 @@ augroup END
 " operator pending search for end, delete block
 onoremap b /end<cr>
 onoremap in( :<c-u>normal! f(vi(<cr>
+
+" insert new line and closing bracket after {<cr>
+inoremap {<cr> {<cr>}<c-o>O<tab>
+inoremap [<cr> [<cr>]<c-o>O<tab>
+inoremap (<cr> (<cr>)<c-o>O<tab>
