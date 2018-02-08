@@ -1,3 +1,6 @@
+" https://github.com/nightsense/vimspectr
+" colorscheme vimspectr330flat-dark
+
 " URL: http://vim.wikia.com/wiki/Example_vimrc
 " Authors: http://vim.wikia.com/wiki/Vim_on_Freenode
 " Description: A minimal, but feature rich, example .vimrc. If you are a
@@ -140,7 +143,7 @@ set expandtab
 " Indentation settings for using hard tabs for indent. Display tabs as
 " two characters wide.
 "set shiftwidth=2
-set tabstop=2
+"set tabstop=2
 
 
 "------------------------------------------------------------
@@ -167,10 +170,12 @@ set number! " unset number
 execute pathogen#infect()
 " to save history between vim session
 set history=1000
-" grep current word
-nnoremap gw :vsplit<CR>:grep <cword> * -I -R --exclude-dir={log,spec,public,features,tmp,vendor,db,bower_components,coverage,node_modules,dist} --exclude={_coffeescript_build.js,tags}<CR>
-" grep yanked word
-nnoremap gy :grep "<c-r>"" * --exclude-dir={log,public,tmp,vendor,db,bower_components,coverage,node_modules,dist} -R -I --exclude={_coffeescript_build.js,tags}<CR>
+" search grep current word
+"nnoremap gw :vsplit<CR>:grep <cword> * -I -R --exclude-dir={log,public,tmp,vendor,db,bower_components,coverage,node_modules,dist,_site} --exclude={_coffeescript_build.js,tags}<CR>
+nnoremap gw :Ack <cword><CR>
+" search grep yanked word
+" nnoremap gy :grep "<c-r>"" * --exclude-dir={log,public,tmp,vendor,db,bower_components,coverage,node_modules,dist,_site} -R -I --exclude={_coffeescript_build.js,tags}<CR>
+nnoremap gy :Ack "<c-r>""<CR>
 " this is for tab completion , to stop cycle press CTRL+E than tab
 set wildmode=longest,list,full
 " search selected text, press // while in visual mode
@@ -182,12 +187,45 @@ set pastetoggle=<F12>
 let mapleader = ' '
 let maplocalleader = '\'
 
-map <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>e :NERDTreeToggle<CR>
 
 " http://vim.wikia.com/wiki/Saving_a_file
-noremap <Leader>s :update<CR>
 noremap <Leader>q :q<CR>
 "map <Esc><Esc> :w<CR> this move to insert move when I press up down arrows
+nnoremap <leader>w :w<cr>
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+" jump with jk to the first non blank line in the same column
+" http://superuser.com/questions/755122/vim-move-to-first-non-blank-in-same-column
+nnoremap <leader>j m':exec '/\%' . col(".") . 'c\S'<CR>``n
+nnoremap <leader>k m':exec '?\%' . col(".") . 'c\S'<CR>``n
+" remove any existing search highlight
+nnoremap <Leader>/ :nohl<CR>
+" search for next header in markdown file, so you can navigate with n and N
+nnoremap <leader># /^#.*\n\n<cr>
+" open some common rails files
+nnoremap <leader>d :e config/database.yml<cr>
+nnoremap <leader>s :e db/schema.rb<cr>
+nnoremap <leader>f :e spec/factories.rb<cr>
+nnoremap <leader>r :e config/routes.rb<cr>
+nnoremap <leader>ed :e config/environments/development.rb<cr>
+nnoremap <leader>ep :e config/environments/production.rb<cr>
+" close search result window
+" TODO not sure why I need another key for this map be executed
+nnoremap <leader>c :cclose<cr>
+" autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+
+" http://stackoverflow.com/questions/10723700/how-can-vim-keep-the-content-of-register-when-pasting-over-selected-text
+" keep current content of register when pasting
+vnoremap <Leader>p "_dP
+
+" source current (probably) vim file
+" nnoremap <leader>sop :source %<cr>
+" nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>v :source $MYVIMRC<cr>
+
+nmap <leader>t :CtrlPTag<CR>
 
 nmap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
@@ -198,7 +236,9 @@ vmap <F2> <Esc><F2>gv
 " does not work when is in paste mode
 imap <F2> <c-o><F2>
 
-nnoremap <leader>w :w<cr>
+" convert uppercase to lowercase so: :E my_file -> :e my_file
+" note that with `cmap E e` can not type uppercase E, for example:e ReADME.md
+cabbrev E e
 
 " function Test() range
 "   echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| pbcopy')
@@ -266,20 +306,11 @@ set autowrite " Automatically write before running commands
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
-
 " Get off my lawn
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
-
-" RSpec.vim mappings for tests
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
@@ -311,15 +342,6 @@ autocmd BufRead,BufNewFile *.html setlocal textwidth=160
 " select my-name as it select my_name as words
 set iskeyword+=-
 
-" jump with jk to the first non blank line in the same column
-" http://superuser.com/questions/755122/vim-move-to-first-non-blank-in-same-column
-nnoremap <leader>j m':exec '/\%' . col(".") . 'c\S'<CR>``n
-nnoremap <leader>k m':exec '?\%' . col(".") . 'c\S'<CR>``n
-" remove any existing search highlight
-nnoremap <Leader>/ :nohl<CR>
-" search for next header in markdown file, so you can navigate with n and N
-nnoremap <leader># /^#.*\n\n<cr>
-
 " highlight current line
 set cursorline
 " highlight current column
@@ -336,45 +358,34 @@ function! SearchMultiLine(bang, ...)
 endfunction
 command! -bang -nargs=* -complete=tag S call SearchMultiLine(<bang>0, <f-args>)|normal! /<C-R>/<CR>
 
-" http://stackoverflow.com/questions/10723700/how-can-vim-keep-the-content-of-register-when-pasting-over-selected-text
-" keep current content of register when pasting
-vnoremap <Leader>p "_dP
-
-" source current (probably) vim file
-nnoremap <leader>sop :source %<cr>
-
 " set folder for gutentags vim plugin
 let g:gutentags_cache_dir = '~/.tags_cache'
 
-source $HOME/config/vim/syntastic.vim
+source $HOME/config/vim/ale.vim
 source $HOME/config/vim/netrw.vim
 source $HOME/config/vim/snippets/snippets.vim
-
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+source $HOME/config/vim/vim_rails.vim
 
 " iabbrev command ⌘
-iabbrev option ⌥
+" iabbrev option ⌥
 
 " mac move those keys from standard position so remap them
 inoremap § `
 inoremap ± ~
 
-autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-
 nnoremap <F5> :UndotreeToggle<cr>
 
 " configure vim-rails to jump to /spec instead of /test
 " https://github.com/tpope/vim-rails/issues/426
-let g:rails_projections = {
-      \  'app/*.rb': {
-      \     'alternate': 'spec/{}_spec.rb',
-      \   },
-      \  'spec/*_spec.rb': {
-      \     'alternate': 'app/{}.rb',
-      \   }
-      \}
-
+"let g:rails_projections = {
+"      \  'app/*.rb': {
+"      \     'alternate': 'spec/{}_spec.rb',
+"      \   },
+"      \  'spec/*_spec.rb': {
+"      \     'alternate': 'app/{}.rb',
+"      \   }
+"      \}
+"
 augroup filetype_html
     autocmd!
     autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
@@ -385,6 +396,31 @@ onoremap b /end<cr>
 onoremap in( :<c-u>normal! f(vi(<cr>
 
 " insert new line and closing bracket after {<cr>
-inoremap {<cr> {<cr>}<c-o>O<tab>
-inoremap [<cr> [<cr>]<c-o>O<tab>
-inoremap (<cr> (<cr>)<c-o>O<tab>
+inoremap {<cr> {<cr>}<c-o><s-o>
+inoremap ({<cr> ({<cr>})<c-o><s-o>
+inoremap [<cr> [<cr>]<c-o><s-o>
+inoremap ([<cr> ([<cr>])<c-o><s-o>
+inoremap (<cr> (<cr>)<c-o><s-o>
+
+" write to another file and edit that file using command
+" https://vi.stackexchange.com/questions/3458/save-current-file-and-open-another-for-editing
+command! -nargs=1 -complete=file WE write <args> | edit <args>
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap // <Plug>(easymotion-overwin-f2)
+
+" open http://google.com with browser instead of dowloading and open in vim
+let g:netrw_browsex_viewer= "-"
+
+" https://stackoverflow.com/questions/2250011/can-i-have-vim-ignore-a-license-block-at-the-top-of-a-file
+function! FoldCopyright()
+  if !exists( "b:foldedCopyright" )
+    let b:foldedCopyright = 1
+    silent! 1,/# Copyright/;/USA\.$/fold
+  endif
+endfunction
+autocmd BufNewFile,BufRead *.rb call FoldCopyright()

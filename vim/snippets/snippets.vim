@@ -22,3 +22,9 @@ nnoremap ,: bhxelc2w: <ESC>
 
 " rspec
 nnoremap ,have_a ait { is_expected.to have_attribute  }<ESC>hi:
+
+" erb
+nnoremap ,< i<%=  %><ESC>hhi
+nnoremap ,if i<% if  %><ESC>hhi
+nnoremap ,el i<% else %><ESC>
+nnoremap ,en i<% end %><ESC>

@@ -30,6 +30,8 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH="$PATH:$HOME/Programs/genymotion"
 # for studio.sh
 export PATH="$PATH:$HOME/Programs/android-studio/bin"
+# for glass
+export PATH="$PATH:$HOME/Programs/glass"
 
 export SECRET_KEY_BASE=123asd
 
@@ -72,4 +74,28 @@ function echo_red {
 function echo_and_run {
   echo_red $@
   $@
+}
+
+function keys {
+  if [ "$1" == "-h" ]; then
+    cat <<-HERE_DOC
+    Edit keys for current project, if exists.
+    Add -s to source them after edit
+	HERE_DOC
+    return
+  fi
+  current_path=$(pwd)
+  projectName=`basename $current_path`
+  if [ -f ~/config/keys/$projectName.sh ];then
+    if [ "$1" == "-s" ] || [ "$1" == "-r" ]; then
+      echo_red edit and source ~/config/keys/$projectName.sh
+      vi ~/config/keys/$projectName.sh
+      source ~/config/keys/$projectName.sh
+    else
+      echo_red edit ~/config/keys/$projectName.sh
+      vi ~/config/keys/$projectName.sh
+    fi
+  else
+    echo_red can not find ~/config/keys/$projectName.sh
+  fi
 }

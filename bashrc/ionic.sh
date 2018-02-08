@@ -74,7 +74,7 @@ ionic_find_package_name(){
   apk_file=${1:-my_app.apk}
   if [ -f $apk_file ]
   then
-    $ANDROID_HOME/build-tools/21.1.2/aapt dump badging $apk_file | sed -n "s/package: name='\(\S*\)'.*/\1/p"
+    $ANDROID_HOME/build-tools/25.0.3/aapt dump badging $apk_file | sed -n "s/package: name='\(\S*\)'.*/\1/p"
 
   else
     echo Can not find $apk_file

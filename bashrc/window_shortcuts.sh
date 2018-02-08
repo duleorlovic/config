@@ -38,18 +38,24 @@ upper()
   projectPath=${1-$(pwd)}
   port=300$(get_current_viewport)
   url=http://localhost:$port
+  projectName=`basename $projectPath`
 
   s $projectPath j
 
-  s $projectPath k 120x24+830+100 "echo 'run here'"
+  s $projectPath k 120x24+830+100 "pwd; \
+    if [ -f ~/config/keys/$projectName.sh ];then
+      echo source ~/config/keys/$projectName.sh
+      source ~/config/keys/$projectName.sh;
+    fi;
+    echo k"
 
-  projectName=`basename $projectPath`
   win_width=`expr $(monitor_size) / 36` # 7200 / 36 = 200
   s $projectPath semicolon ${win_width}x24-0+0 "git pull; \
     if [ -f ~/config/keys/$projectName.sh ];then
-      source ~/config/keys/$projectName.sh
+      echo source ~/config/keys/$projectName.sh
+      source ~/config/keys/$projectName.sh;
     fi
-    rake db:create
+    rake db:create;
     rake db:migrate; \
     rails s -b 0.0.0.0 -p $port"
 
@@ -163,21 +169,23 @@ s()
   class=vp_$(get_current_viewport)_class_${2-j}
   geometry=${3-300x30+0-0}
   command=${4-vim .}
-  echo $class $folder set size $geometry and \
-    run command $command
-  echo put command in bash history so we have it when we stop the proccess
+  echo class=$class folder=$folder geometry=$geometry and \
+    run command=$command
+  last_command=${command##*;}
+  echo put last_command=$last_command in bash history so we have it when we stop the proccess
   # http://stackoverflow.com/questions/3162385/how-to-split-a-string-in-shell-and-get-the-last-field
-  echo_and_run history -s ${command##*;}
+  echo_and_run history -s $last_command
   history -a
   gnome-terminal --geometry=$geometry -x bash --login -c "\
     cd $folder;\
     xprop -f WM_CLASS 8s -set WM_CLASS $class -id \$(xdotool getwindowfocus);\
+    echo $command;\
     $command;\
     bash -l"
   sleep 0.5
 }
 
-qa()
+qall()
 {
   if [ "$1" == "-h" ]; then
     cat <<-HERE_DOC
@@ -185,16 +193,21 @@ qa()
 	HERE_DOC
     return
   fi
-  xdotool getactivewindow windowminimize
-  echo windowkill Chrome
-  xdotool search Chrom windowkill
+  # TODO: Maximize all windows, tried with: wmctrl -k off
+  # it only Show desktop (minimized wins stays minimized)
+  xdotool getactivewindow windowminimize # this is for debug
+  # TODO: find chrome only on current desktop, tryed: --onlyvisibe --desktop 1
+  # echo windowkill Chrome
+  # xdotool search Chrom windowkill
   last_name=start
   while true; do
     name=`xdotool getactivewindow getwindowname`
     echo found name=$name
     echo found last_name=$last_name
-    if [ "$name" == "$last_name" ];then
-      echo bump to the same window... break
+    # last window is usually Desktop or Terminal with some running proccess
+    if [ "$name" == "$last_name" ] ;then
+      alert "bump to the same window name=$name Trying again qall and break this"
+      xdotool key q a l l Return
       break
     fi
     case $name in

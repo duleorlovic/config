@@ -49,6 +49,11 @@ let g:syntastic_javascript_checkers = ['eslint']
 " JSON
 au BufRead,BufNewFile *.json set filetype=json
 let g:syntastic_json_checkers=['jsonlint']
+" ignore errors because of comments in json, highlight is still red
+let g:syntastic_json_jsonlint_quiet_messages =
+    \ { 'regex': [
+    \ "found: 'INVALID' - expected: 'STRING'",
+    \ ] }
 
 " CSS
 "let g:syntastic_scss_sass_args="--load-path ~/.rvm/gems/ruby-2.2.3/gems/normalize-rails-3.0.3/vendor/assets/stylesheets"

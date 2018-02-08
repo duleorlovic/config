@@ -6,6 +6,10 @@ last_migration(){
   vim db/migrate/$(ls db/migrate/ | sort | tail -1)
 }
 
+last_neo4j_migration(){
+  vim db/neo4j/migrate/$(ls db/neo4j/migrate/ | sort | tail -1)
+}
+
 show_memory(){
   if [ "$1" == "-h" ]; then
     cat <<-HERE_DOC

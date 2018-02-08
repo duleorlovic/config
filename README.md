@@ -35,6 +35,8 @@ Install vim pathogen and plugins
 sudo apt install vim curl xsel git vim-gtk xdotool
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 source ~/config/vim/update_vim_bundle.sh --install
+# also links ftplugins
+ln -s /home/orlovic/config/vim/ftplugin/ /home/orlovic/.vim/
 ~~~
 
 ## Secret keys
