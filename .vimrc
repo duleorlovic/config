@@ -413,9 +413,6 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " `s{char}{label}`
 nmap // <Plug>(easymotion-overwin-f2)
 
-" open http://google.com with browser instead of dowloading and open in vim
-let g:netrw_browsex_viewer= "-"
-
 " https://stackoverflow.com/questions/2250011/can-i-have-vim-ignore-a-license-block-at-the-top-of-a-file
 function! FoldCopyright()
   if !exists( "b:foldedCopyright" )

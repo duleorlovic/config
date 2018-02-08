@@ -31,7 +31,6 @@ list=(
   https://github.com/scrooloose/nerdtree.git # file explorer better than netrw
   git@github.com:tonekk/vim-ruby-capybara.git # capybara highlight
   https://github.com/sheerun/vim-polyglot.git # syntax & indent for multiple lang
-  https://github.com/tpope/vim-rhubarb.git
   git@github.com:mbbill/undotree.git # vim graphical undo tree
   https://github.com/leafgarland/typescript-vim.git # typescript syntax
   git@github.com:mwise/vim-rspec-focus.git # add focus tag for rspec
