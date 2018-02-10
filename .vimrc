@@ -358,6 +358,9 @@ function! SearchMultiLine(bang, ...)
 endfunction
 command! -bang -nargs=* -complete=tag S call SearchMultiLine(<bang>0, <f-args>)|normal! /<C-R>/<CR>
 
+" copy to clipboard on macOS need to use pbcopy
+vnoremap "+y :w !pbcopy<cr><cr>
+
 " set folder for gutentags vim plugin
 let g:gutentags_cache_dir = '~/.tags_cache'
 
