@@ -42,7 +42,6 @@ list=(
   https://github.com/alvan/vim-closetag.git # auto insert closing html tag( follow with > for new line)
   https://github.com/mileszs/ack.vim.git # ack instead of grep
   https://github.com/w0rp/ale # instead of syntastic
-  https://github.com/easymotion/vim-easymotion # jump to words inside one buffer
 )
 
 # manually install

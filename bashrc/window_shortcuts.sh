@@ -8,7 +8,10 @@
 # xprop
 # wmctrl
 # bash -l  # rvm asks for login
-browser=google-chrome
+
+# browser=google-chrome
+browser=firefox
+browser_name_in_wmctrl="Mozilla Firefox"
 
 # http://askubuntu.com/questions/41093/is-there-a-command-to-go-a-specific-workspace
 # http://stackoverflow.com/questions/17336915/return-value-in-bash-script
@@ -98,24 +101,24 @@ start_browser()
   dt_class=vp_$(get_current_viewport)_class_$developer_tools_key
   browser_class=vp_$(get_current_viewport)_class_$browser_key
 
-  echo opening Chrome browser at url=$url and developer_tools_key=$developer_tools_key dt_class=$dt_class
+  echo opening browser at url=$url and developer_tools_key=$developer_tools_key dt_class=$dt_class
   # google-chrome $url --new-window --auto-open-devtools-for-tabs &
   # auto-open-devtools-for-tabs will open for each new tab :(
   # chromium-browser $url --new-window & # --new-window option is not in man
-  $browser $url --new-window &
+  $browser --new-window $url &
   attempts=0
   browser_window_id=
-  url_without_protocol=${url#*//} # remove http://
-  echo trying to find url_without_protocol=$url_without_protocol
+  # browser_name_in_wmctrl=${url#*//} # remove http://
+  echo trying to find browser_name_in_wmctrl=$browser_name_in_wmctrl
   echo if windows with same name exists, last one will be used
   while [ $attempts -lt 20 ] && [ -z "$browser_window_id" ]
   do
     printf '.'
     sleep 1
     if [ $attempts -lt 5 ];then
-      browser_window_id=`wmctrl -l | grep $url_without_protocol | awk '{print $1}' | tail -n1`
+      browser_window_id=`wmctrl -l | grep "$browser_name_in_wmctrl" | awk '{print $1}' | tail -n1`
     else
-      echo_red trying to locate last Chrom. Could fetch some other windows
+      echo_red trying to locate last "$browser_name_in_wmctrl". Could fetch some other windows
       browser_window_id=`wmctrl -l | grep "Chrom" | awk '{print $1}' | tail -n1`
     fi
     attempts=$[$attempts+1]
@@ -126,8 +129,9 @@ start_browser()
          browser_class=$browser_class
     wmctrl -e 0,0,0,-1,-1 -r $url # move
     xprop -f WM_CLASS 8s -set WM_CLASS $browser_class -id $browser_window_id
-    echo open developer tools, if same window name exists than first is used
-    xdotool search --name $url_without_protocol windowactivate windowfocus key F12
+    echo open developer tools, if same window name exists than first
+    is used
+    xdotool search --name "$browser_name_in_wmctrl" windowactivate windowfocus key F12
     # xdotool search --name $url getwindowpid # pid is different than window_id
     attempts=0
     dt_window_id=
@@ -196,39 +200,42 @@ qall()
   # TODO: Maximize all windows, tried with: wmctrl -k off
   # it only Show desktop (minimized wins stays minimized)
   xdotool getactivewindow windowminimize # this is for debug
-  # TODO: find chrome only on current desktop, tryed: --onlyvisibe --desktop 1
+  # TODO: find browser only on current desktop, tryed: --onlyvisibe --desktop 1
   # echo windowkill Chrome
   # xdotool search Chrom windowkill
+
+  # I disabled Return to use Ctrl+j in vim
+  vim_return=ctrl+j
+  vim_colon=semicolon
   last_name=start
   while true; do
     name=`xdotool getactivewindow getwindowname`
-    echo found name=$name
-    echo found last_name=$last_name
+    echo "found name=$name and last_name=$last_name"
     # last window is usually Desktop or Terminal with some running proccess
     if [ "$name" == "$last_name" ] ;then
       alert "bump to the same window name=$name Trying again qall and break this"
-      xdotool key q a l l Return
+      xdotool key q a l l $vim_return
       break
     fi
     case $name in
       *VIM) echo VIM window
-        xdotool key Escape colon q a Return
+        xdotool key Escape $vim_colon q a $vim_return
         sleep 0.3
-        xdotool key e x i t Return
+        xdotool key e x i t $vim_return
         sleep 0.3
         ;;
       *) echo unknown $name
-        last_name=$name
-        echo esc return
-        xdotool key Escape Return
+        echo esc $vim_return
+        xdotool key Escape $vim_return
         sleep 0.3
-        echo q return
-        xdotool key q Return
+        echo q $vim_return
+        xdotool key q $vim_return
         sleep 0.3
-        echo exit return
-        xdotool key e x i t Return
+        echo exit $vim_return
+        xdotool key e x i t $vim_return
         sleep 0.3
     esac
+    last_name=$name
   done
 }
 

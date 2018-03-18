@@ -147,8 +147,7 @@ set expandtab
 
 
 "------------------------------------------------------------
-" Mappings {{{1
-"
+" Mappings {{{1 
 " Useful mappings
 
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
@@ -161,12 +160,13 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 
 "------------------------------------------------------------
+" }}}
 
 " override this from http://vim.wikia.com/wiki/Example_vimrc
 set cmdheight=1  " 2 is to more
 set number! " unset number
 
-"custom
+" custom plugins
 execute pathogen#infect()
 " to save history between vim session
 set history=1000
@@ -225,20 +225,18 @@ vnoremap <Leader>p "_dP
 " nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>v :source $MYVIMRC<cr>
 
-nmap <leader>t :CtrlPTag<CR>
+" use \ instead of shift ; to go to command line
+nnoremap ; :
 
 nmap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <Esc><c-s>
 
-nmap <F2> :write<CR>
+nnoremap <F1> :write<cr>
+nnoremap <F2> :write<CR>
 vmap <F2> <Esc><F2>gv
 " does not work when is in paste mode
 imap <F2> <c-o><F2>
-
-" convert uppercase to lowercase so: :E my_file -> :e my_file
-" note that with `cmap E e` can not type uppercase E, for example:e ReADME.md
-cabbrev E e
 
 " function Test() range
 "   echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| pbcopy')
@@ -312,6 +310,20 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
+" force me to keep fingers on main keys, not shift+;
+nnoremap : :echoe "Use semicolon ;"<cr>
+" force ctrl+j not enter
+cmap <cr> <space>hey_use_ctrl_j_delete_this_with_ctrl_w_and_try_again_cr
+" if you really need, use space<cr>
+cnoremap <space><cr> <cr>
+" force ctrl+h for backspace
+cnoremap <bs> <space>hey_use_ctrh_h_delete_this_with_ctrl_w
+
+" convert uppercase to lowercase so: :E my_file -> :e my_file
+" note that with `cmap E e` can not type uppercase E, for example:e ReADME.md
+cabbrev E e
+
+
 " Quicker window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -331,6 +343,14 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'wa' " check working directory with :pwd
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] " this has problem with unknown .git/
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+" make ctrl-o immediatelly replace buffer so we don't need to answer OpenMulti prompt
+" Open Selected: [t]ab/[v]ertical/[h]orizontal/[r]eplace/h[i]dden? 
+let g:ctrlp_prompt_mappings = {
+\ 'PrtSelectMove("j")':   ['<down>'],
+\ 'AcceptSelection("r")': ['<c-j>'],
+\ }
+
+nmap <leader>t :CtrlPTag<CR>
 
 " https://robots.thoughtbot.com/wrap-existing-text-at-80-characters-in-vim
 " reformat with gq
@@ -359,15 +379,12 @@ endfunction
 command! -bang -nargs=* -complete=tag S call SearchMultiLine(<bang>0, <f-args>)|normal! /<C-R>/<CR>
 
 " copy to clipboard on macOS need to use pbcopy
-vnoremap "+y :w !pbcopy<cr><cr>
+if has('macunix')
+  vnoremap "+y :w !pbcopy<cr><cr>
+endif
 
 " set folder for gutentags vim plugin
 let g:gutentags_cache_dir = '~/.tags_cache'
-
-source $HOME/config/vim/ale.vim
-source $HOME/config/vim/netrw.vim
-source $HOME/config/vim/snippets/snippets.vim
-source $HOME/config/vim/vim_rails.vim
 
 " iabbrev command ⌘
 " iabbrev option ⌥
@@ -378,17 +395,6 @@ inoremap ± ~
 
 nnoremap <F5> :UndotreeToggle<cr>
 
-" configure vim-rails to jump to /spec instead of /test
-" https://github.com/tpope/vim-rails/issues/426
-"let g:rails_projections = {
-"      \  'app/*.rb': {
-"      \     'alternate': 'spec/{}_spec.rb',
-"      \   },
-"      \  'spec/*_spec.rb': {
-"      \     'alternate': 'app/{}.rb',
-"      \   }
-"      \}
-"
 augroup filetype_html
     autocmd!
     autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
@@ -411,10 +417,7 @@ command! -nargs=1 -complete=file WE write <args> | edit <args>
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-nmap // <Plug>(easymotion-overwin-f2)
+nnoremap // :Ack 
 
 " https://stackoverflow.com/questions/2250011/can-i-have-vim-ignore-a-license-block-at-the-top-of-a-file
 function! FoldCopyright()
@@ -424,3 +427,17 @@ function! FoldCopyright()
   endif
 endfunction
 autocmd BufNewFile,BufRead *.rb call FoldCopyright()
+
+let test#strategy = "asyncrun"
+
+" Vimscript file settings -----  {{{
+augroup filetype_vim
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
+
+source $HOME/config/vim/ale.vim
+source $HOME/config/vim/netrw.vim
+source $HOME/config/vim/snippets/snippets.vim
+source $HOME/config/vim/vim_rails.vim
