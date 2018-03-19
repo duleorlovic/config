@@ -9,9 +9,6 @@
 # wmctrl
 # bash -l  # rvm asks for login
 
-# browser=google-chrome
-browser=firefox
-browser_name_in_wmctrl="Mozilla Firefox"
 
 # http://askubuntu.com/questions/41093/is-there-a-command-to-go-a-specific-workspace
 # http://stackoverflow.com/questions/17336915/return-value-in-bash-script
@@ -64,7 +61,8 @@ upper()
 
   s ~/jekyll/blog l 80x24+1250+0 # right: 80x24-0+100 # 80x24+1250+100
 
-  start_browser h $url
+  start_browser h $url firefox "Mozilla Firefox"
+  start_browser u $url google-chrome Google 0,400,100,-1,-1
 }
 
 under()
@@ -89,23 +87,30 @@ start_browser()
     cat <<-HERE_DOC
     Hi, this function starts browser and assign shortcut keys ALT+hjkl semicolon
         with help of System Settings-Keyboard-Shortcuts and command xdotool
-    example usage: start_browser h http://localhost:3000
+    example usage: start_browser h http://localhost:3000 google-chrome Google 0,400,100,-1,-1
     key: default is h, could be h,j,k,l,semicolon... you can add any shortcut
     url: default is http://localhost:3000
+    browser_command: firefox (could be google-chrome)
+    browser_name_in_wmctrl: "Mozilla Firefox" (coould be "Google")
+    position: 0,0,0,-1,-1  first is 0, than position top,left and width,height
 	HERE_DOC
     return
   fi
   browser_key=${1-h}
-  developer_tools_key=u
   url=${2-http://localhost:3000}
+  browser_command=${3-firefox}
+  browser_name_in_wmctrl=${4-"Mozilla Firefox"}
+  position=${5-"0,0,0,-1,-1"}
+
+  developer_tools_key=u
   dt_class=vp_$(get_current_viewport)_class_$developer_tools_key
   browser_class=vp_$(get_current_viewport)_class_$browser_key
 
-  echo opening browser at url=$url and developer_tools_key=$developer_tools_key dt_class=$dt_class
+  echo opening $browser_command at url=$url with position=$position
   # google-chrome $url --new-window --auto-open-devtools-for-tabs &
   # auto-open-devtools-for-tabs will open for each new tab :(
   # chromium-browser $url --new-window & # --new-window option is not in man
-  $browser --new-window $url &
+  $browser_command --new-window $url &
   attempts=0
   browser_window_id=
   # browser_name_in_wmctrl=${url#*//} # remove http://
@@ -125,28 +130,27 @@ start_browser()
   done
   if [ -n "$browser_window_id" ]
   then
-    echo found $url at browser_window_id=$browser_window_id and mark \
+    echo found browser_$browser_name_in_wmctrl window_id=$browser_window_id and mark \
          browser_class=$browser_class
-    wmctrl -e 0,0,0,-1,-1 -r $url # move
+    wmctrl -e $position -i -r $browser_window_id # move
     xprop -f WM_CLASS 8s -set WM_CLASS $browser_class -id $browser_window_id
-    echo open developer tools, if same window name exists than first
-    is used
-    xdotool search --name "$browser_name_in_wmctrl" windowactivate windowfocus key F12
-    # xdotool search --name $url getwindowpid # pid is different than window_id
-    attempts=0
-    dt_window_id=
-    while [ $attempts -lt 20 ] && [ -z "$dt_window_id" ]
-    do
-      printf '.'
-      sleep 1
-      dt_window_id=`wmctrl -l | grep 'Developer Tools' | awk '{print $1}' | tail -n1`
-      attempts=$[$attempts+1]
-    done
-    if [ -n "$dt_window_id" ]
-    then
-      echo mark dt_window_id=$dt_window_id dt_class=$dt_class
-      xprop -f WM_CLASS 8s -set WM_CLASS $dt_class -id $dt_window_id
-    fi
+    # echo open developer_tools_key=$developer_tools_key dt_class=$dt_class, if same window name exists than first is used
+    # xdotool search --name "$browser_name_in_wmctrl" windowactivate windowfocus key F12
+    # # xdotool search --name $url getwindowpid # pid is different than window_id
+    # attempts=0
+    # dt_window_id=
+    # while [ $attempts -lt 20 ] && [ -z "$dt_window_id" ]
+    # do
+    #   printf '.'
+    #   sleep 1
+    #   dt_window_id=`wmctrl -l | grep 'Developer Tools' | awk '{print $1}' | tail -n1`
+    #   attempts=$[$attempts+1]
+    # done
+    # if [ -n "$dt_window_id" ]
+    # then
+    #   echo mark dt_window_id=$dt_window_id dt_class=$dt_class
+    #   xprop -f WM_CLASS 8s -set WM_CLASS $dt_class -id $dt_window_id
+    # fi
   else
     echo can not find $url
   fi
