@@ -101,12 +101,9 @@ start_browser()
   browser_command=${3-firefox}
   browser_name_in_wmctrl=${4-"Mozilla Firefox"}
   position=${5-"0,0,0,-1,-1"}
-
-  developer_tools_key=u
-  dt_class=vp_$(get_current_viewport)_class_$developer_tools_key
   browser_class=vp_$(get_current_viewport)_class_$browser_key
 
-  echo opening $browser_command at url=$url with position=$position
+  echo_red opening $browser_command at url=$url with position=$position
   # google-chrome $url --new-window --auto-open-devtools-for-tabs &
   # auto-open-devtools-for-tabs will open for each new tab :(
   # chromium-browser $url --new-window & # --new-window option is not in man
@@ -114,8 +111,8 @@ start_browser()
   attempts=0
   browser_window_id=
   # browser_name_in_wmctrl=${url#*//} # remove http://
-  echo trying to find browser_name_in_wmctrl=$browser_name_in_wmctrl
-  echo if windows with same name exists, last one will be used
+  echo trying to find browser_name_in_wmctrl=$browser_name_in_wmctrl \
+       if windows with same name exists, last one will be used
   while [ $attempts -lt 20 ] && [ -z "$browser_window_id" ]
   do
     printf '.'
@@ -130,10 +127,13 @@ start_browser()
   done
   if [ -n "$browser_window_id" ]
   then
-    echo found browser_$browser_name_in_wmctrl window_id=$browser_window_id and mark \
+    echo found browser=$browser_name_in_wmctrl window_id=$browser_window_id and mark \
          browser_class=$browser_class
     wmctrl -e $position -i -r $browser_window_id # move
     xprop -f WM_CLASS 8s -set WM_CLASS $browser_class -id $browser_window_id
+
+    # developer_tools_key=u
+    # dt_class=vp_$(get_current_viewport)_class_$developer_tools_key
     # echo open developer_tools_key=$developer_tools_key dt_class=$dt_class, if same window name exists than first is used
     # xdotool search --name "$browser_name_in_wmctrl" windowactivate windowfocus key F12
     # # xdotool search --name $url getwindowpid # pid is different than window_id
@@ -203,7 +203,19 @@ qall()
   fi
   # TODO: Maximize all windows, tried with: wmctrl -k off
   # it only Show desktop (minimized wins stays minimized)
+  # this will activate in all screens
+  # xdotool search --onlyvisible --name '.*'  windowactivate %@
+  # so we need to iterate to all possible classes (other terminal windows
+  # without those classes will stay minimized)
+  keys=(j k l m u colon semicolon dot slash)
+  for key in "${keys[@]}"
+  do
+    class_name=vp_$(get_current_viewport)_class_$key
+    xdotool search --onlyvisible --classname $class_name windowactivate %@
+  done
+
   xdotool getactivewindow windowminimize # this is for debug
+
   # TODO: find browser only on current desktop, tryed: --onlyvisibe --desktop 1
   # echo windowkill Chrome
   # xdotool search Chrom windowkill
