@@ -219,39 +219,54 @@ qall()
   # TODO: find browser only on current desktop, tryed: --onlyvisibe --desktop 1
   # echo windowkill Chrome
   # xdotool search Chrom windowkill
+  sleep 1
 
   # I disabled Return to use Ctrl+j in vim
   vim_return=ctrl+j
   vim_colon=semicolon
-  last_name=start
+  last_name=start_name
+  last_pid=start_pid
+  retry=0
+  # same window name calculate as retry so use high retry
+  max_retries=2
+  sleep_after_close=0.3
   while true; do
     name=`xdotool getactivewindow getwindowname`
-    echo "found name=$name and last_name=$last_name"
-    # last window is usually Desktop or Terminal with some running proccess
-    if [ "$name" == "$last_name" ] ;then
-      alert "bump to the same window name=$name Trying again qall and break this"
-      xdotool key q a l l $vim_return
-      break
-    fi
+    pid=`xdotool getactivewindow getwindowfocus`
+    echo_red "found name=$name pid=$pid"
+    echo_red "last_name=$last_name last_pid=$last_pid"
     case $name in
       *VIM) echo VIM window
-        xdotool key Escape $vim_colon q a $vim_return
-        sleep 0.3
-        xdotool key e x i t $vim_return
-        sleep 0.3
+        echo q a vim_return
+        xdotool key  $vim_colon q a $vim_return
+        sleep $sleep_after_close
+        # xdotool key e x i t $vim_return
+        # sleep $sleep_after_close
         ;;
       *) echo unknown $name
-        echo esc $vim_return
-        xdotool key Escape $vim_return
-        sleep 0.3
-        echo q $vim_return
-        xdotool key q $vim_return
-        sleep 0.3
-        echo exit $vim_return
-        xdotool key e x i t $vim_return
-        sleep 0.3
+        # echo esc Return
+        # xdotool key Escape Return
+        # sleep 2.3
+        # echo q Return
+        echo exit Return
+        xdotool key e x i t Return
+        sleep $sleep_after_close
+        xdotool key q Return
+        sleep $sleep_after_close
     esac
+    # last window is usually Desktop or Terminal with some running proccess
+    if [ "$pid" == "$last_pid" ] ;then
+      if [ $retry -gt $max_retries ];then
+        alert "bump to the same window pid=$pid so break this"
+        break
+      else
+        echo "bump to the same window pid=$pid retry=$retry minimize and try again"
+        xdotool getactivewindow windowminimize
+      fi
+      retry=$[$retry+1]
+    fi
     last_name=$name
+    last_pid=$pid
   done
 }
 

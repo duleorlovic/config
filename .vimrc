@@ -312,10 +312,11 @@ nnoremap <Down> :echoe "Use j"<CR>
 
 " force me to keep fingers on main keys, not shift+;
 nnoremap : :echoe "Use semicolon ;"<cr>
-" force ctrl+j not enter
+" force ctrl+j not enter, byebye return
 cmap <cr> <space>hey_use_ctrl_j_delete_this_with_ctrl_w_and_try_again_cr
 " if you really need, use space<cr>
 cnoremap <space><cr> <cr>
+" gf uses :find _name_<cr> so we need to remap from vim-rails/autoload/rails.vim:4197
 " force ctrl+h for backspace
 cnoremap <bs> <space>hey_use_ctrh_h_delete_this_with_ctrl_w
 
@@ -436,6 +437,12 @@ augroup filetype_vim
   autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " }}}
+
+" jump with ctrl+j in quckfix window
+augroup filetype_quickfix
+    autocmd!
+    autocmd FileType qf nnoremap <buffer> <c-j> <cr>:cclose<cr>
+augroup END
 
 source $HOME/config/vim/ale.vim
 source $HOME/config/vim/netrw.vim
