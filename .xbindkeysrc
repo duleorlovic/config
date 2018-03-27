@@ -20,7 +20,13 @@
 # You need both with Numlock and without (Mod2)
 #
 # I tried to bind to Alt+bracketleft, Alt_L + bracketleft, Alt+plus
-# but xbindkeys -n does not reports anyhing (it does not detect that Alt combin)
+# but xbindkeys -n does not reports anything (it does not detect that Alt
+# combination)
+#
+# # to check how your input device (mouse, keyboard, reset buttons) works
+# xinput list
+# # find some Virtual core keyboard => Usb keyboard -> id=9
+# xinput test 9
 
 "echo -e 'KeyStrRelease minus\nKeyStrRelease Control_L\nKeyStrPress Shift_L\nKeyStrPress Next\nKeyStrRelease Next\nKeyStrRelease Shift_L\nKeyStrPress Control_L' | xmacroplay :0"
   Control + minus
