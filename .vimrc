@@ -405,12 +405,21 @@ augroup END
 onoremap b /end<cr>
 onoremap in( :<c-u>normal! f(vi(<cr>
 
-" insert new line and closing bracket after {<cr>
+" insert new line and closing bracket after {<cr> and <c-j>
 inoremap {<cr> {<cr>}<c-o><s-o>
+inoremap {<c-j> {<c-j>}<c-o><s-o>
 inoremap ({<cr> ({<cr>})<c-o><s-o>
+inoremap ({<c-j> ({<c-j>})<c-o><s-o>
 inoremap [<cr> [<cr>]<c-o><s-o>
+inoremap [<c-j> [<c-j>]<c-o><s-o>
 inoremap ([<cr> ([<cr>])<c-o><s-o>
+inoremap ([<c-j> ([<c-j>])<c-o><s-o>
 inoremap (<cr> (<cr>)<c-o><s-o>
+inoremap (<c-j> (<c-j>)<c-o><s-o>
+" also for do
+" inoremap do<cr> do<cr>end<c-o><s-o>
+" inoremap do<c-j> do<c-j>end<c-o><s-o>
+" iabbrev do do<cr>end<c-o><s-o>
 
 " write to another file and edit that file using command
 " https://vi.stackexchange.com/questions/3458/save-current-file-and-open-another-for-editing

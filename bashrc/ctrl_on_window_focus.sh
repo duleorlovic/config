@@ -3,6 +3,8 @@
 # this file should be run on ubuntu Startup Applications
 # with a command that redirects output to /var/log/syslog
 # /home/orlovic/config/bashrc/ctrl_on_window_focus.sh 2>&1 | /usr/bin/logger -t ctrl_on_window_focus
+# to see logs run tail, but sometimes messages are grouped so wait
+# tail -f /var/log/syslog
 #
 # to enable emacs keybin on chrome and firefox input text (ctrl+h/d, ctrl+a/e,
 # ctrl+b/f, ctrl+w) you can enable gtk key theme using editors
@@ -65,16 +67,15 @@ do
   if [ "$new_w_name" != "$w_name" ]; then
     w_name=$new_w_name
     # echo $w_name
-    if [ "$w_name" = *"Firefox"* ] || [ "$w_name" = *"Chrom"* ] || \
-      [ "$w_name" = *"Viber"* ] || [ "$w_name" = *"Developer Tools"* ] ; then
-      echo firefox or chrome
+    if [[ $w_name =~ Firefox|Chrom|Viber|'Developer Tools' ]] ; then
+      echo "'$w_name' is firefox or chrome"
       if [ "$last_status" = "disabled" ]; then
         last_status=enabled
         enable_keymap
         echo enable keymap
       fi
     else
-      echo not firefox or chrome window
+      echo "'$w_name' is NOT firefox or chrome"
       if [ "$last_status" != "disabled" ]; then
         last_status=disabled
         disable_keymap
