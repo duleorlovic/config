@@ -2,7 +2,7 @@
 #
 # this file should be run on ubuntu Startup Applications
 # with a command that redirects output to /var/log/syslog
-# /home/orlovic/config/bashrc/ctrl_on_window_focus.sh 2>&1 | /usr/bin/logger -t ctrl_on_window_focus
+# /home/orlovic/config/bashrc/startup_ctrl_on_window_focus.sh 2>&1 | /usr/bin/logger
 # to see logs run tail, but sometimes messages are grouped so wait
 # tail -f /var/log/syslog
 #

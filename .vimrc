@@ -225,9 +225,6 @@ vnoremap <Leader>p "_dP
 " nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>v :source $MYVIMRC<cr>
 
-" use \ instead of shift ; to go to command line
-nnoremap ; :
-
 nmap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <Esc><c-s>
@@ -310,8 +307,12 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
+" this is obsolete since I remaped in xmodmap
+" use ; instead of shift ; to go to command line
+" nnoremap ; :
 " force me to keep fingers on main keys, not shift+;
-nnoremap : :echoe "Use semicolon ;"<cr>
+" nnoremap : :echoe "Use semicolon ;"<cr>
+
 " force ctrl+j not enter, byebye return
 cmap <cr> <space>hey_use_ctrl_j_delete_this_with_ctrl_w_and_try_again_cr
 " if you really need, use space<cr>

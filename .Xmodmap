@@ -33,11 +33,11 @@ keycode  39 = s S s S
 keycode  40 = d D d D
 keycode  41 = f F f F
 keycode  42 = g G g G
-keycode  43 = h H h H
-keycode  44 = j J j J
-keycode  45 = k K k K
-keycode  46 = l L l L
-keycode  47 = semicolon colon semicolon colon
+! keycode  43 = h H h H
+! keycode  44 = j J j J
+! keycode  45 = k K k K
+! keycode  46 = l L l L
+! keycode  47 = semicolon colon semicolon colon
 keycode  48 = apostrophe quotedbl apostrophe quotedbl
 keycode  49 = grave asciitilde grave asciitilde
 keycode  50 = Shift_L NoSymbol Shift_L
@@ -49,14 +49,14 @@ keycode  55 = v V v V
 keycode  56 = b B b B
 keycode  57 = n N n N
 keycode  58 = m M m M
-keycode  59 = comma less comma less
-keycode  60 = period greater period greater
+! keycode  59 = comma less comma less
+! keycode  60 = period greater period greater
 keycode  61 = slash question slash question
 keycode  62 = Shift_R NoSymbol Shift_R
 keycode  63 = KP_Multiply KP_Multiply KP_Multiply KP_Multiply KP_Multiply KP_Multiply XF86ClearGrab
 keycode  64 = Alt_L Meta_L Alt_L Meta_L
 keycode  65 = space NoSymbol space
-keycode  66 = Caps_Lock NoSymbol Caps_Lock
+! keycode  66 = Caps_Lock NoSymbol Caps_Lock
 keycode  67 = F1 F1 F1 F1 F1 F1 XF86Switch_VT_1
 keycode  68 = F2 F2 F2 F2 F2 F2 XF86Switch_VT_2
 keycode  69 = F3 F3 F3 F3 F3 F3 XF86Switch_VT_3
@@ -98,7 +98,7 @@ keycode 104 = KP_Enter NoSymbol KP_Enter
 keycode 105 = Control_R NoSymbol Control_R
 keycode 106 = KP_Divide KP_Divide KP_Divide KP_Divide KP_Divide KP_Divide XF86Ungrab
 keycode 107 = Print Sys_Req Print Sys_Req
-keycode 108 = Alt_R Meta_R Alt_R Meta_R
+! keycode 108 = Alt_R Meta_R Alt_R Meta_R
 keycode 109 = Linefeed NoSymbol Linefeed
 keycode 110 = Home NoSymbol Home
 keycode 111 = Up NoSymbol Up
@@ -246,3 +246,20 @@ keycode 252 =
 keycode 253 =
 keycode 254 =
 keycode 255 =
+
+! remove caps lock modifier
+clear Lock
+! assign dummy modifier to capslock
+keycode 66 = ISO_Group_Shift ISO_Group_Shift ISO_First_Group NoSymbol
+keycode 43 = h H braceleft
+keycode 44 = j J parenleft
+keycode 45 = k K parenright
+keycode 46 = l L braceright
+keycode 59 = comma less less
+keycode 60 = period greater greater
+
+clear Mod1
+add Mod1 = Alt_L
+keycode 108 = underscore underscore underscore underscore
+
+keycode 47 = colon semicolon colon semicolon
