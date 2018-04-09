@@ -28,11 +28,18 @@
 # # find some Virtual core keyboard => Usb keyboard -> id=9
 # xinput test 9
 
+# ctrl+- mapped to shift page up
 "echo -e 'KeyStrRelease minus\nKeyStrRelease Control_L\nKeyStrPress Shift_L\nKeyStrPress Next\nKeyStrRelease Next\nKeyStrRelease Shift_L\nKeyStrPress Control_L' | xmacroplay :0"
   Control + minus
 
+# ctrl+= mapped to shift page down
 "echo -e 'KeyStrRelease equal\nKeyStrRelease Control_L\nKeyStrPress Shift_L\nKeyStrPress Prior\nKeyStrRelease Prior\nKeyStrRelease Shift_L\nKeyStrPress Control_L' | xmacroplay :0 &"
-  Control + equal
+  m:0x4 + c:21
+  # Control + equal
+
+# ctrl+i mapped to shift insert
+"echo -e 'KeyStrRelease i\nKeyStrRelease Control_L\nKeyStrPress Shift_L\nKeyStrPress Insert\nKeyStrRelease Insert\nKeyStrRelease Shift_L\nKeyStrPress Control_L' | xmacroplay :0 &"
+  m:0x4 + c:31
 
 # "echo -e 'KeyStrRelease bracketright\nKeyStrRelease Control_L\nKeyStrPress b\nKeyStrRelease b\nKeyStrPress Control_L' | xmacroplay :0 &"
 #   Control + mod2 + bracketright
