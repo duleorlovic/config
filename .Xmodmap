@@ -247,6 +247,8 @@ keycode 253 =
 keycode 254 =
 keycode 255 =
 
+! I use mapping for all keys that I need right shift like underscore,
+! brackets...
 ! remove caps lock modifier
 clear Lock
 ! assign dummy modifier to capslock

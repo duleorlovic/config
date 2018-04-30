@@ -42,6 +42,7 @@ list=(
   https://github.com/alvan/vim-closetag.git # auto insert closing html tag( follow with > for new line)
   https://github.com/mileszs/ack.vim.git # ack instead of grep
   https://github.com/w0rp/ale # instead of syntastic
+  https://github.com/tpope/vim-ragtag.git # <%= %> tags
 )
 
 # manually install
@@ -68,6 +69,7 @@ list=(
 install_commands=(
   # https://github.com/tpope/vim-rhubarb
   "vim -u NONE -c 'helptags vim-rhubarb/doc' -c q"
+  "vim -u NONE -c 'helptags vim-ragtag/doc' -c q"
 )
 if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
   mkdir -p ~/.vim/autoload ~/.vim/bundle
@@ -80,13 +82,13 @@ if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
     echo $bundle_link
     git clone $bundle_link
   done
-  cd -
 
   for install_command in "${install_commands[@]}"
   do
     echo $install_command
     $install_command
   done
+  cd -
 fi
 echo start updating: `ls ~/.vim/bundle`
 for d in `ls -d ~/.vim/bundle/*`; do

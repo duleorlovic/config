@@ -2,6 +2,8 @@
 
 I used those files to configure and enhance vim, bash, ubuntu...
 
+## Getting started
+
 ~~~
 cd ~
 git clone git@github.com:duleorlovic/config.git
@@ -52,16 +54,35 @@ export MANDRILL_API_KEY=asdasd
 HERE_DOC
 ~~~
 
-# Keyboard shortcuts for windows
+## Keyboard shortcuts for windows
 
 I am using some
 [xdotool](http://www.semicomplete.com/projects/xdotool/xdotool.xhtml)
 so you need to manually add some [keyboard
 shortcuts](https://github.com/duleorlovic/config/blob/master/bashrc/window_shortcuts.sh#L34)
 
-# Keyboard remapping
+## Keyboard remapping
 
 [xbindkeys](https://wiki.archlinux.org/index.php/Xbindkeys)
 Add as [startup
 application](https://github.com/duleorlovic/config/blob/master/.xbindkeysrc#L3)
 
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at
+[github.com/duleorlovic/config].
+Thank you [contributors]!
+
+[contributors]: http://github.com/duleorlovic/config/graphs/contributors
+
+## License
+
+The project is available as open source under the terms of the
+[MIT License](http://opensource.org/licenses/MIT).
+
+## Authors
+
+This project is designed and created at <b>TRK INNOVATIONS</b> LLC by:
+
+* [duleorlovic](https://github.com/duleorlovic)

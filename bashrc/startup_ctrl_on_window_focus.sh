@@ -67,7 +67,7 @@ do
   if [ "$new_w_name" != "$w_name" ]; then
     w_name=$new_w_name
     # echo $w_name
-    if [[ $w_name =~ Firefox|Chrom|Viber|'Developer Tools' ]] ; then
+    if [[ $w_name =~ Firefox|Chrom|Viber|'Developer Tools'|'Unlock Login Keyring' ]] ; then
       echo "'$w_name' is firefox or chrome"
       if [ "$last_status" = "disabled" ]; then
         last_status=enabled
