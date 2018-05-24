@@ -1,6 +1,15 @@
+function is_mac_os {
+  if [ "$(uname)" == "Darwin" ]; then
+    # 0 is true
+    return 0
+  else
+    # 1 is false
+    return 1
+  fi
+}
+
 MY_FILES=(
   ~/config/keys/my_keys.sh
-  ~/config/bashrc/window_shortcuts.sh
   ~/config/bashrc/ionic.sh
   ~/config/bashrc/rails.sh
 )
@@ -10,6 +19,12 @@ for my_file in ${MY_FILES[*]}; do
     source $my_file
   fi
 done
+
+if is_mac_os; then
+  source ~/config/bashrc/mac_scripts/mac_window_shortcuts.sh
+else
+  source ~/config/bashrc/window_shortcuts.sh
+fi
 
 # if [ "`pgrep dbus-monitor`" == "" ];then
 #   echo Starting monitor_lock_hooks
@@ -50,15 +65,6 @@ function d {
 }
 alias dim=d
 
-function is_mac_os {
-  if [ "$(uname)" == "Darwin" ]; then
-    # 0 is true
-    return 0
-  else
-    # 1 is false
-    return 1
-  fi
-}
 # copy line to clipboard
 if is_mac_os; then
   bind '"\C-l": "\C-e\C-u pbcopy <<"EOF"\n\C-y\nEOF\n\C-y"'

@@ -382,7 +382,7 @@ command! -bang -nargs=* -complete=tag S call SearchMultiLine(<bang>0, <f-args>)|
 
 " copy to clipboard on macOS need to use pbcopy
 if has('macunix')
-  vnoremap "+y :w !pbcopy<cr><cr>
+  vnoremap "+y :w !pbcopy<c-j><c-j>
 endif
 
 " set folder for gutentags vim plugin
@@ -391,9 +391,9 @@ let g:gutentags_cache_dir = '~/.tags_cache'
 " iabbrev command ⌘
 " iabbrev option ⌥
 
-" mac move those keys from standard position so remap them
-inoremap § `
-inoremap ± ~
+" macos move those keys from standard position so remap them
+" inoremap § `
+" inoremap ± ~
 
 nnoremap <F5> :UndotreeToggle<cr>
 
