@@ -23,7 +23,11 @@ list=(
   https://github.com/ctrlpvim/ctrlp.vim.git # <c-p> <c-j> <c-k> <c-f> <c-b> <c-v>
   https://github.com/othree/html5.vim # html5 indent correct
   git://github.com/digitaltoad/vim-pug.git # jade syntax highlight
-  https://github.com/tpope/vim-markdown.git # markdown
+  # https://github.com/tpope/vim-markdown.git # is not used, since next one can
+  # properly indent with 2 spaces
+  https://github.com/plasticboy/vim-markdown.git # better since `` is properly
+  # highlighted when intent is 4 spaces for multiline list item
+  # https://github.com/plasticboy/vim-markdown/issues/126
   https://github.com/tomtom/tlib_vim.git # snipmate requirement
   https://github.com/MarcWeber/vim-addon-mw-utils.git # snipmate requirement
   https://github.com/garbas/vim-snipmate.git # snipmate
@@ -36,17 +40,20 @@ list=(
   git@github.com:mwise/vim-rspec-focus.git # add focus tag for rspec
   git@github.com:tpope/vim-commentary.git # comment code: gc
   git://github.com/tpope/vim-dispatch.git # async background task make test
-  # git@github.com:janko-m/vim-test.git # <leader>tTalg
+  git@github.com:janko-m/vim-test.git # <leader>tTalg
   # git@github.com:skywind3000/asyncrun.vim.git # replacement for dispatch
-  git@github.com:duleorlovic/vim-test.git
   https://github.com/alvan/vim-closetag.git # auto insert closing html tag( follow with > for new line)
   https://github.com/mileszs/ack.vim.git # ack instead of grep
   https://github.com/w0rp/ale # instead of syntastic
   https://github.com/tpope/vim-ragtag.git # <%= %> tags
+  https://github.com/kana/vim-textobj-user # base for some plugins
+  https://github.com/kana/vim-textobj-line # vil val   # inner line without "\n" docs https://github.com/kana/vim-textobj-line/blob/master/doc/textobj-line.txt
+  https://github.com/nelstrom/vim-textobj-rubyblock # vir
 )
 
-# manually install
+# manually install https://github.com/kana/vim-textobj-user and some plugins
 # https://github.com/nelstrom/vim-textobj-rubyblock # var vir visualy select inner ruby code
+# https://github.com/kana/vim-textobj-line
 #   cd ~/.vim/autoload
 #   mkdir textobj
 #   cd textobj/

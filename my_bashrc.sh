@@ -1,5 +1,6 @@
 MY_FILES=(
   ~/config/keys/my_keys.sh
+  ~/config/bashrc/get_current_viewport.sh
   ~/config/bashrc/window_shortcuts.sh
   ~/config/bashrc/ionic.sh
   ~/config/bashrc/rails.sh
@@ -81,7 +82,7 @@ function keys {
   if [ "$1" == "-h" ]; then
     cat <<-HERE_DOC
     Edit keys for current project, if exists.
-    Add -s to source them after edit
+    Add -s to source instead of edit
 	HERE_DOC
     return
   fi
@@ -89,8 +90,8 @@ function keys {
   projectName=`basename $current_path`
   if [ -f ~/config/keys/$projectName.sh ];then
     if [ "$1" == "-s" ] || [ "$1" == "-r" ]; then
-      echo_red edit and source ~/config/keys/$projectName.sh
-      vi ~/config/keys/$projectName.sh
+      echo_red source ~/config/keys/$projectName.sh
+      # vi ~/config/keys/$projectName.sh
       source ~/config/keys/$projectName.sh
     else
       echo_red edit ~/config/keys/$projectName.sh
@@ -100,3 +101,8 @@ function keys {
     echo_red can not find ~/config/keys/$projectName.sh
   fi
 }
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=critical -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+

@@ -168,6 +168,7 @@ set number! " unset number
 
 " custom plugins
 execute pathogen#infect()
+
 " to save history between vim session
 set history=1000
 " search grep current word
@@ -207,7 +208,7 @@ nnoremap <leader># /^#.*\n\n<cr>
 " open some common rails files
 nnoremap <leader>d :e config/database.yml<cr>
 nnoremap <leader>s :e db/schema.rb<cr>
-nnoremap <leader>f :e spec/factories.rb<cr>
+" nnoremap <leader>f :e spec/factories.rb<cr>
 nnoremap <leader>r :e config/routes.rb<cr>
 nnoremap <leader>ed :e config/environments/development.rb<cr>
 nnoremap <leader>ep :e config/environments/production.rb<cr>
@@ -443,6 +444,11 @@ augroup filetype_vim
   autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " }}}
+
+" https://github.com/plasticboy/vim-markdown#disable-folding
+let g:vim_markdown_folding_disabled = 1
+" https://github.com/plasticboy/vim-markdown#adjust-new-list-item-indent
+let g:vim_markdown_new_list_item_indent = 2
 
 " jump with ctrl+j in quckfix window
 augroup filetype_quickfix

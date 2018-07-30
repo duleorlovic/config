@@ -116,3 +116,27 @@ ionic_push_hosts() {
   echo_and_run adb -e push hosts /system/etc
   echo_and_run adb -e shell cat /etc/hosts
 }
+
+firebase_push() {
+  if [ "$1" == "-h" ]; then
+    cat <<-HERE_DOC
+    Hi, this function sends firebase cloud messaging notification.
+    Please export GOOGLE_API_KEY and GOOGLE_IID_TOKEN (device token)
+    Params are:
+    message (default is 'Hi')
+    body (default is 'There')
+	HERE_DOC
+    return
+  fi
+  message=${1-Hi}
+  body=${2-there}
+  curl -X POST -H "Authorization: key=$GOOGLE_API_KEY" -H "Content-Type: application/json" -d '{
+  "notification": {
+    "title": "'"$message"'",
+    "body": "'"$body"'",
+    "icon": "firebase-logo.png",
+    "click_action": "http://localhost:8081"
+  },
+  "to": "'$GOOGLE_IID_TOKEN'"
+}' "https://fcm.googleapis.com/fcm/send"
+}
