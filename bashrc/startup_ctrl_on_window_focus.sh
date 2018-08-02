@@ -14,30 +14,47 @@
 # or for old gtk2
 # gconftool-2 --type=string --set /desktop/gnome/interface/gtk_key_theme Emacs
 
-# to enable ctrl+j on browser windows we can use keyboard custom shortcuts
-# since we send the same key on terminal we need to disable current keybindings
-# ie we will map to ctrl+y instead of ctrl+j
-# it is better to disable on window focus than on each key stroke
+# to enable ctrl+j on browser windows we use keyboard custom shortcuts
+# since we send the same key on terminal we need to disable that shortcut
+# keybindings so it works much faster ie we will map to shift+ctrl+j instead of
+# ctrl+j. it is better to disable on window focus than on each key stroke
 # there are two commands: gsettings and dconf
 # gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings
-# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom14/ binding "'<Primary>y'"
-# but that returns a list customerXY but I need to check which is correct for
+# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom14/ binding "'<Primary>j'"
+# but that returns a list customerXY and I need to check which is correct for
 # our mappings
 # dconf read /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom13/binding
 # note that we need single quote inside string
 
-custom_number=unknown
+ctrl_j_number=unknown
+alt_v_number=unknown
 find_property_name() {
-  for i in {0..25}; do
+  for i in {0..50}; do
     read_i=$(dconf read /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/binding)
-    if [ "'<Primary>j'" = "$read_i" ] || [ "'<Primary>y'" = "$read_i" ] ; then
+    if [ "'<Primary>j'" = "$read_i" ] || [ "'<Shift><Primary>j'" = "$read_i" ] ; then
       echo found Ctrl+j binding on $i
-      custom_number=$i
+      ctrl_j_number=$i
       break
     fi
   done
-  if [[ "$i" -eq "25" ]]; then
-    message="can not find Ctrl+j or Ctrl+y binding. Please assign in Settings -> Keyboard \
+  if [[ "$i" -eq "50" ]]; then
+    message="can not find Ctrl+j or Shift+Ctrl+j binding. Please assign in Settings -> Keyboard \
+    -> Custom shortcuts"
+    echo $message
+    # notify does not work so comment out
+    # notify-send $message
+    exit
+  fi
+  for i in {0..50}; do
+    read_i=$(dconf read /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/binding)
+    if [ "'<Alt>v'" = "$read_i" ] || [ "'<Shift><Alt>v'" = "$read_i" ] ; then
+      echo found Alt+v binding on $i
+      alt_v_number=$i
+      break
+    fi
+  done
+  if [[ "$i" -eq "50" ]]; then
+    message="can not find Alt+v or Shoft+Alt+v binding. Please assign in Settings -> Keyboard \
     -> Custom shortcuts"
     echo $message
     # notify does not work so comment out
@@ -47,17 +64,19 @@ find_property_name() {
 }
 
 disable_keymap() {
-  # dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/binding "'<Primary>y'"
+  # dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/binding "'<Shift><Primary>j'"
   # somehow this binding is not yet flushed when we use dconf, so use gsettings
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$custom_number/ binding "'<Primary>y'"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$ctrl_j_number/ binding "'<Shift><Primary>j'"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$alt_v_number/ binding "'<Shift><Alt>v'"
 }
 enable_keymap() {
   # dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$i/binding "'<Primary>j'"
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$custom_number/ binding "'<Primary>j'"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$ctrl_j_number/ binding "'<Primary>j'"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$alt_v_number/ binding "'<Alt>v'"
 }
 
 find_property_name
-echo start ctrl_on_window_focus custom_number=$custom_number
+echo start ctrl_on_window_focus ctrl_j_number=$ctrl_j_number alt_v_number=$alt_v_number
 w_name=start_name
 last_status=enabled
 enable_keymap
@@ -67,7 +86,7 @@ do
   if [ "$new_w_name" != "$w_name" ]; then
     w_name=$new_w_name
     # echo $w_name
-    if [[ $w_name =~ Firefox|Chrom|Viber|'Developer Tools'|'Unlock Login Keyring' ]] ; then
+    if [[ $w_name =~ Firefox|Chrom|Viber|'Developer Tools'|'Unlock Login Keyring'|'Authentication Required'|'Authenticate' ]] ; then
       echo "'$w_name' is firefox or chrome"
       if [ "$last_status" = "disabled" ]; then
         last_status=enabled

@@ -1,6 +1,8 @@
 #!/bin/bash
+# uncommend following lines if you want to see echo log
 # exec >> /home/orlovic/Downloads/output.log
 # exec 2>&1
+# echo ctrl_browser $1
 if [ "$1" = "" ]; then
   notify-send "Please provide a key, like Ctrl+r" -u critical
 fi
