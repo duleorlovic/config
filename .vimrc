@@ -472,3 +472,25 @@ source $HOME/config/vim/ale.vim
 source $HOME/config/vim/netrw.vim
 source $HOME/config/vim/snippets/snippets.vim
 source $HOME/config/vim/vim_rails.vim
+
+" https://stackoverflow.com/a/9645147/287166
+" nnoremap <silent> <leader>! :set opfunc=ProgramFilter<cr>g@
+" vnoremap <silent> <leader>! :<c-u>call ProgramFilter(visualmode(), 1)<cr>
+vnoremap <silent> <leader>ts :<c-u>call ProgramFilter('sr', visualmode(), 1)<cr>
+vnoremap <silent> <leader>te :<c-u>call ProgramFilter('en', visualmode(), 1)<cr>
+vnoremap <silent> <leader>ta :<c-u>call ProgramFilter('ar', visualmode(), 1)<cr>
+function! ProgramFilter(lang, vt, ...)
+    let [qr, qt] = [getreg('"'), getregtype('"')]
+    let [oai, ocin, osi, oinde] = [&ai, &cin, &si, &inde]
+    setl noai nocin nosi inde=
+
+    let [sm, em] = ['[<'[a:0], ']>'[a:0]]
+    exe 'norm!`' . sm . a:vt . '`' . em . 'x'
+
+    let out = system('translate.rb '.a:lang, @")
+    let out = substitute(out, '\n$', '', '')
+    exe "norm!i\<c-r>=out\r"
+
+    let [&ai, &cin, &si, &inde] = [oai, ocin, osi, oinde]
+    call setreg('"', qr, qt)
+endfunction

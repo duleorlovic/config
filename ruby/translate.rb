@@ -12,7 +12,7 @@ project_id = 'cybernetic-tide-90121'
 translate = Google::Cloud::Translate.new project: project_id
 
 target = ARGV[0] || 'ru'
-text = ARGV[1] || 'Hello world'
+text = STDIN.gets
 
 translation = translate.translate text, to: target
-puts translation
+print translation
