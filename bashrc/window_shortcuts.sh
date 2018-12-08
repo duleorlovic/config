@@ -13,6 +13,7 @@
 upper()
 {
   projectPath=${1-$(pwd)}
+  folderName=`basename $projectPath`
   port=300$(get_current_viewport)
   url=http://localhost:$port
 
@@ -23,14 +24,18 @@ upper()
 
   win_width=`expr $(monitor_size) / 36` # 7200 / 36 = 200
   s $projectPath semicolon ${win_width}x24-0+0 "git pull; \
+    if [ -f ~/config/keys/$folderName.server.sh ];then
+      echo source ~/config/keys/$folderName.server.sh
+      source ~/config/keys/$folderName.server.sh;
+    fi;
     rake db:create;
     rake db:migrate;
     rails s -b 0.0.0.0 -p $port"
 
   s ~/jekyll/blog l 80x24+1250+0 # right: 80x24-0+100 # 80x24+1250+100
 
-  start_browser h $url firefox "Mozilla Firefox"
-  start_browser u $url google-chrome Google 0,400,100,-1,-1
+  start_browser firefox h $url "Mozilla Firefox"
+  start_browser google-chrome u $url Google 0,1600,0,-1,-1
 }
 
 under()
@@ -56,17 +61,18 @@ start_browser()
     Hi, this function starts browser and assign shortcut keys ALT+hjkl semicolon
         with help of System Settings-Keyboard-Shortcuts and command xdotool
     example usage: start_browser h http://localhost:3000 google-chrome Google 0,400,100,-1,-1
+    browser_command: firefox (could be google-chrome)
     key: default is h, could be h,j,k,l,semicolon... you can add any shortcut
     url: default is http://localhost:3000
-    browser_command: firefox (could be google-chrome)
     browser_name_in_wmctrl: "Mozilla Firefox" (coould be "Google")
-    position: 0,0,0,-1,-1  first is 0, than position top,left and width,height
+    position: 0,0,0,-1,-1  first is 0, than distance from left and top and width,height
 	HERE_DOC
     return
   fi
-  browser_key=${1-h}
-  url=${2-http://localhost:3000}
-  browser_command=${3-firefox}
+  browser_command=${1-firefox}
+  browser_key=${2-h}
+  port=300$(get_current_viewport)
+  url=${3-http://localhost:$port}
   browser_name_in_wmctrl=${4-"Mozilla Firefox"}
   position=${5-"0,0,0,-1,-1"}
   browser_class=vp_$(get_current_viewport)_class_$browser_key

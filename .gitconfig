@@ -1,0 +1,16 @@
+[push]
+	default = simple
+[user]
+	email = duleorlovic@gmail.com
+	name = Dusan Orlovic
+[core]
+	excludesfile = /home/orlovic/.gitignore_global
+[alias]
+	add-commit = !git add -A && git commit
+	d = diff
+	c = commit
+	s = status
+	st = status
+	o = show
+[credential]
+	helper = store --file /home/orlovic/.fastlane/.tmp/git-auth-1e0f9c5236e77c8efef9ae6d3031be715e424e8c314acbc5723828691d118842

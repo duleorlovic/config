@@ -1,4 +1,5 @@
 # http://blog.trk.in.rs/2015/12/01/vim-tips/
+# ~/.rubocop.yml is used when there is no local .rubocop.yml
 AllCops:
   TargetRubyVersion: 2.3
   Exclude:
@@ -8,47 +9,67 @@ AllCops:
     - node_modules/**/*
     - db/migrate/*
 
-Rails:
-  Enabled: true
+# 'class ActionDispatch::IntegrationTest' in single line, no need two lines
+Style/ClassAndModuleChildren:
+  Enabled: false
 
-# [1,]
-# Style/TrailingCommaInLiteral:
-#   Enabled: false
+# it is OK that code explains instead class documentation
+Style/Documentation:
+  Enabled: false
 
-# Rails/Output:
-#   Enabled: false
+# config, tasks and test for setup data could be very long
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/**/*'
+    - 'test/**/*'
+    - 'config/**/*'
 
+# big test big ABC size
+Metrics/AbcSize:
+  Max: 25
+  Exclude:
+    - 'test/**/*'
+
+# line length is not important in db and tests
+Metrics/LineLength:
+  Exclude:
+    - 'db/**/*'
+    - 'test/**/*'
+    - 'spec/**/*'
+
+# put comma after each line [1,]
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+# put comma after each line {a:1,}
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+# also in arguments
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+# methods in 10 lines are OK but some are bigger
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - 'lib/**/*'
+    - 'test/**/*'
+
+# classes could be huge in tests
+Metrics/ClassLength:
+  Exclude:
+    - 'test/**/*'
+
+# do not need to write # frozen_string_literal: true
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Rails:
+  Enabled: true
+
 Rails/FilePath:
   Enabled: false
-#
-# Style/StringLiterals:
-#   Enabled: false
-#
-#  Style/TrailingCommaInArguments:
-#    Enabled: false
-# Style/Documentation:
-#   Enabled: false
-# 
-# 
-# 
-# Style/FileName:
-#   Enabled: false
-# 
-# 
-# 
-# Metrics/AbcSize:
-#   Max: 40 # default was 15
-# 
-# Metrics/MethodLength:
-#   Max: 20 # default was 10
-# 
-# Metrics/LineLength:
-#   Max: 115 # default was 80
-# 
-# Metrics/ClassLength:
-#   Max: 120 # default was 100
-# Style/DotPosition:
-#   EnforcedStyle: trailing
+
+Lint/AmbiguousRegexpLiteral:
+  Enabled: false

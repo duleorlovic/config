@@ -1,15 +1,15 @@
 keycode   8 =
 keycode   9 = Escape NoSymbol Escape
-keycode  10 = 1 exclam 1 exclam
-keycode  11 = 2 at 2 at
-keycode  12 = 3 numbersign 3 numbersign
-keycode  13 = 4 dollar 4 dollar
-keycode  14 = 5 percent 5 percent
-keycode  15 = 6 asciicircum 6 asciicircum
-keycode  16 = 7 ampersand 7 ampersand
-keycode  17 = 8 asterisk 8 asterisk
-keycode  18 = 9 parenleft 9 parenleft
-keycode  19 = 0 parenright 0 parenright
+! keycode  10 = 1 exclam 1 exclam
+! keycode  11 = 2 at 2 at
+! keycode  12 = 3 numbersign 3 numbersign
+! keycode  13 = 4 dollar 4 dollar
+! keycode  14 = 5 percent 5 percent
+! keycode  15 = 6 asciicircum 6 asciicircum
+! keycode  16 = 7 ampersand 7 ampersand
+! keycode  17 = 8 asterisk 8 asterisk
+! keycode  18 = 9 parenleft 9 parenleft
+! keycode  19 = 0 parenright 0 parenright
 keycode  20 = minus underscore minus underscore
 keycode  21 = equal plus equal plus
 keycode  22 = BackSpace BackSpace BackSpace BackSpace
@@ -24,8 +24,8 @@ keycode  29 = y Y y Y
 ! keycode  31 = i I i I
 keycode  32 = o O o O
 keycode  33 = p P p P
-keycode  34 = bracketleft braceleft bracketleft braceleft
-keycode  35 = bracketright braceright bracketright braceright
+! keycode  34 = bracketleft braceleft bracketleft braceleft
+! keycode  35 = bracketright braceright bracketright braceright
 keycode  36 = Return NoSymbol Return
 keycode  37 = Control_L NoSymbol Control_L
 keycode  38 = a A a A
@@ -41,7 +41,7 @@ keycode  42 = g G g G
 keycode  48 = apostrophe quotedbl apostrophe quotedbl
 ! keycode  49 = grave asciitilde grave asciitilde
 keycode  50 = Shift_L NoSymbol Shift_L
-keycode  51 = bar backslash bar backslash
+!keycode  51 = backslash bar backslash bar
 keycode  52 = z Z z Z
 keycode  53 = x X x X
 keycode  54 = c C c C
@@ -248,7 +248,8 @@ keycode 254 =
 keycode 255 =
 
 ! I use mapping for all keys that I need right shift like underscore,
-! brackets...
+! brackets... reload this configuration with: xmodmap ~/.Xmodmap
+
 ! remove caps lock modifier
 clear Lock
 ! assign dummy modifier to capslock
@@ -270,11 +271,13 @@ keycode 60 = period greater greater
 ! colon and semicolon are just reversed
 keycode 47 = colon semicolon colon semicolon
 
-! apple keyboard swap command which is 133=Super_L and option which is 64=Alt_L
-clear mod4
-keycode 133 = Alt_L NoSymbol Alt_L
-keycode 64 = Super_L NoSymbol Super_L
-add mod4 = Super_L
+!! mac apple keyboard swap command which is 133=Super_L and option which is 64=Alt_L
+!! when you (un)comment you can reload with: xmodmap ~/.Xmodmap
+! clear mod4
+! keycode 133 = Alt_L NoSymbol Alt_L
+! keycode 64 = Super_L NoSymbol Super_L
+! add mod4 = Super_L
+
 ! when we add modifier than it looks for previous occurence of keysym so this
 ! has to be after definition of keycode that is using modifier
 
@@ -286,3 +289,21 @@ add mod1 = Alt_L
 keycode 108 = underscore underscore underscore underscore
 ! this is for right command
 keycode 134 = underscore underscore underscore underscore
+
+! in ruby we use more often {} than []
+keycode  34 = braceleft bracketleft bracketleft braceleft
+keycode  35 = braceright bracketright bracketright braceright
+
+! also more often special signs than numbers
+keycode  10 = exclam 1 1 exclam
+keycode  11 = at 2 2 at
+keycode  12 = numbersign 3 3 numbersign
+keycode  13 = dollar 4 4 dollar
+keycode  14 = percent 5 5 percent
+keycode  15 = asciicircum 6 6 asciicircum
+keycode  16 = ampersand 7 7 ampersand
+keycode  17 = asterisk 8 8 asterisk
+keycode  18 = parenleft 9 9 parenleft
+keycode  19 = parenright 0 0 parenright
+! bar | and backslash \
+keycode  51 = bar backslash backslash bar

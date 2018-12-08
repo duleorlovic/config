@@ -49,6 +49,7 @@ list=(
   https://github.com/kana/vim-textobj-user # base for some plugins
   https://github.com/kana/vim-textobj-line # vil val   # inner line without "\n" docs https://github.com/kana/vim-textobj-line/blob/master/doc/textobj-line.txt
   https://github.com/nelstrom/vim-textobj-rubyblock # vir
+  https://github.com/lilydjwg/colorizer # colorize rgb colors
 )
 
 # manually install https://github.com/kana/vim-textobj-user and some plugins

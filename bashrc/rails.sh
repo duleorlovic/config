@@ -63,8 +63,18 @@ function load_dump() {
   rails_env=${2:-development}
   db_name=$(rails runner "puts ActiveRecord::Base.configurations['$rails_env']['database']")
   echo_red Drop $db_name for $rails_env
-  RAILS_ENV=$rails_env rake db:drop
+  DISABLE_DATABASE_ENVIRONMENT_CHECK=1 RAILS_ENV=$rails_env rake db:drop
+  echo_red migrating
   RAILS_ENV=$rails_env rake db:create db:migrate
+  echo_red start pg_restore postgres -c "pg_restore -d $db_name --clean --no-acl --no-owner -h localhost $dump_file"
   sudo su postgres -c "pg_restore -d $db_name --clean --no-acl --no-owner -h localhost $dump_file"
   echo_red "Finish loading"
+}
+
+kill_rails() {
+  pkill -F tmp/pids/server.pid -9
+}
+
+push_heroku_amend_and_force() {
+  git add . && git commit --amend --no-edit && git push heroku -f
 }

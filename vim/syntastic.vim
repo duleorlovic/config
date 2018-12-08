@@ -19,11 +19,13 @@ let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {'regex': [
     \ 'possibly useless use of a variable in void context',
+    \ 'ambiguous first argument',
     \ 'shadowing outer local variable',
     \ ]}
 " this quit messages are also defined in ~/.rubocop.yml
 let g:syntastic_ruby_rubocop_quiet_messages =
     \ {'regex': [
+    \ 'ambiguous first argument',
     \ 'Missing top-level class documentation comment.',
     \ ]}
 " https://github.com/bbatsov/rubocop/issues/2162
