@@ -32,6 +32,7 @@ Metrics/AbcSize:
 
 # line length is not important in db and tests
 Metrics/LineLength:
+  Max: 115
   Exclude:
     - 'db/**/*'
     - 'test/**/*'
@@ -71,5 +72,13 @@ Rails:
 Rails/FilePath:
   Enabled: false
 
+Lint/AmbiguousRegexpLiteral:
+  Enabled: false
+
+# errors.add(:base, 'Failed') and return false # no need to use &&
+Style/AndOr:
+  Enabled: false
+
+# assert_match /regexp/, response.body # no need for parenthesis
 Lint/AmbiguousRegexpLiteral:
   Enabled: false

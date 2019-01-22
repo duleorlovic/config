@@ -4,6 +4,7 @@ MY_FILES=(
   ~/config/bashrc/window_shortcuts.sh
   ~/config/bashrc/ionic.sh
   ~/config/bashrc/rails.sh
+  ~/config/bashrc/arduino.sh
 )
 
 for my_file in ${MY_FILES[*]}; do
@@ -39,6 +40,8 @@ export PATH="$PATH:$HOME/Programs/android-studio/bin"
 export PATH="$PATH:$HOME/Programs/gradle/bin"
 # for glass
 export PATH="$PATH:$HOME/Programs/glass"
+# for my scripts
+export PATH="$PATH:$HOME/config/bin"
 
 export SECRET_KEY_BASE=123asd
 

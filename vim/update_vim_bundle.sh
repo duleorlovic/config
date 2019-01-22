@@ -25,6 +25,7 @@ list=(
   git://github.com/digitaltoad/vim-pug.git # jade syntax highlight
   # https://github.com/tpope/vim-markdown.git # is not used, since next one can
   # properly indent with 2 spaces
+  https://github.com/michaeljsmith/vim-indent-object # text object based on indent
   https://github.com/plasticboy/vim-markdown.git # better since `` is properly
   # highlighted when intent is 4 spaces for multiline list item
   # https://github.com/plasticboy/vim-markdown/issues/126
@@ -50,6 +51,7 @@ list=(
   https://github.com/kana/vim-textobj-line # vil val   # inner line without "\n" docs https://github.com/kana/vim-textobj-line/blob/master/doc/textobj-line.txt
   https://github.com/nelstrom/vim-textobj-rubyblock # vir
   https://github.com/lilydjwg/colorizer # colorize rgb colors
+  https://github.com/stevearc/vim-arduino # arduino compile, flash and serial
 )
 
 # manually install https://github.com/kana/vim-textobj-user and some plugins
