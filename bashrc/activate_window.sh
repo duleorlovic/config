@@ -17,6 +17,6 @@ if [ "$1" == "" ]; then
   echo Please provide key name, for example
   echo source activate_window.sh k
 else
-  source ~/config/bashrc/window_shortcuts.sh
+  source ~/config/bashrc/get_current_viewport.sh
   xdotool search --classname vp_$(get_current_viewport)_class_$1 windowactivate
 fi

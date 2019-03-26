@@ -168,6 +168,7 @@ set number! " unset number
 
 " custom plugins
 execute pathogen#infect()
+
 " to save history between vim session
 set history=1000
 " search grep current word
@@ -207,7 +208,7 @@ nnoremap <leader># /^#.*\n\n<cr>
 " open some common rails files
 nnoremap <leader>d :e config/database.yml<cr>
 nnoremap <leader>s :e db/schema.rb<cr>
-nnoremap <leader>f :e spec/factories.rb<cr>
+" nnoremap <leader>f :e spec/factories.rb<cr>
 nnoremap <leader>r :e config/routes.rb<cr>
 nnoremap <leader>ed :e config/environments/development.rb<cr>
 nnoremap <leader>ep :e config/environments/production.rb<cr>
@@ -326,13 +327,13 @@ cnoremap <bs> <space>hey_use_ctrh_h_delete_this_with_ctrl_w
 cabbrev E e
 
 
-" Quicker window movement
+" Quicker window movement, shorthand of Ctrl+W+key
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <C-g> <C-w>h<C-w>h<C-w>h<C-w>h<C-w>h
-nnoremap <C-;> <C-w>l<C-w>l<C-w>l<C-w>l<C-w>l
+nnoremap <C-:> <C-w>l<C-w>l<C-w>l<C-w>l<C-w>l
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb"
 
 " yank and paste will interact with system clipboard so you can paste in browser
@@ -344,7 +345,12 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " for swap .a.txt.swp
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_working_path_mode = 'wa' " check working directory with :pwd
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] " this has problem with unknown .git/
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+" ignore from .ctrlpignore https://github.com/kien/ctrlp.vim/issues/58
+if filereadable(".ctrlpignore")
+  let g:ctrlp_user_command = 'cd %s && git ls-files . -co --exclude-standard | grep -v "`cat .ctrlpignore`"'
+else
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+endif
 " make ctrl-o immediatelly replace buffer so we don't need to answer OpenMulti prompt
 " Open Selected: [t]ab/[v]ertical/[h]orizontal/[r]eplace/h[i]dden? 
 let g:ctrlp_prompt_mappings = {
@@ -444,13 +450,50 @@ augroup filetype_vim
 augroup END
 " }}}
 
+" https://github.com/plasticboy/vim-markdown#disable-folding
+let g:vim_markdown_folding_disabled = 1
+" https://github.com/plasticboy/vim-markdown#adjust-new-list-item-indent
+let g:vim_markdown_new_list_item_indent = 2
+
 " jump with ctrl+j in quckfix window
 augroup filetype_quickfix
     autocmd!
     autocmd FileType qf nnoremap <buffer> <c-j> <cr>:cclose<cr>
 augroup END
 
+" vim-impaired use [ ] but I replaced it with { }
+nmap { [
+nmap } ]
+" use nore since we do not want recursively invoke with paragraph jump
+noremap {{ {
+noremap }} }
+
 source $HOME/config/vim/ale.vim
 source $HOME/config/vim/netrw.vim
 source $HOME/config/vim/snippets/snippets.vim
 source $HOME/config/vim/vim_rails.vim
+
+" https://stackoverflow.com/a/9645147/287166
+" nnoremap <silent> <leader>! :set opfunc=ProgramFilter<cr>g@
+" vnoremap <silent> <leader>! :<c-u>call ProgramFilter(visualmode(), 1)<cr>
+function! ProgramFilter(prog, vt, ...)
+    let [qr, qt] = [getreg('"'), getregtype('"')]
+    let [oai, ocin, osi, oinde] = [&ai, &cin, &si, &inde]
+    setl noai nocin nosi inde=
+
+    let [sm, em] = ['[<'[a:0], ']>'[a:0]]
+    exe 'norm!`' . sm . a:vt . '`' . em . 'x'
+
+    let out = system(a:prog, @")
+    let out = substitute(out, '\n$', '', '')
+    exe "norm!i\<c-r>=out\r"
+
+    let [&ai, &cin, &si, &inde] = [oai, ocin, osi, oinde]
+    call setreg('"', qr, qt)
+endfunction
+
+vnoremap <silent> <leader>ts :<c-u>call ProgramFilter('translate.rb sr', visualmode(), 1)<cr>
+vnoremap <silent> <leader>te :<c-u>call ProgramFilter('translate.rb en', visualmode(), 1)<cr>
+vnoremap <silent> <leader>ta :<c-u>call ProgramFilter('translate.rb ar', visualmode(), 1)<cr>
+vnoremap <silent> <leader>tc :<c-u>call ProgramFilter('cyrillizer.rb to_cyr', visualmode(), 1)<cr>
+vnoremap <silent> <leader>tl :<c-u>call ProgramFilter('cyrillizer.rb to_lat', visualmode(), 1)<cr>

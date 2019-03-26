@@ -71,10 +71,11 @@ application](https://github.com/duleorlovic/config/blob/master/.xbindkeysrc#L3)
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at
-[github.com/duleorlovic/config].
+[github.com/duleorlovic/config/issues].
 Thank you [contributors]!
 
-[contributors]: http://github.com/duleorlovic/config/graphs/contributors
+[github.com/duleorlovic/config/issues]: https://github.com/duleorlovic/config/issues
+[contributors]: https://github.com/duleorlovic/config/graphs/contributors
 
 ## License
 
@@ -83,6 +84,6 @@ The project is available as open source under the terms of the
 
 ## Authors
 
-This project is designed and created at <b>TRK INNOVATIONS</b> LLC by:
+This project is designed and created at TRK INNOVATIONS LLC by:
 
 * [duleorlovic](https://github.com/duleorlovic)

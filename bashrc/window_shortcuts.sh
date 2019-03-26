@@ -2,74 +2,47 @@
 #
 # This is used to open windows on specific keyboard shortcuts
 # http://blog.trk.in.rs/2016/02/01/bash/#tocAnchor-1-3
+# https://github.com/jordansissel/xdotool
 # sudo apt-get install xdotool chromium-browser
 # xwininfo
-# xdotool search --classname
+# xdotool search --classname myclass
 # xprop
 # wmctrl
 # bash -l  # rvm asks for login
 
-
-# http://askubuntu.com/questions/41093/is-there-a-command-to-go-a-specific-workspace
-# http://stackoverflow.com/questions/17336915/return-value-in-bash-script
-# use with vp_number=$(get_current_viewport)
-get_current_viewport()
-{
-  SIZE=`wmctrl -d | awk '{print $6}'`
-  # http://stackoverflow.com/questions/23663963/split-string-into-multiple-variables-in-bash
-  IFS=',' read vp_width vp_height <<< $SIZE
-  if [ "$vp_width" = "0" ] && [ "$vp_height" = "0" ]; then
-    echo 1
-  else
-    if [ "$vp_height" = "0" ]; then
-      echo 2
-    else
-      if [ "$vp_width" = "0" ]; then
-        echo 3
-      else
-        echo 4
-      fi
-    fi
-  fi
-}
-
 upper()
 {
   projectPath=${1-$(pwd)}
+  folderName=`basename $projectPath`
   port=300$(get_current_viewport)
   url=http://localhost:$port
-  projectName=`basename $projectPath`
 
   s $projectPath j
 
   s $projectPath k 120x24+830+100 "pwd; \
-    if [ -f ~/config/keys/$projectName.sh ];then
-      echo source ~/config/keys/$projectName.sh
-      source ~/config/keys/$projectName.sh;
-    fi;
     echo k"
 
   win_width=`expr $(monitor_size) / 36` # 7200 / 36 = 200
   s $projectPath semicolon ${win_width}x24-0+0 "git pull; \
-    if [ -f ~/config/keys/$projectName.sh ];then
-      echo source ~/config/keys/$projectName.sh
-      source ~/config/keys/$projectName.sh;
-    fi
+    if [ -f ~/config/keys/$folderName.server.sh ];then
+      echo source ~/config/keys/$folderName.server.sh
+      source ~/config/keys/$folderName.server.sh;
+    fi;
     rake db:create;
-    rake db:migrate; \
+    rake db:migrate;
     rails s -b 0.0.0.0 -p $port"
 
   s ~/jekyll/blog l 80x24+1250+0 # right: 80x24-0+100 # 80x24+1250+100
 
-  start_browser h $url firefox "Mozilla Firefox"
-  start_browser u $url google-chrome Google 0,400,100,-1,-1
+  start_browser firefox h $url "Mozilla Firefox"
+  start_browser google-chrome u $url Google 0,1600,0,-1,-1
 }
 
 under()
 {
   projectPath=${1-$(pwd)}
   s $projectPath m  100x24+700-100 "echo m"
-  s $projectPath colon  100x24+900-50 "echo ,"
+  s $projectPath comma  100x24+900-50 "echo ,"
   s $projectPath dot  100x24-1100-0 "echo ."
   win_width=`expr $(monitor_size) / 36` # 7200 / 36 = 200
   s $projectPath slash  ${win_width}x35-0-0 "echo /"
@@ -88,17 +61,18 @@ start_browser()
     Hi, this function starts browser and assign shortcut keys ALT+hjkl semicolon
         with help of System Settings-Keyboard-Shortcuts and command xdotool
     example usage: start_browser h http://localhost:3000 google-chrome Google 0,400,100,-1,-1
+    browser_command: firefox (could be google-chrome)
     key: default is h, could be h,j,k,l,semicolon... you can add any shortcut
     url: default is http://localhost:3000
-    browser_command: firefox (could be google-chrome)
     browser_name_in_wmctrl: "Mozilla Firefox" (coould be "Google")
-    position: 0,0,0,-1,-1  first is 0, than position top,left and width,height
+    position: 0,0,0,-1,-1  first is 0, than distance from left and top and width,height
 	HERE_DOC
     return
   fi
-  browser_key=${1-h}
-  url=${2-http://localhost:3000}
-  browser_command=${3-firefox}
+  browser_command=${1-firefox}
+  browser_key=${2-h}
+  port=300$(get_current_viewport)
+  url=${3-http://localhost:$port}
   browser_name_in_wmctrl=${4-"Mozilla Firefox"}
   position=${5-"0,0,0,-1,-1"}
   browser_class=vp_$(get_current_viewport)_class_$browser_key
@@ -169,14 +143,15 @@ s()
     geometry: chars x rows x pixels_from_left x pixels_from_top
               if negative pixels than it is pixes_from_right/bottom
               default is 300x30+0-0
-    command: default is 'vim .'. Don't end with ; Multuple commands with ; or &&
+    command: default is 'vim'. Don't end with ; Multuple commands with ; or &&
 	HERE_DOC
     return
   fi
   folder=${1-.}
+  folderName=`basename $folder`
   class=vp_$(get_current_viewport)_class_${2-j}
   geometry=${3-300x30+0-0}
-  command=${4-vim .}
+  command=${4-vim}
   echo class=$class folder=$folder geometry=$geometry and \
     run command=$command
   last_command=${command##*;}
@@ -187,7 +162,10 @@ s()
   gnome-terminal --geometry=$geometry -x bash --login -c "\
     cd $folder;\
     xprop -f WM_CLASS 8s -set WM_CLASS $class -id \$(xdotool getwindowfocus);\
-    echo $command;\
+    if [ -f ~/config/keys/$folderName.sh ];then
+      echo source ~/config/keys/$folderName.sh
+      source ~/config/keys/$folderName.sh;
+    fi;
     $command;\
     bash -l"
   sleep 0.5
@@ -207,7 +185,7 @@ qall()
   # xdotool search --onlyvisible --name '.*'  windowactivate %@
   # so we need to iterate to all possible classes (other terminal windows
   # without those classes will stay minimized)
-  keys=(j k l m u colon semicolon dot slash)
+  keys=(j k l colon semicolon h u m comma dot slash)
   for key in "${keys[@]}"
   do
     class_name=vp_$(get_current_viewport)_class_$key
@@ -223,7 +201,7 @@ qall()
 
   # I disabled Return to use Ctrl+j in vim
   vim_return=ctrl+j
-  vim_colon=semicolon
+  vim_colon=colon
   last_name=start_name
   last_pid=start_pid
   retry=0
@@ -238,7 +216,7 @@ qall()
     case $name in
       *VIM) echo VIM window
         echo q a vim_return
-        xdotool key  $vim_colon q a $vim_return
+        xdotool key Escape $vim_colon q a $vim_return
         sleep $sleep_after_close
         # xdotool key e x i t $vim_return
         # sleep $sleep_after_close
@@ -287,10 +265,12 @@ b()
     read -n1 char
     if [ "$char" == "." ]; then
       key="dot"
+    elif [ "$char" == ":" ]; then
+      key="colon"
     elif [ "$char" == ";" ]; then
       key="semicolon"
     elif [ "$char" == "," ]; then
-      key="colon"
+      key="comma"
     elif [ "$char" == "/" ]; then
       key="slash"
     else

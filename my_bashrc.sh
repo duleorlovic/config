@@ -10,8 +10,10 @@ function is_mac_os {
 
 MY_FILES=(
   ~/config/keys/my_keys.sh
+  ~/config/bashrc/get_current_viewport.sh
   ~/config/bashrc/ionic.sh
   ~/config/bashrc/rails.sh
+  ~/config/bashrc/arduino.sh
 )
 
 for my_file in ${MY_FILES[*]}; do
@@ -36,8 +38,11 @@ export EDITOR=vim
 # Add Android SDK tools to PATH
 export ANDROID_HOME=/media/orlovic/bf12a7e5-a5d4-4532-8612-a3984f90b56c/shared/Android/Sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
+export ANDROID_SDK_HOME=$ANDROID_HOME
 # issue with unable to load driver https://stackoverflow.com/questions/35911302/cannot-launch-emulator-on-linux-ubuntu-15-10/36625175#36625175
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+# for emulator command
+export PATH="$PATH:$ANDROID_HOME/emulator"
 # for android command
 export PATH="$PATH:$ANDROID_HOME/tools"
 # for adb
@@ -46,8 +51,12 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH="$PATH:$HOME/Programs/genymotion"
 # for studio.sh
 export PATH="$PATH:$HOME/Programs/android-studio/bin"
+# for gradle
+export PATH="$PATH:$HOME/Programs/gradle/bin"
 # for glass
 export PATH="$PATH:$HOME/Programs/glass"
+# for my scripts
+export PATH="$PATH:$HOME/config/bin"
 
 export SECRET_KEY_BASE=123asd
 
@@ -87,17 +96,20 @@ function keys {
   if [ "$1" == "-h" ]; then
     cat <<-HERE_DOC
     Edit keys for current project, if exists.
-    Add -s to source them after edit
+    Add -s to source keys instead of edit
+    Add -ss to source keys and server script
 	HERE_DOC
     return
   fi
   current_path=$(pwd)
   projectName=`basename $current_path`
   if [ -f ~/config/keys/$projectName.sh ];then
-    if [ "$1" == "-s" ] || [ "$1" == "-r" ]; then
-      echo_red edit and source ~/config/keys/$projectName.sh
-      vi ~/config/keys/$projectName.sh
+    if [ "$1" == "-s" ]; then
+      echo_red source ~/config/keys/$projectName.sh
       source ~/config/keys/$projectName.sh
+    elif [ "$1" == "-ss" ]; then
+      echo_red source ~/config/keys/$projectName.server.sh
+      source ~/config/keys/$projectName.server.sh
     else
       echo_red edit ~/config/keys/$projectName.sh
       vi ~/config/keys/$projectName.sh
@@ -106,3 +118,11 @@ function keys {
     echo_red can not find ~/config/keys/$projectName.sh
   fi
 }
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=critical -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias g=git
+# https://brbsix.github.io/2015/11/23/perform-tab-completion-for-aliases-in-bash/
+_completion_loader git
+complete -o bashdefault -o default -o nospace -F _git g
