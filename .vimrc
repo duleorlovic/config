@@ -337,7 +337,15 @@ nnoremap <C-:> <C-w>l<C-w>l<C-w>l<C-w>l<C-w>l
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.erb"
 
 " yank and paste will interact with system clipboard so you can paste in browser
-set clipboard=unnamed
+" http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html
+" yank to clipboard
+if has("clipboard")
+  set clipboard=unnamed " copy to the system clipboard
+
+  if has("unnamedplus") " X11 support
+    set clipboard+=unnamedplus
+  endif
+endif
 " set backup folder. first one which exists will be used
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " for backup a.txt~
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " for swap .a.txt.swp
@@ -388,7 +396,7 @@ command! -bang -nargs=* -complete=tag S call SearchMultiLine(<bang>0, <f-args>)|
 
 " copy to clipboard on macOS need to use pbcopy
 if has('macunix')
-  vnoremap "+y :w !pbcopy<c-j><c-j>
+  vnoremap "+y :w !pbcopy <cr> <cr>
 endif
 
 " set folder for gutentags vim plugin
