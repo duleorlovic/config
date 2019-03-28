@@ -52,6 +52,7 @@ list=(
   https://github.com/nelstrom/vim-textobj-rubyblock # vir
   https://github.com/lilydjwg/colorizer # colorize rgb colors
   https://github.com/stevearc/vim-arduino # arduino compile, flash and serial
+  https://github.com/chrisbra/csv.vim # :Header vG:ArrangeColumn
 )
 
 # manually install https://github.com/kana/vim-textobj-user and some plugins

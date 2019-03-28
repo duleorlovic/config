@@ -502,6 +502,5 @@ endfunction
 
 vnoremap <silent> <leader>ts :<c-u>call ProgramFilter('translate.rb sr', visualmode(), 1)<cr>
 vnoremap <silent> <leader>te :<c-u>call ProgramFilter('translate.rb en', visualmode(), 1)<cr>
-vnoremap <silent> <leader>ta :<c-u>call ProgramFilter('translate.rb ar', visualmode(), 1)<cr>
 vnoremap <silent> <leader>tc :<c-u>call ProgramFilter('cyrillizer.rb to_cyr', visualmode(), 1)<cr>
 vnoremap <silent> <leader>tl :<c-u>call ProgramFilter('cyrillizer.rb to_lat', visualmode(), 1)<cr>

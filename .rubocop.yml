@@ -32,7 +32,7 @@ Metrics/AbcSize:
 
 # line length is not important in db and tests
 Metrics/LineLength:
-  Max: 115
+  Max: 125
   Exclude:
     - 'db/**/*'
     - 'test/**/*'

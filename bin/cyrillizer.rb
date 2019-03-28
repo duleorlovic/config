@@ -7,6 +7,7 @@ rescue LoadError
   exit
 end
 
+Cyrillizer.language = :serbian
 target = ARGV[0] || 'to_cyr'
 
 text = STDIN.gets
