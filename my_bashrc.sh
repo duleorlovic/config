@@ -126,3 +126,5 @@ alias g=git
 # https://brbsix.github.io/2015/11/23/perform-tab-completion-for-aliases-in-bash/
 _completion_loader git
 complete -o bashdefault -o default -o nospace -F _git g
+
+alias be='bundle exec'
