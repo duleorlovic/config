@@ -319,6 +319,9 @@ cmap <cr> <space>hey_use_ctrl_j_delete_this_with_ctrl_w_and_try_again_cr
 " if you really need, use space<cr>
 cnoremap <space><cr> <cr>
 " gf uses :find _name_<cr> so we need to remap from vim-rails/autoload/rails.vim:4197
+" tab uses =SuperTab('n')<cr> so we need to remap
+imap <script> <Plug>SuperTabForward <c-r>=SuperTab('n') <cr>
+" but this does not have effect, so I need to run it again on command line
 " force ctrl+h for backspace
 cnoremap <bs> <space>hey_use_ctrh_h_delete_this_with_ctrl_w
 
@@ -504,3 +507,7 @@ vnoremap <silent> <leader>ts :<c-u>call ProgramFilter('translate.rb sr', visualm
 vnoremap <silent> <leader>te :<c-u>call ProgramFilter('translate.rb en', visualmode(), 1)<cr>
 vnoremap <silent> <leader>tc :<c-u>call ProgramFilter('cyrillizer.rb to_cyr', visualmode(), 1)<cr>
 vnoremap <silent> <leader>tl :<c-u>call ProgramFilter('cyrillizer.rb to_lat', visualmode(), 1)<cr>
+
+" show filename in shell title https://askubuntu.com/a/589717/40031
+autocmd BufEnter * let &titlestring = ' ' . expand("%:p")
+set title

@@ -32,7 +32,7 @@ Metrics/AbcSize:
 
 # line length is not important in db and tests
 Metrics/LineLength:
-  Max: 125
+  Max: 135
   Exclude:
     - 'db/**/*'
     - 'test/**/*'
@@ -81,4 +81,20 @@ Style/AndOr:
 
 # assert_match /regexp/, response.body # no need for parenthesis
 Lint/AmbiguousRegexpLiteral:
+  Enabled: false
+
+# s = %q{Hi} # no need to use `%q` only for strings that contain both single quotes and double quotes
+Style/UnneededPercentQ:
+  Enabled: false
+
+# class Post < ActiveRecord::Base # no need to subclass `ApplicationRecord`
+Rails/ApplicationRecord:
+  Enabled: false
+
+# $:.push File.expand_path('lib', __dir__) # no need to use $LOAD_PATH
+Style/SpecialGlobalVars:
+  Enabled: false
+
+# in scripts I like to define methods at the end using BEGIN block
+Style/BeginBlock:
   Enabled: false

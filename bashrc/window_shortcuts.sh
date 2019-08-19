@@ -14,7 +14,7 @@ upper()
 {
   projectPath=${1-$(pwd)}
   folderName=`basename $projectPath`
-  port=300$(get_current_viewport)
+  port=300`expr $(get_current_viewport) + 1`
   url=http://localhost:$port
 
   s $projectPath j
@@ -22,7 +22,7 @@ upper()
   s $projectPath k 120x24+830+100 "pwd; \
     echo k"
 
-  win_width=`expr $(monitor_size) / 36` # 7200 / 36 = 200
+  win_width=215 # `expr $(monitor_size) / 36` # 3840 / 36     7200 / 36 = 200
   s $projectPath semicolon ${win_width}x24-0+0 "git pull; \
     if [ -f ~/config/keys/$folderName.server.sh ];then
       echo source ~/config/keys/$folderName.server.sh
@@ -34,8 +34,8 @@ upper()
 
   s ~/jekyll/blog l 80x24+1250+0 # right: 80x24-0+100 # 80x24+1250+100
 
-  start_browser firefox h $url "Mozilla Firefox"
-  start_browser google-chrome u $url Google 0,1600,0,-1,-1
+  start_browser /snap/bin/firefox h $url "Mozilla Firefox"
+  start_browser google-chrome u $url Google 0,1900,0,-1,-1
 }
 
 under()
@@ -44,7 +44,7 @@ under()
   s $projectPath m  100x24+700-100 "echo m"
   s $projectPath comma  100x24+900-50 "echo ,"
   s $projectPath dot  100x24-1100-0 "echo ."
-  win_width=`expr $(monitor_size) / 36` # 7200 / 36 = 200
+  win_width=215 # `expr $(monitor_size) / 36` # 7200 / 36 = 200
   s $projectPath slash  ${win_width}x35-0-0 "echo /"
 }
 
@@ -69,9 +69,9 @@ start_browser()
 	HERE_DOC
     return
   fi
-  browser_command=${1-firefox}
+  browser_command=${1-/snap/bin/firefox}
   browser_key=${2-h}
-  port=300$(get_current_viewport)
+  port=300`expr $(get_current_viewport) + 1`
   url=${3-http://localhost:$port}
   browser_name_in_wmctrl=${4-"Mozilla Firefox"}
   position=${5-"0,0,0,-1,-1"}
@@ -159,7 +159,7 @@ s()
   # http://stackoverflow.com/questions/3162385/how-to-split-a-string-in-shell-and-get-the-last-field
   echo_and_run history -s $last_command
   history -a
-  gnome-terminal --geometry=$geometry -x bash --login -c "\
+  gnome-terminal --geometry=$geometry -- bash --login -c "\
     cd $folder;\
     xprop -f WM_CLASS 8s -set WM_CLASS $class -id \$(xdotool getwindowfocus);\
     if [ -f ~/config/keys/$folderName.sh ];then
@@ -287,7 +287,7 @@ b()
 }
 
 monitor_size() {
-  size=`wmctrl -d | awk -F'x| ' '{print $5}'`
+  size=`wmctrl -d | head -n1 | awk -F'x| ' '{print $5}'`
   # on two monitors it is 7200
   echo $size
 }

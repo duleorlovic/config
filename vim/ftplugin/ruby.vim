@@ -5,7 +5,7 @@
 function! EchoStrategy(cmd)
   let current_window = system('xdotool getactivewindow | tr -d "\n"')
   let target_window = system('source ~/config/bashrc/get_current_viewport.sh && xdotool search --classname vp_$(get_current_viewport)_class_slash | tr -d "\n"')
-  execute 'Dispatch!  xdotool windowactivate --sync '.target_window.' type "'.a:cmd.'"; xdotool key --delay 50 space Return windowactivate '.current_window
+  execute 'Dispatch! xdotool windowactivate --sync '.target_window.' type "'.a:cmd.'"; xdotool key --delay 10 space Return windowactivate '.current_window
 endfunction
 
 let g:test#custom_strategies = {'echo': function('EchoStrategy')}

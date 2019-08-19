@@ -14,6 +14,7 @@ MY_FILES=(
   ~/config/bashrc/ionic.sh
   ~/config/bashrc/rails.sh
   ~/config/bashrc/arduino.sh
+  ~/config/bashrc/common_functions.sh
 )
 
 for my_file in ${MY_FILES[*]}; do
@@ -128,3 +129,6 @@ _completion_loader git
 complete -o bashdefault -o default -o nospace -F _git g
 
 alias be='bundle exec'
+
+# add bin to path, but only for project where you  run mkdir -p .git/safe
+PATH=".git/safe/../../bin:$PATH"

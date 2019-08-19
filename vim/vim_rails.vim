@@ -10,19 +10,25 @@
 "      \}
 "
 let g:rails_projections = {
-      \ "app/services/*.rb": {
-      \   "command": "service",
-      \   "template":
-      \     ["class {camelcase|capitalize|colons}", "end"],
-      \   "test": [
-      \     "test/services/{}_test.rb",
-      \     "spec/models/{}_spec.rb"
-      \   ],
-      \ },
-      \ "spec/features/*.rb": {
-      \   "command": "feature",
-      \ },
-      \ "spec/factories.rb": {
-      \   "command": "factories",
-      \ }
-      \ }
+\  "app/services/*.rb": {
+\    "command": "service",
+\    "template":
+\      ["class {camelcase|capitalize|colons}", "end"],
+\    "test": [
+\      "test/services/{}_test.rb",
+\      "spec/models/{}_spec.rb"
+\    ],
+\  },
+\  "spec/features/*.rb": {
+\    "command": "feature",
+\  },
+\  "spec/factories.rb": {
+\    "command": "factories",
+\  },
+\  "app/datatables/*.rb": {
+\    "command": "datatables",
+\  },
+\  "app/javascript/controllers/*_controller.js": {
+\    "command": "javascriptcontrollers"
+\  }
+\}
