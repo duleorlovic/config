@@ -299,6 +299,9 @@ imap <silent> <S-F7> <Esc><S-F7>a
 " some tips from https://github.com/thoughtbot/dotfiles/blob/master/vimrc
 set autowrite " Automatically write before running commands
 
+" cyrilic chars on macos are not displeyed properly, so use utf-8 encoding
+set encoding=utf-8
+
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
