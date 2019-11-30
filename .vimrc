@@ -230,11 +230,13 @@ nmap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <Esc><c-s>
 
-nnoremap <F1> :write<cr>
 nnoremap <F2> :write<CR>
 vmap <F2> <Esc><F2>gv
 " does not work when is in paste mode
 imap <F2> <c-o><F2>
+" webpacker reload sometimes miss write events so we need change how vim save
+" https://github.com/webpack/webpack/issues/781#issuecomment-95523711
+set backupcopy=yes
 
 " function Test() range
 "   echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| pbcopy')

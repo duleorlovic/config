@@ -84,7 +84,8 @@ Lint/AmbiguousRegexpLiteral:
   Enabled: false
 
 # s = %q{Hi} # no need to use `%q` only for strings that contain both single quotes and double quotes
-Style/UnneededPercentQ:
+# Style/UnneededPercentQ:
+Style/RedudantPercentQ:
   Enabled: false
 
 # class Post < ActiveRecord::Base # no need to subclass `ApplicationRecord`
@@ -97,4 +98,17 @@ Style/SpecialGlobalVars:
 
 # in scripts I like to define methods at the end using BEGIN block
 Style/BeginBlock:
+  Enabled: false
+
+# use refute_ instead of assert_not _ in minitest
+Rails/RefuteMethods:
+  Enabled: false
+
+# port: (Rails.env.production? ? nil : Rails.env.development? ? Rack::Server.new.options[:Port] : 3333),
+Style/NestedTernaryOperator:
+  Enabled: false
+
+# method(*%i[a b])
+# Lint/UnneededSplatExpansion:
+Lint/RedudantSplatExpansion:
   Enabled: false

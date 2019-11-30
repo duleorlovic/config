@@ -132,3 +132,6 @@ alias be='bundle exec'
 
 # add bin to path, but only for project where you  run mkdir -p .git/safe
 PATH=".git/safe/../../bin:$PATH"
+
+# https://github.com/titusfortner/webdrivers
+# export PATH="$HOME/.webdrivers:$PATH"

@@ -19,11 +19,11 @@ upper()
 
   s $projectPath j
 
-  s $projectPath k 120x24+830+100 "pwd; \
+  s $projectPath k 120x24+830+50 "pwd; \
     echo k"
 
   win_width=215 # `expr $(monitor_size) / 36` # 3840 / 36     7200 / 36 = 200
-  s $projectPath semicolon ${win_width}x24-0+0 "git pull; \
+  s $projectPath semicolon ${win_width}x24-0+0 "git pull --ff-only; \
     if [ -f ~/config/keys/$folderName.server.sh ];then
       echo source ~/config/keys/$folderName.server.sh
       source ~/config/keys/$folderName.server.sh;
@@ -277,11 +277,11 @@ b()
       key=$char
     fi
     xprop -f WM_CLASS 8s -set WM_CLASS vp_$(get_current_viewport)_class_$key -id `xdotool getwindowfocus`
-    echo " ... thanks. shortcut is ALT+$key"
+    echo " ... thanks. shortcut is ALT+$key for window WM_CLASS vp_$(get_current_viewport)_class_$key"
   else
     echo click on windows to bind to key $key
     xprop -f WM_CLASS 8s -set WM_CLASS vp_$(get_current_viewport)_class_$key
-    echo thanks. shortcut is ALT+$key
+    echo thanks. shortcut is ALT+$key for window WM_CLASS vp_$(get_current_viewport)_class_$key
     echo multiple windows with the same classname toggles between them
   fi
 }

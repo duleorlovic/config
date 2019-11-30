@@ -57,7 +57,8 @@ HERE_DOC
 ## Keyboard shortcuts for windows
 
 I am using some
-[xdotool](http://www.semicomplete.com/projects/xdotool/xdotool.xhtml)
+[xdotool](http://www.semicomplete.com/projects/xdotool)
+https://github.com/jordansissel/xdotool
 so you need to manually add some [keyboard
 shortcuts](https://github.com/duleorlovic/config/blob/master/bashrc/window_shortcuts.sh#L34)
 

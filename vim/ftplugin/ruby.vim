@@ -3,9 +3,7 @@
 " nnoremap <leader>rs :execute "Dispatch rspec %:" . line(".")<cr>
 " nnoremap <leader>co :Copen<cr>
 function! EchoStrategy(cmd)
-  let current_window = system('xdotool getactivewindow | tr -d "\n"')
-  let target_window = system('source ~/config/bashrc/get_current_viewport.sh && xdotool search --classname vp_$(get_current_viewport)_class_slash | tr -d "\n"')
-  execute 'Dispatch! xdotool windowactivate --sync '.target_window.' type "'.a:cmd.'"; xdotool key --delay 10 space Return windowactivate '.current_window
+  execute 'Dispatch! xdotool_cmd_and_return.sh "'.a:cmd.'"'
 endfunction
 
 let g:test#custom_strategies = {'echo': function('EchoStrategy')}

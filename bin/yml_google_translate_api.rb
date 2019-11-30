@@ -71,7 +71,13 @@ def perform_translate(string, from_lang, to_lang, key)
   elsif to_lang.ends_with? '_humanize'
     key.humanize
   else
-    $google_cloud_translate.translate string, from: from_lang, to: to_lang
+    begin
+      from_lang = 'sr' if from_lang == 'sr-latin' # google does not use latin
+      $google_cloud_translate.translate string, from: from_lang, to: to_lang
+    rescue Google::Cloud::InvalidArgumentError => e
+      # byebug
+      raise e
+    end
   end
 end
 
