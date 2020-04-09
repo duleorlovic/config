@@ -17,6 +17,7 @@ list=(
   git://github.com/tpope/vim-surround.git # add tag `ysiw<em>` change `cst"` delete `ds"`. `S` in visual
   https://github.com/kchmck/vim-coffee-script.git # coffe files
   # https://github.com/scrooloose/syntastic.git # syntax check jscs, rubocop
+  https://github.com/ngmy/vim-rubocop # autofix
   https://github.com/bling/vim-airline#  ~/.vim/bundle/vim-airline # nice statusline toolbar
   git://github.com/tpope/vim-repeat.git # repeat some plugin commands
   https://github.com/tpope/vim-unimpaired.git # [l ]q [a ]<space>

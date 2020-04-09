@@ -112,7 +112,7 @@ function keys {
       echo_red source ~/config/keys/$projectName.server.sh
       source ~/config/keys/$projectName.server.sh
     else
-      echo_red edit ~/config/keys/$projectName.sh
+      echo_red vi ~/config/keys/$projectName.sh
       vi ~/config/keys/$projectName.sh
     fi
   else
@@ -130,8 +130,12 @@ complete -o bashdefault -o default -o nospace -F _git g
 
 alias be='bundle exec'
 
+# http://dokku.viewdocs.io/dokku/community/clients/
+alias dokku='$HOME/.dokku/contrib/dokku_client.sh'
+
 # add bin to path, but only for project where you  run mkdir -p .git/safe
 PATH=".git/safe/../../bin:$PATH"
 
 # https://github.com/titusfortner/webdrivers
 # export PATH="$HOME/.webdrivers:$PATH"
+export DISPLAY=":0.0"

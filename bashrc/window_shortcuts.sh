@@ -19,7 +19,7 @@ upper()
 
   s $projectPath j
 
-  s $projectPath k 120x24+830+50 "pwd; \
+  s $projectPath k 120x24+830+45 "pwd; \
     echo k"
 
   win_width=215 # `expr $(monitor_size) / 36` # 3840 / 36     7200 / 36 = 200

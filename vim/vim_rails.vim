@@ -22,11 +22,29 @@ let g:rails_projections = {
 \  "spec/features/*.rb": {
 \    "command": "feature",
 \  },
-\  "spec/factories.rb": {
+\  "app/concepts/*.rb": {
+\    "command": "koncepts"
+\  },
+\  "app/*.slim": {
+\    "command": "slim"
+\  },
+\  "app/concepts/*.haml": {
+\    "command": "haml"
+\  },
+\  "app/assets/javascripts/backbone/apps/*": {
+\    "command": "hamlc"
+\  },
+\  "app/concepts/*/operation": {
+\    "command": "operation"
+\  },
+\  "spec/factories/*": {
 \    "command": "factories",
 \  },
 \  "app/datatables/*.rb": {
 \    "command": "datatables",
+\  },
+\  "app/controllers/api/v1/*_controller.rb": {
+\    "command": "controllerapi"
 \  },
 \  "app/javascript/controllers/*_controller.js": {
 \    "command": "javascriptcontrollers"
