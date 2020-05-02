@@ -7,23 +7,17 @@
 #   google-cloud-translate - for google api
 #
 # https://cloud.google.com/translate/docs/quickstart-client-libraries
-begin
-  require 'google/cloud/translate'
-  require 'cyrillizer'
-  require 'active_support'
-  require 'active_support/core_ext'
-rescue LoadError => e
-  puts e.message
-  puts <<~TEXT
-    Please install required gems, like:
-        gem install google-cloud-translate activesupport
-    and set env variables
-        export GOOGLE_PROJECT_ID=cybernetic-tide-90121
-        export GOOGLE_APPLICATION_CREDENTIALS=....'
-  TEXT
-  exit
+require 'bundler/inline'
+gemfile do
+  gem 'google-cloud-translate', '~> 1.4.0'
+  gem 'cyrillizer'
+  gem 'activesupport'
+  gem 'byebug'
 end
-
+require 'google/cloud/translate'
+require 'cyrillizer'
+require 'active_support'
+require 'active_support/core_ext'
 require 'byebug'
 
 project_id = ENV['GOOGLE_PROJECT_ID']
@@ -36,6 +30,9 @@ if ARGV[0] == '-h' || ARGV.length < 2
     # It will load one or more files, translate to provided languages only if
     # translation does not exists already for that language and key
     # Use _to_lat _to_cyr _humanize to skip google api
+    # Also check that you have env variables
+    #        export GOOGLE_PROJECT_ID=cybernetic-tide-90121
+    #        export GOOGLE_APPLICATION_CREDENTIALS=....'
     yml_google_translate_api.rb config/locales/sr.yml sr-latin_to_lat en_humanize
   TEXT
   exit
@@ -71,7 +68,13 @@ def perform_translate(string, from_lang, to_lang, key)
   elsif to_lang.ends_with? '_humanize'
     key.humanize
   else
-    $google_cloud_translate.translate string, from: from_lang, to: to_lang
+    begin
+      from_lang = 'sr' if from_lang == 'sr-latin' # google does not use latin
+      $google_cloud_translate.translate string, from: from_lang, to: to_lang
+    rescue Google::Cloud::InvalidArgumentError => e
+      # byebug
+      raise e
+    end
   end
 end
 

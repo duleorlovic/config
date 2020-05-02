@@ -35,6 +35,7 @@ end
 # rubocop:disable Metrics/MethodLength
 BEGIN {
   def resize_if_gt(max_width, file_name)
+    # puts "processing #{file_name}"
     i = Magick::Image.ping(file_name).first
     if i.columns <= max_width
       puts "Ignoring #{file_name} since width is #{i.columns}"

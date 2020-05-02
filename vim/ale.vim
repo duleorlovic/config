@@ -5,7 +5,10 @@ let g:airline#extensions#ale#enabled = 1
 " but can replace /#{var}/ with %r[#{var}]
 " disable brakeman since it returns errors for all files so next location jumps
 " to other file
-let g:ale_linters = {'ruby':['rails_best_practices', 'reek', 'rubocop', 'solargraph']}
+" disable 'reek', since it is too much to fix it's checkings
+let g:ale_linters = {'ruby':['rails_best_practices', 'rubocop', 'solargraph'],
+\   'javascript': ['eslint'],
+\}
 " let g:ale_linters = {
 " \   'javascript': ['eslint'],
 " \   'eruby': ['erubylint'],

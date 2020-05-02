@@ -9,7 +9,7 @@ nnoremap ,baseurl r<CR>:-1read $HOME/config/vim/snippets/jekyll.baseurl.md<CR>kJ
 " <%= byebug %>
 nnoremap ,bye :-1read $HOME/config/vim/snippets/byebug.erb<CR>
 " minitest
-nnoremap ,mini :-1read $HOME/config/vim/snippets/minitest.rb<CR>jjo
+" nnoremap ,mini :-1read $HOME/config/vim/snippets/minitest.rb<CR>jjo
 " rubocop disable common for one long function
 nnoremap ,rubocop :-1read $HOME/config/vim/snippets/rubocop.rb<CR>
 " font awesome
@@ -28,3 +28,8 @@ nnoremap ,< i<%=  %><ESC>hhi
 nnoremap ,if i<% if  %><ESC>hhi
 nnoremap ,el i<% else %><ESC>
 nnoremap ,en i<% end %><ESC>
+
+" to make a http://word into a <a href="http://word">http://word</a>
+nnoremap ,a yiWi<a href='<C-R>*'><esc>Ea</a><esc>
+" to make an email into <a href='mailto:email'>email</a>
+nnoremap ,m yiWi<a href='mailto:<C-R>*'><esc>Ea</a><esc>

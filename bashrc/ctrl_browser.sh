@@ -3,8 +3,9 @@
 # exec >> /home/orlovic/Downloads/output.log
 # exec 2>&1
 # echo ctrl_browser $1
-notify-send "Hey Duke, this is deprecated because you can use vimium to reload 'r', to close 'x' \
-and to open new tab 't'"
+
+# notify-send "Hey Duke, this is deprecated because you can use vimium to reload 'r', to close 'x' \
+# and to open new tab 't'"
 $EXIT_OR_RETURN 1
 if [ "$1" = "" ]; then
   notify-send "Please provide a key, like Ctrl+r" -u critical

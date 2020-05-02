@@ -209,7 +209,9 @@ nnoremap <leader># /^#.*\n\n<cr>
 nnoremap <leader>d :e config/database.yml<cr>
 nnoremap <leader>s :e db/schema.rb<cr>
 " nnoremap <leader>f :e spec/factories.rb<cr>
-nnoremap <leader>r :e config/routes.rb<cr>
+" nnoremap <leader>r :e config/routes.rb<cr> I use r for rubocop autofix
+" https://github.com/ngmy/vim-rubocop
+nnoremap <leader>r :RuboCop --auto-correct<cr>
 nnoremap <leader>ed :e config/environments/development.rb<cr>
 nnoremap <leader>ep :e config/environments/production.rb<cr>
 " close search result window
@@ -230,11 +232,13 @@ nmap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <Esc><c-s>
 
-nnoremap <F1> :write<cr>
 nnoremap <F2> :write<CR>
 vmap <F2> <Esc><F2>gv
 " does not work when is in paste mode
 imap <F2> <c-o><F2>
+" webpacker reload sometimes miss write events so we need change how vim save
+" https://github.com/webpack/webpack/issues/781#issuecomment-95523711
+set backupcopy=yes
 
 " function Test() range
 "   echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| pbcopy')
@@ -317,8 +321,8 @@ nnoremap <Down> :echoe "Use j"<CR>
 " force me to keep fingers on main keys, not shift+;
 " nnoremap : :echoe "Use semicolon ;"<cr>
 
-" force ctrl+j not enter, byebye return
-cmap <cr> <space>hey_use_ctrl_j_delete_this_with_ctrl_w_and_try_again_cr
+" force ctrl+j not enter, byebye return, force using main keys
+" cmap <cr> <space>hey_use_ctrl_j_delete_this_with_ctrl_w_and_try_again_cr
 " if you really need, use space<cr>
 cnoremap <space><cr> <cr>
 " gf uses :find _name_<cr> so we need to remap from vim-rails/autoload/rails.vim:4197
