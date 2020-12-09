@@ -9,7 +9,7 @@ rescue LoadError
   exit
 end
 project_id = 'cybernetic-tide-90121'
-translate = Google::Cloud::Translate.new project: project_id
+translate = Google::Cloud::Translate.translation_v2_service project_id: project_id
 
 target = ARGV[0] || 'ru'
 text = STDIN.gets

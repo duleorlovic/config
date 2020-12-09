@@ -55,6 +55,7 @@ list=(
   https://github.com/stevearc/vim-arduino # arduino compile, flash and serial
   https://github.com/chrisbra/csv.vim # :Header vG:ArrangeColumn
   https://github.com/ervandew/supertab.git # tab completion
+  https://github.com/yegappan/taglist
 )
 
 # manually install https://github.com/kana/vim-textobj-user and some plugins

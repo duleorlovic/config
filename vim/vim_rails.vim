@@ -46,6 +46,9 @@ let g:rails_projections = {
 \  "app/controllers/api/v1/*_controller.rb": {
 \    "command": "controllerapi"
 \  },
+\  "app/javascript/*.vue": {
+\    "command": "vue",
+\  },
 \  "app/javascript/controllers/*_controller.js": {
 \    "command": "javascriptcontrollers"
 \  }

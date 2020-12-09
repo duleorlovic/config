@@ -9,7 +9,7 @@
 # https://cloud.google.com/translate/docs/quickstart-client-libraries
 require 'bundler/inline'
 gemfile do
-  gem 'google-cloud-translate', '~> 1.4.0'
+  gem 'google-cloud-translate' # 3.0.0
   gem 'cyrillizer'
   gem 'activesupport'
   gem 'byebug'
@@ -21,7 +21,7 @@ require 'active_support/core_ext'
 require 'byebug'
 
 project_id = ENV['GOOGLE_PROJECT_ID']
-$google_cloud_translate = Google::Cloud::Translate.new project: project_id
+$google_cloud_translate = Google::Cloud::Translate.translation_v2_service project_id: project_id
 Cyrillizer.language = :serbian
 
 if ARGV[0] == '-h' || ARGV.length < 2

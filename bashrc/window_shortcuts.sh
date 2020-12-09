@@ -17,12 +17,12 @@ upper()
   port=300`expr $(get_current_viewport) + 1`
   url=http://localhost:$port
 
-  s $projectPath j
+  s $projectPath j 212x30+0-0
 
   s $projectPath k 120x24+830+45 "pwd; \
     echo k"
 
-  win_width=215 # `expr $(monitor_size) / 36` # 3840 / 36     7200 / 36 = 200
+  win_width=212 # `expr $(monitor_size) / 36` # 3840 / 36     7200 / 36 = 200
   s $projectPath semicolon ${win_width}x24-0+0 "git pull --ff-only; \
     if [ -f ~/config/keys/$folderName.server.sh ];then
       echo source ~/config/keys/$folderName.server.sh
@@ -32,7 +32,7 @@ upper()
     rake db:migrate;
     rails s -b 0.0.0.0 -p $port"
 
-  s ~/jekyll/blog l 80x24+1250+0 # right: 80x24-0+100 # 80x24+1250+100
+  s ~/jekyll/blog l 80x24+1189+0 # right: 80x24-0+100 # 80x24+1250+100
 
   start_browser /snap/bin/firefox h $url "Mozilla Firefox"
   start_browser google-chrome u $url Google 0,1900,0,-1,-1
@@ -44,7 +44,7 @@ under()
   s $projectPath m  100x24+700-100 "echo m"
   s $projectPath comma  100x24+900-50 "echo ,"
   s $projectPath dot  100x24-1100-0 "echo ."
-  win_width=215 # `expr $(monitor_size) / 36` # 7200 / 36 = 200
+  win_width=212 # `expr $(monitor_size) / 36` # 7200 / 36 = 200
   s $projectPath slash  ${win_width}x35-0-0 "echo /"
 }
 
@@ -287,7 +287,7 @@ b()
 }
 
 monitor_size() {
-  size=`wmctrl -d | head -n1 | awk -F'x| ' '{print $5}'`
+  size=`wmctrl -d | head -n1 | cut -d'x' -f1 | sed -e 's/[^0-9 ]//g'`
   # on two monitors it is 7200
   echo $size
 }

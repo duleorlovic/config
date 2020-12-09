@@ -518,3 +518,11 @@ vnoremap <silent> <leader>tl :<c-u>call ProgramFilter('cyrillizer.rb to_lat', vi
 " show filename in shell title https://askubuntu.com/a/589717/40031
 autocmd BufEnter * let &titlestring = ' ' . expand("%:p")
 set title
+
+let g:airline_section_b = ''
+
+" https://github.com/plasticboy/vim-markdown/issues/232#issuecomment-246173676
+" when I reformat longer than 80 chars line in markdown, I do not need new bulle
+autocmd FileType markdown 
+    \ set formatoptions-=q |
+    \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+

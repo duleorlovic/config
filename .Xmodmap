@@ -48,6 +48,10 @@ keycode 45 = k K Up
 keycode 46 = l L Right
 ! colon and semicolon are just reversed
 keycode 47 = colon semicolon colon semicolon
+!! do not make that single quote and double quotes are switched
+! keycode 48 = quotedbl apostrophe quotedbl apostrophe
+keycode 48 = apostrophe quotedbl apostrophe quotedbl
+
 keycode 49 = grave asciitilde asciitilde
 keycode 55 = v V V
 keycode 57 = n N parenleft
