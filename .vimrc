@@ -526,3 +526,15 @@ let g:airline_section_b = ''
 autocmd FileType markdown 
     \ set formatoptions-=q |
     \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+
+
+" My formats duleorlovic
+" format gq till the end of current * item in markdown
+" still do not know how to exclude and jump to previous line
+noremap Q mqgqv/\(```\)\\|\*\s\|^$<cr>`q
+
+" whereami
+set errorformat+=%f%l%m
+set grepprg=~/config/bin/whereami.rb
+" move to function and use silent
+" three <cr> one for execute, one for grep and one for copen to jump back to line
+nnoremap <leader>w :execute ":grep %:p " . line('.') .  "\|clast\|copen"<cr><cr><cr>
