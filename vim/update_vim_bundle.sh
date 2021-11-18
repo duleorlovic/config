@@ -30,10 +30,10 @@ list=(
   https://github.com/plasticboy/vim-markdown.git # better since `` is properly
   # highlighted when intent is 4 spaces for multiline list item
   # https://github.com/plasticboy/vim-markdown/issues/126
-  https://github.com/tomtom/tlib_vim.git # snipmate requirement
-  https://github.com/MarcWeber/vim-addon-mw-utils.git # snipmate requirement
-  https://github.com/garbas/vim-snipmate.git # snipmate
-  https://github.com/honza/vim-snippets.git # spipmate snippets
+  # https://github.com/tomtom/tlib_vim.git # snipmate requirement
+  # https://github.com/MarcWeber/vim-addon-mw-utils.git # snipmate requirement
+  # https://github.com/garbas/vim-snipmate.git # snipmate
+  # https://github.com/honza/vim-snippets.git # spipmate snippets
   https://github.com/scrooloose/nerdtree.git # file explorer better than netrw
   git@github.com:tonekk/vim-ruby-capybara.git # capybara highlight
   https://github.com/sheerun/vim-polyglot.git # syntax & indent for multiple lang
@@ -56,6 +56,7 @@ list=(
   https://github.com/chrisbra/csv.vim # :Header vG:ArrangeColumn
   https://github.com/ervandew/supertab.git # tab completion
   https://github.com/yegappan/taglist
+  https://github.com/git-time-metric/gtm-vim-plugin.git # time tracking
 )
 
 # manually install https://github.com/kana/vim-textobj-user and some plugins

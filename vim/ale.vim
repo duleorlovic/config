@@ -1,4 +1,4 @@
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:airline#extensions#ale#enabled = 1
 " keep `ruby` linter because I do not know how to disable
 " warning: ambiguous first argument; put parentheses or a space even after `/' operator
@@ -19,11 +19,10 @@ let g:ale_pattern_options = {
 \ '.*real-world-rails.*': { 'ale_enabled': 0},
 \}
 
-" fix errors :help ale-fix-configuration
-" does not work from vim ALEFix https://github.com/w0rp/ale/issues/732
+" fix errors :help ale-fix-configuration you can run :ALEFix
 nmap <F8> <Plug>(ale_fix)
 let g:ale_fixers = {
 \  'ruby': [
-\    'rubocop'
+\    'rubocop --auto-correct --disable-uncorrectable'
 \  ]
 \}

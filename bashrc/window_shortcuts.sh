@@ -3,7 +3,7 @@
 # This is used to open windows on specific keyboard shortcuts
 # http://blog.trk.in.rs/2016/02/01/bash/#tocAnchor-1-3
 # https://github.com/jordansissel/xdotool
-# sudo apt-get install xdotool chromium-browser
+# sudo apt-get install xdotool chromium
 # xwininfo
 # xdotool search --classname myclass
 # xprop
@@ -35,7 +35,7 @@ upper()
   s ~/jekyll/blog l 80x24+1189+0 # right: 80x24-0+100 # 80x24+1250+100
 
   start_browser /snap/bin/firefox h $url "Mozilla Firefox"
-  start_browser google-chrome u $url Google 0,1900,0,-1,-1
+  start_browser chromium u $url Google 0,1900,0,-1,-1
 }
 
 under()
@@ -61,7 +61,7 @@ start_browser()
     Hi, this function starts browser and assign shortcut keys ALT+hjkl semicolon
         with help of System Settings-Keyboard-Shortcuts and command xdotool
     example usage: start_browser h http://localhost:3000 google-chrome Google 0,400,100,-1,-1
-    browser_command: firefox (could be google-chrome)
+    browser_command: firefox google-chrome chromium
     key: default is h, could be h,j,k,l,semicolon... you can add any shortcut
     url: default is http://localhost:3000
     browser_name_in_wmctrl: "Mozilla Firefox" (coould be "Google")
@@ -80,25 +80,15 @@ start_browser()
   echo_red opening $browser_command at url=$url with position=$position
   # google-chrome $url --new-window --auto-open-devtools-for-tabs &
   # auto-open-devtools-for-tabs will open for each new tab :(
-  # chromium-browser $url --new-window & # --new-window option is not in man
+  # chromium $url --new-window & # --new-window option is not in man
   $browser_command --new-window $url &
   attempts=0
   browser_window_id=
   # browser_name_in_wmctrl=${url#*//} # remove http://
   echo trying to find browser_name_in_wmctrl=$browser_name_in_wmctrl \
        if windows with same name exists, last one will be used
-  while [ $attempts -lt 20 ] && [ -z "$browser_window_id" ]
-  do
-    printf '.'
-    sleep 1
-    if [ $attempts -lt 5 ];then
-      browser_window_id=`wmctrl -l | grep "$browser_name_in_wmctrl" | awk '{print $1}' | tail -n1`
-    else
-      echo_red trying to locate last "$browser_name_in_wmctrl". Could fetch some other windows
-      browser_window_id=`wmctrl -l | grep "Chrom" | awk '{print $1}' | tail -n1`
-    fi
-    attempts=$[$attempts+1]
-  done
+  sleep 3 # give some time to boot up
+  browser_window_id=`wmctrl -l | grep "$browser_name_in_wmctrl" | awk '{print $1}' | tail -n1`
   if [ -n "$browser_window_id" ]
   then
     echo found browser=$browser_name_in_wmctrl window_id=$browser_window_id and mark \
@@ -168,7 +158,7 @@ s()
     fi;
     $command;\
     bash -l"
-  sleep 0.5
+  sleep 1
 }
 
 qall()
