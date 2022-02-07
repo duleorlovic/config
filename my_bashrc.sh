@@ -51,7 +51,8 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 # for genymotion
 export PATH="$PATH:$HOME/Programs/genymotion"
 # for studio.sh
-export PATH="$PATH:$HOME/Programs/android-studio/bin"
+# export PATH="$PATH:$HOME/Programs/android-studio/bin"
+export PATH="$PATH:/media/orlovic/bf12a7e5-a5d4-4532-8612-a3984f90b56c/shared/programs/android-studio/bin"
 # for gradle
 export PATH="$PATH:$HOME/Programs/gradle/bin"
 # for glass

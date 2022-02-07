@@ -19,7 +19,7 @@ upper()
 
   s $projectPath j 212x30+0-0
 
-  s $projectPath k 120x24+830+45 "pwd; \
+  s $projectPath k 120x24+830+5 "pwd; \
     echo k"
 
   win_width=212 # `expr $(monitor_size) / 36` # 3840 / 36     7200 / 36 = 200
@@ -151,6 +151,7 @@ s()
   history -a
   gnome-terminal --geometry=$geometry -- bash --login -c "\
     cd $folder;\
+    echo setting class=$class;\
     xprop -f WM_CLASS 8s -set WM_CLASS $class -id \$(xdotool getwindowfocus);\
     if [ -f ~/config/keys/$folderName.sh ];then
       echo source ~/config/keys/$folderName.sh
@@ -158,7 +159,7 @@ s()
     fi;
     $command;\
     bash -l"
-  sleep 1
+  sleep 2
 }
 
 qall()

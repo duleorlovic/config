@@ -490,6 +490,15 @@ source $HOME/config/vim/ale.vim
 source $HOME/config/vim/netrw.vim
 source $HOME/config/vim/snippets/snippets.vim
 source $HOME/config/vim/vim_rails.vim
+" for docker kubernetes yaml files
+" source $HOME/config/vim/coc.vim
+" https://github.com/neoclide/coc.nvim/issues/617
+" let g:endwise_no_mappings = 1
+" https://github.com/neoclide/coc.nvim/wiki/F.A.Q#bad-background-highlight-of-floating-window
+" autocmd vimenter * ++nested colorscheme gruvbox
+" set background=dark
+let g:coc_disable_startup_warning = 1
+
 
 " https://stackoverflow.com/a/9645147/287166
 " nnoremap <silent> <leader>! :set opfunc=ProgramFilter<cr>g@
