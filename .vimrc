@@ -1,6 +1,3 @@
-" https://github.com/nightsense/vimspectr
-" colorscheme vimspectr330flat-dark
-
 " URL: http://vim.wikia.com/wiki/Example_vimrc
 " Authors: http://vim.wikia.com/wiki/Vim_on_Freenode
 " Description: A minimal, but feature rich, example .vimrc. If you are a
@@ -165,9 +162,6 @@ nnoremap <C-L> :nohl<CR><C-L>
 " override this from http://vim.wikia.com/wiki/Example_vimrc
 set cmdheight=1  " 2 is to more
 set number! " unset number
-
-" custom plugins
-execute pathogen#infect()
 
 " to save history between vim session
 set history=1000
@@ -535,6 +529,9 @@ let g:airline_section_b = ''
 autocmd FileType markdown 
     \ set formatoptions-=q |
     \ set formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*\[-*+]\\s\\+
+
+" https://github.com/nightsense/vimspectr
+" colorscheme vimspectr330flat-dark
 
 " My formats duleorlovic
 " format gq till the end of current * item in markdown

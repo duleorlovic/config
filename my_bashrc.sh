@@ -124,10 +124,18 @@ function keys {
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=critical -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias g=git
-# https://brbsix.github.io/2015/11/23/perform-tab-completion-for-aliases-in-bash/
-_completion_loader git
-complete -o bashdefault -o default -o nospace -F _git g
+
+if is_mac_os; then
+  # https://www.macinstruct.com/tutorials/how-to-enable-git-tab-autocomplete-on-your-mac/
+  if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+  fi
+else
+  alias g=git
+  # https://brbsix.github.io/2015/11/23/perform-tab-completion-for-aliases-in-bash/
+  _completion_loader git
+  complete -o bashdefault -o default -o nospace -F _git g
+fi
 
 alias be='bundle exec'
 
