@@ -30,7 +30,7 @@ b() {
     echo focus on window to bind to key $key
     sleep 3
     osascript ~/config/bashrc/mac_scripts/mac_bind_window_to_key.scpt $key
-    echo " ... thanks. shortcut is ALT+$key"
+    echo " thanks. shortcut is ALT+$key"
     echo multiple windows with the same classname toggles between them
   fi
 }

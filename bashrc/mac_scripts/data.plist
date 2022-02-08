@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>windowId-colon</key>
+	<integer>2033</integer>
+	<key>windowId-comma</key>
+	<integer>2393</integer>
+	<key>windowId-h</key>
+	<integer>1</integer>
+	<key>windowId-i</key>
+	<integer>4185</integer>
+	<key>windowId-j</key>
+	<integer>2049</integer>
+	<key>windowId-k</key>
+	<integer>2139</integer>
+	<key>windowId-l</key>
+	<integer>2138</integer>
+	<key>windowId-m</key>
+	<integer>2173</integer>
+	<key>windowId-n</key>
+	<integer>2139</integer>
+	<key>windowId-o</key>
+	<integer>2138</integer>
+	<key>windowId-u</key>
+	<integer>4140</integer>
+	<key>windowName-colon</key>
+	<string>Terminal</string>
+	<key>windowName-comma</key>
+	<string>Terminal</string>
+	<key>windowName-h</key>
+	<string>Google Chrome</string>
+	<key>windowName-i</key>
+	<string>Firefox</string>
+	<key>windowName-j</key>
+	<string>Terminal</string>
+	<key>windowName-k</key>
+	<string>Terminal</string>
+	<key>windowName-l</key>
+	<string>Terminal</string>
+	<key>windowName-m</key>
+	<string>Terminal</string>
+	<key>windowName-n</key>
+	<string>Terminal</string>
+	<key>windowName-o</key>
+	<string>Terminal</string>
+	<key>windowName-u</key>
+	<string>Safari</string>
+</dict>
+</plist>

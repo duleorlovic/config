@@ -163,6 +163,9 @@ nnoremap <C-L> :nohl<CR><C-L>
 set cmdheight=1  " 2 is to more
 set number! " unset number
 
+" custom plugins
+execute pathogen#infect()
+
 " to save history between vim session
 set history=1000
 " search grep current word
@@ -532,6 +535,8 @@ autocmd FileType markdown
 
 " https://github.com/nightsense/vimspectr
 " colorscheme vimspectr330flat-dark
+" https://apple.stackexchange.com/questions/295459/color-code-for-vi-on-terminal-on-mac
+set term=builtin_ansi
 
 " My formats duleorlovic
 " format gq till the end of current * item in markdown
@@ -553,3 +558,4 @@ function! AirlineInit()
   endif
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
+

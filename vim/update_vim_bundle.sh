@@ -56,7 +56,6 @@ list=(
   https://github.com/chrisbra/csv.vim # :Header vG:ArrangeColumn
   # https://github.com/ervandew/supertab.git # tab completion error when enabled
   https://github.com/yegappan/taglist
-  https://github.com/git-time-metric/gtm-vim-plugin.git # time tracking
   https://github.com/neoclide/coc.nvim.git # vscode
   https://github.com/morhetz/gruvbox.git  # new color scheme
 )
