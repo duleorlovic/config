@@ -3,3 +3,4 @@
 .byebug_history
 tags
 .DS_Store
+*.xcodeproj/
