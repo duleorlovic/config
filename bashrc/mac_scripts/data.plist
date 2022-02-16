@@ -2,10 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>windowId-:</key>
-	<integer>627</integer>
 	<key>windowId-colon</key>
-	<integer>2033</integer>
+	<integer>627</integer>
 	<key>windowId-comma</key>
 	<integer>2393</integer>
 	<key>windowId-h</key>
@@ -17,7 +15,7 @@
 	<key>windowId-k</key>
 	<integer>707</integer>
 	<key>windowId-l</key>
-	<integer>2138</integer>
+	<integer>1789</integer>
 	<key>windowId-m</key>
 	<integer>5387</integer>
 	<key>windowId-n</key>
@@ -26,8 +24,6 @@
 	<integer>2138</integer>
 	<key>windowId-u</key>
 	<integer>229</integer>
-	<key>windowName-:</key>
-	<string>Terminal</string>
 	<key>windowName-colon</key>
 	<string>Terminal</string>
 	<key>windowName-comma</key>

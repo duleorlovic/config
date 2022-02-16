@@ -33,6 +33,11 @@ fi
 HERE_DOC
 ```
 
+For MAC also copy karabiner
+~~~
+cp ~/config/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
+~~~
+
 ## Vim plugin
 
 Install vim pathogen and plugins

@@ -15,8 +15,10 @@ b() {
     read -n1 char
     if [ "$char" == "." ]; then
       key="dot"
+    elif [ "$char" == ":" ]; then
+      key="colon"
     elif [ "$char" == ";" ]; then
-      key="semicolon"
+      key="colon"
     elif [ "$char" == "," ]; then
       key="comma"
     elif [ "$char" == "/" ]; then
