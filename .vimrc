@@ -536,7 +536,7 @@ autocmd FileType markdown
 " https://github.com/nightsense/vimspectr
 " colorscheme vimspectr330flat-dark
 " https://apple.stackexchange.com/questions/295459/color-code-for-vi-on-terminal-on-mac
-set term=builtin_ansi
+" set term=builtin_ansi
 
 " My formats duleorlovic
 " format gq till the end of current * item in markdown

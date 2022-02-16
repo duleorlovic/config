@@ -25,6 +25,7 @@ done
 
 if is_mac_os; then
   source ~/config/bashrc/mac_scripts/mac_window_shortcuts.sh
+  source ~/config/my_bashrc_mac.sh
 else
   source ~/config/bashrc/window_shortcuts.sh
 fi

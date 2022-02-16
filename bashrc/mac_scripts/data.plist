@@ -2,34 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>windowId-:</key>
+	<integer>627</integer>
 	<key>windowId-colon</key>
 	<integer>2033</integer>
 	<key>windowId-comma</key>
 	<integer>2393</integer>
 	<key>windowId-h</key>
-	<integer>1</integer>
+	<integer>615</integer>
 	<key>windowId-i</key>
 	<integer>4185</integer>
 	<key>windowId-j</key>
-	<integer>2049</integer>
+	<integer>623</integer>
 	<key>windowId-k</key>
-	<integer>2139</integer>
+	<integer>707</integer>
 	<key>windowId-l</key>
 	<integer>2138</integer>
 	<key>windowId-m</key>
-	<integer>2173</integer>
+	<integer>5387</integer>
 	<key>windowId-n</key>
 	<integer>2139</integer>
 	<key>windowId-o</key>
 	<integer>2138</integer>
 	<key>windowId-u</key>
-	<integer>4140</integer>
+	<integer>229</integer>
+	<key>windowName-:</key>
+	<string>Terminal</string>
 	<key>windowName-colon</key>
 	<string>Terminal</string>
 	<key>windowName-comma</key>
 	<string>Terminal</string>
 	<key>windowName-h</key>
-	<string>Google Chrome</string>
+	<string>Xcode</string>
 	<key>windowName-i</key>
 	<string>Firefox</string>
 	<key>windowName-j</key>
@@ -45,6 +49,6 @@
 	<key>windowName-o</key>
 	<string>Terminal</string>
 	<key>windowName-u</key>
-	<string>Safari</string>
+	<string>Google Chrome</string>
 </dict>
 </plist>
