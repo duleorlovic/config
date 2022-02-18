@@ -38,7 +38,15 @@
                                         ]
                                     }
                                 ],
-                                "type": "basic"
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$"
+                                        ]
+                                    }
+                                ]
                             },
                             {
                                 "from": {
@@ -60,7 +68,15 @@
                                         ]
                                     }
                                 ],
-                                "type": "basic"
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$"
+                                        ]
+                                    }
+                                ]
                             },
                             {
                                 "from": {
