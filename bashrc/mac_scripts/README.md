@@ -21,3 +21,8 @@ Add also new `Automator` file `~/Library/Services/activateWindowColon.workflow`
 I copy all automator services to my repo since it is simple one line and usually
 we do not need to change it since it just calls `mac_activate_window.scpt` (you
 need to edit scpt with `Script Editor`).
+```
+cp -r Library/Services/* ~/Library/Services/
+# copy back the changes so we can save them in repo
+cp -r ~/Library/Services/* Library/Services/
+```
