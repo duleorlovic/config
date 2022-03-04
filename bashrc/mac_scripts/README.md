@@ -6,6 +6,11 @@ cp ~/.config/karabiner/karabiner.json ~/config/.config/karabiner/karabiner.json
 cp ~/config/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
 ```
 
+Bind new key with a `b` function.
+TODO: add desktop number to window-number (no need to chrome since it will
+automatically load current desktop window)
+TODO: map ctrl + jk to up and down keys only inside safari and chrome
+TODO: map right command key to underscore
 
 Adding new key is by adding a property on `data.plist`
 ```
