@@ -3,33 +3,39 @@
 <plist version="1.0">
 <dict>
 	<key>windowId-colon</key>
-	<integer>627</integer>
+	<integer>3172</integer>
 	<key>windowId-comma</key>
-	<integer>2393</integer>
+	<integer>11887</integer>
+	<key>windowId-dot</key>
+	<integer>15272</integer>
 	<key>windowId-h</key>
-	<integer>615</integer>
+	<integer>542</integer>
 	<key>windowId-i</key>
 	<integer>4185</integer>
 	<key>windowId-j</key>
-	<integer>623</integer>
+	<integer>317</integer>
 	<key>windowId-k</key>
-	<integer>707</integer>
+	<integer>10253</integer>
 	<key>windowId-l</key>
-	<integer>1789</integer>
+	<integer>15296</integer>
 	<key>windowId-m</key>
-	<integer>1850</integer>
+	<integer>3493</integer>
 	<key>windowId-n</key>
 	<integer>2139</integer>
 	<key>windowId-o</key>
-	<integer>2138</integer>
+	<integer>15296</integer>
+	<key>windowId-slash</key>
+	<integer>430</integer>
 	<key>windowId-u</key>
-	<integer>229</integer>
+	<integer>15832</integer>
 	<key>windowName-colon</key>
 	<string>Terminal</string>
 	<key>windowName-comma</key>
 	<string>Terminal</string>
+	<key>windowName-dot</key>
+	<string>Terminal</string>
 	<key>windowName-h</key>
-	<string>Xcode</string>
+	<string>Google Chrome</string>
 	<key>windowName-i</key>
 	<string>Firefox</string>
 	<key>windowName-j</key>
@@ -44,7 +50,9 @@
 	<string>Terminal</string>
 	<key>windowName-o</key>
 	<string>Terminal</string>
+	<key>windowName-slash</key>
+	<string>Terminal</string>
 	<key>windowName-u</key>
-	<string>Google Chrome</string>
+	<string>Safari</string>
 </dict>
 </plist>
