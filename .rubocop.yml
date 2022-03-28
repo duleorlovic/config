@@ -124,3 +124,7 @@ Style/HashTransformKeys:
   Enabled: true
 Style/HashTransformValues:
   Enabled: true
+
+# Enable double quote
+Style/FrozenStringLiterals:
+  Enabled: false

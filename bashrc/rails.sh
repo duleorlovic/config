@@ -72,7 +72,7 @@ function load_dump() {
 }
 
 kill_rails() {
-  pkill -F tmp/pids/server.pid -9
+  pkill -9 -F tmp/pids/server.pid
 }
 
 push_heroku_amend_and_force() {
