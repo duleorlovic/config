@@ -143,6 +143,8 @@ alias be='bundle exec'
 # http://dokku.viewdocs.io/dokku/community/clients/
 alias dokku='$HOME/.dokku/contrib/dokku_client.sh'
 
+alias t=terraform
+
 # add bin to path, but only for project where you  run mkdir -p .git/safe
 PATH=".git/safe/../../bin:$PATH"
 

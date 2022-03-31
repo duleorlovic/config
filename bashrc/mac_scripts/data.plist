@@ -7,7 +7,7 @@
 	<key>windowId-comma</key>
 	<integer>88</integer>
 	<key>windowId-dot</key>
-	<integer>88</integer>
+	<integer>72</integer>
 	<key>windowId-h</key>
 	<integer>542</integer>
 	<key>windowId-i</key>
@@ -25,7 +25,7 @@
 	<key>windowId-o</key>
 	<integer>81</integer>
 	<key>windowId-slash</key>
-	<integer>71</integer>
+	<integer>13403</integer>
 	<key>windowId-u</key>
 	<integer>15832</integer>
 	<key>windowName-colon</key>

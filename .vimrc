@@ -385,8 +385,8 @@ autocmd BufRead,BufNewFile *.html setlocal textwidth=160
 " select my-name as it select my_name as words
 set iskeyword+=-
 
-" highlight current line
-set cursorline
+" do not highlight current line since on mac it show lines on all lines
+" set cursorline
 " highlight current column
 " set cuc cul"
 
