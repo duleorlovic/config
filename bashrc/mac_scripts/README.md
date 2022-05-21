@@ -31,3 +31,14 @@ cp -r Library/Services/* ~/Library/Services/
 # copy back the changes so we can save them in repo
 cp -r ~/Library/Services/* Library/Services/
 ```
+
+When we call scpt file from shell using osascript but we need to enable Privacy ->
+Accessibility to Terminal
+otherwise we get an error:
+> /Users/dule/config/bashrc/mac_scripts/mac_run_command_in_slash_window.scpt: execution error: System Events got an error: osascript is not allowed to send keystrokes. (1002)
+https://stackoverflow.com/a/71826193/287166
+
+Note that when you call the script, Script editor will think that file is
+changed (probably end character is different), so you can click on "Revert".
+Every time you make a change to script, please call the script and git add the
+file after it is called.

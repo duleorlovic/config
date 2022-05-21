@@ -373,7 +373,7 @@ let g:ctrlp_prompt_mappings = {
 \ 'AcceptSelection("r")': ['<c-j>'],
 \ }
 
-nmap <leader>t :CtrlPTag<CR>
+" nmap <leader>t :CtrlPTag<CR>
 
 " https://robots.thoughtbot.com/wrap-existing-text-at-80-characters-in-vim
 " reformat with gq
@@ -443,7 +443,7 @@ inoremap (<cr> (<cr>)<c-o><s-o>
 " https://vi.stackexchange.com/questions/3458/save-current-file-and-open-another-for-editing
 command! -nargs=1 -complete=file WE write <args> | edit <args>
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag --nogroup --nocolor --column --follow'
 
 nnoremap // :Ack 
 
@@ -456,7 +456,9 @@ function! FoldCopyright()
 endfunction
 autocmd BufNewFile,BufRead *.rb call FoldCopyright()
 
-let test#strategy = "asyncrun"
+" let test#strategy = "asyncrun"
+" https://github.com/vim-test/vim-test
+nmap <silent> <leader>n :TestNearest<CR>
 
 " Vimscript file settings -----  {{{
 augroup filetype_vim
@@ -487,6 +489,7 @@ source $HOME/config/vim/ale.vim
 source $HOME/config/vim/netrw.vim
 source $HOME/config/vim/snippets/snippets.vim
 source $HOME/config/vim/vim_rails.vim
+source $HOME/config/vim/vim-test.vim
 " for docker kubernetes yaml files
 " source $HOME/config/vim/coc.vim
 " https://github.com/neoclide/coc.nvim/issues/617
@@ -516,10 +519,10 @@ function! ProgramFilter(prog, vt, ...)
     call setreg('"', qr, qt)
 endfunction
 
-vnoremap <silent> <leader>ts :<c-u>call ProgramFilter('translate.rb sr', visualmode(), 1)<cr>
-vnoremap <silent> <leader>te :<c-u>call ProgramFilter('translate.rb en', visualmode(), 1)<cr>
-vnoremap <silent> <leader>tc :<c-u>call ProgramFilter('cyrillizer.rb to_cyr', visualmode(), 1)<cr>
-vnoremap <silent> <leader>tl :<c-u>call ProgramFilter('cyrillizer.rb to_lat', visualmode(), 1)<cr>
+" vnoremap <silent> <leader>ts :<c-u>call ProgramFilter('translate.rb sr', visualmode(), 1)<cr>
+" vnoremap <silent> <leader>te :<c-u>call ProgramFilter('translate.rb en', visualmode(), 1)<cr>
+" vnoremap <silent> <leader>tc :<c-u>call ProgramFilter('cyrillizer.rb to_cyr', visualmode(), 1)<cr>
+" vnoremap <silent> <leader>tl :<c-u>call ProgramFilter('cyrillizer.rb to_lat', visualmode(), 1)<cr>
 
 " show filename in shell title https://askubuntu.com/a/589717/40031
 autocmd BufEnter * let &titlestring = ' ' . expand("%:p")

@@ -11,3 +11,15 @@ export LSCOLORS=GxBxCxDxexegedabagaced
 # brew search completion
 export BASH_COMPLETION_COMPAT_DIR="$(brew --prefix)/etc/bash_completion.d"
 [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+
+
+# https://unix.stackexchange.com/a/228/150895
+function pgrep() {
+    ps aux | grep $1 | grep -v grep
+}
+function pkill() {
+    local pid
+    pid=$(ps ax | grep $1 | grep -v grep | awk '{ print $1 }')
+    kill -9 $pid
+    echo -n "Killed $1 (process $pid)"
+}
