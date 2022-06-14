@@ -215,7 +215,7 @@
                                     "key_code": "backslash",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_shift"
+                                            "shift"
                                         ],
                                         "optional": [
                                             "caps_lock"

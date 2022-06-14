@@ -101,12 +101,8 @@ Style/BeginBlock:
 # Rails/RefuteMethods:
 #   Enabled: false
 
-# port: (Rails.env.production? ? nil : Rails.env.development? ? Rack::Server.new.options[:Port] : 3333),
-Style/NestedTernaryOperator:
-  Enabled: false
-
-Style/LambdaCall:
-  Enabled: false
+# Style/LambdaCall:
+#   Enabled: false
 # method(*%i[a b])
 # Lint/UnneededSplatExpansion:
 # Lint/RedudantSplatExpansion:
@@ -114,17 +110,17 @@ Style/LambdaCall:
 
 # for hash arguments, no need for space: assert_equal({a: 1}, result)
 # https://gist.github.com/Integralist/3822807d3c91281af22d
-Layout/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: no_space
-
-# new pending cops
-Style/HashEachMethods:
-  Enabled: true
-Style/HashTransformKeys:
-  Enabled: true
-Style/HashTransformValues:
-  Enabled: true
+# Layout/SpaceInsideHashLiteralBraces:
+#   EnforcedStyle: no_space
 
 # Enable double quote
-Style/FrozenStringLiterals:
+Style/StringLiterals:
   Enabled: false
+
+# # new pending cops
+# Style/HashEachMethods:
+#   Enabled: true
+# Style/HashTransformKeys:
+#   Enabled: true
+# Style/HashTransformValues:
+#   Enabled: true

@@ -1,7 +1,7 @@
 [push]
 	default = simple
 [user]
-	email = duleorlovic@gmail.com
+	email = dule@hey.com
 	name = Dusan Orlovic
 [core]
 	excludesfile = /home/orlovic/.gitignore_global
