@@ -186,6 +186,10 @@ let mapleader = ' '
 let maplocalleader = '\'
 
 nnoremap <leader>e :NERDTreeToggle<CR>
+" https://github.com/preservim/nerdtree/issues/1123#issuecomment-628737990
+" let NERDTreeCustomOpenArgs = {'file':{'where':'p','keepopen':1,'stay':1}}
+" let g:NERDTreeMapPreview = "<CR>"
+
 
 " http://vim.wikia.com/wiki/Saving_a_file
 noremap <Leader>q :q<CR>
@@ -490,14 +494,15 @@ source $HOME/config/vim/netrw.vim
 source $HOME/config/vim/snippets/snippets.vim
 source $HOME/config/vim/vim_rails.vim
 source $HOME/config/vim/vim-test.vim
-" for docker kubernetes yaml files
+
+" for docker kubernetes yaml files, for terraform .tf files
 " source $HOME/config/vim/coc.vim
 " https://github.com/neoclide/coc.nvim/issues/617
 " let g:endwise_no_mappings = 1
 " https://github.com/neoclide/coc.nvim/wiki/F.A.Q#bad-background-highlight-of-floating-window
 " autocmd vimenter * ++nested colorscheme gruvbox
 " set background=dark
-let g:coc_disable_startup_warning = 1
+" let g:coc_disable_startup_warning = 1
 
 
 " https://stackoverflow.com/a/9645147/287166

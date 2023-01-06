@@ -95,8 +95,9 @@ if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
   # http://www.cyberciti.biz/faq/bash-for-loop-array/
   for bundle_link in "${list[@]}"
   do
-    echo $bundle_link
+    echo git clone $bundle_link
     git clone $bundle_link
+    echo git clone $bundle_link done
   done
 
   for install_command in "${install_commands[@]}"
@@ -109,8 +110,9 @@ fi
 echo start updating: `ls ~/.vim/bundle`
 for d in `ls -d ~/.vim/bundle/*`; do
   if [[ -d "${d}/.git" ]]; then
-    echo "updating ${d}"
+    echo "cd ${d}"
     cd $d
+    echo git pull
     git pull
   fi
 done

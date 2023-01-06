@@ -80,6 +80,10 @@ Style/AndOr:
 Lint/AmbiguousRegexpLiteral:
   Enabled: false
 
+# users.map &:id # no need users.map(&:id)
+Lint/AmbiguousOperator:
+  Enabled: false
+
 # s = %q{Hi} # no need to use `%q` only for strings that contain both single quotes and double quotes
 # Style/UnneededPercentQ:
 # Style/RedudantPercentQ:

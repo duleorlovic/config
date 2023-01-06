@@ -1,6 +1,9 @@
 " https://github.com/janko-m/vim-test
 " https://github.com/vim-test/vim-test
 nmap <silent> <leader>n :TestNearest <CR>
+nmap <silent> <leader>T :TestFile<CR>
+
+" let test#ruby#minitest#options = '--verbose'
 
 function! EchoStrategy(cmd)
   " on ubuntu we use xdotool_cmd_and_return

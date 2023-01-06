@@ -8,6 +8,8 @@ nnoremap ,html :-1read $HOME/config/vim/snippets/skeleton.html<CR>3jwf>a
 nnoremap ,baseurl r<CR>:-1read $HOME/config/vim/snippets/jekyll.baseurl.md<CR>kJ8ea
 " <%= byebug %>
 nnoremap ,bye :-1read $HOME/config/vim/snippets/byebug.erb<CR>
+" <%= d %>
+nnoremap ,d :-1read $HOME/config/vim/snippets/debugger.erb<CR>
 " minitest
 " nnoremap ,mini :-1read $HOME/config/vim/snippets/minitest.rb<CR>jjo
 " rubocop disable common for one long function

@@ -122,6 +122,14 @@ function keys {
   fi
 }
 
+function my_keys {
+  vi ~/config/keys/my_keys.sh
+}
+
+function my_aws_keys {
+  vi ~/config/keys/my_aws_keys.sh
+}
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=critical -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
