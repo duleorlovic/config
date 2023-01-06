@@ -6,24 +6,24 @@ if [ "$1" = "-h" ]; then
   exit 1
 fi
 list=(
-  git://github.com/tpope/vim-rails.git # example: Rview
-  git://github.com/tpope/vim-bundler.git # Bopen
-  git://github.com/tpope/vim-fugitive.git # Gblame, Gbrowse: vim -u NONE -c "helptags vim-fugitive/doc" -c q
+  git@github.com:tpope/vim-rails.git # example: Rview
+  git@github.com:tpope/vim-bundler.git # Bopen
+  git@github.com:tpope/vim-fugitive.git # Gblame, Gbrowse: vim -u NONE -c "helptags vim-fugitive/doc" -c q
   https://github.com/tpope/vim-rhubarb.git # fugitive support for github
   https://github.com/tommcdo/vim-fubitive # support for bitbucket
-  git://github.com/tpope/vim-sensible.git # search before enter
-  git://github.com/tpope/vim-cucumber.git # cucumber syntax highlight
-  git://github.com/tpope/vim-endwise.git # auto insert end keyword
-  git://github.com/tpope/vim-surround.git # add tag `ysiw<em>` change `cst"` delete `ds"`. `S` in visual
+  git@github.com:tpope/vim-sensible.git # search before enter
+  git@github.com:tpope/vim-cucumber.git # cucumber syntax highlight
+  git@github.com:tpope/vim-endwise.git # auto insert end keyword
+  git@github.com:tpope/vim-surround.git # add tag `ysiw<em>` change `cst"` delete `ds"`. `S` in visual
   https://github.com/kchmck/vim-coffee-script.git # coffe files
   # https://github.com/scrooloose/syntastic.git # syntax check jscs, rubocop
   https://github.com/ngmy/vim-rubocop # autofix
-  https://github.com/bling/vim-airline#  ~/.vim/bundle/vim-airline # nice statusline toolbar
-  git://github.com/tpope/vim-repeat.git # repeat some plugin commands
+  https://github.com/bling/vim-airline#  ~/.vim/pack/plugins/start/vim-airline # nice statusline toolbar
+  git@github.com:tpope/vim-repeat.git # repeat some plugin commands
   https://github.com/tpope/vim-unimpaired.git # [l ]q [a ]<space>
   https://github.com/ctrlpvim/ctrlp.vim.git # <c-p> <c-j> <c-k> <c-f> <c-b> <c-v>
   https://github.com/othree/html5.vim # html5 indent correct
-  git://github.com/digitaltoad/vim-pug.git # jade syntax highlight
+  git@github.com:digitaltoad/vim-pug.git # jade syntax highlight
   # https://github.com/tpope/vim-markdown.git # is not used, since next one can
   # properly indent with 2 spaces
   https://github.com/michaeljsmith/vim-indent-object # text object based on indent
@@ -88,10 +88,10 @@ install_commands=(
   "vim -u NONE -c 'helptags vim-ragtag/doc' -c q"
 )
 if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
-  mkdir -p ~/.vim/autoload ~/.vim/bundle
-  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  # Vim 8+ autoloads pack/*/start directory `:help packages`
+  mkdir -p ~/.vim/pack/plugins/start
 
-  cd ~/.vim/bundle
+  cd ~/.vim/pack/plugins/start
   # http://www.cyberciti.biz/faq/bash-for-loop-array/
   for bundle_link in "${list[@]}"
   do
@@ -107,8 +107,8 @@ if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
   done
   cd -
 fi
-echo start updating: `ls ~/.vim/bundle`
-for d in `ls -d ~/.vim/bundle/*`; do
+echo start updating: `ls ~/.vim/pack/plugins/start`
+for d in `ls -d ~/.vim/pack/plugins/start/*`; do
   if [[ -d "${d}/.git" ]]; then
     echo "cd ${d}"
     cd $d

@@ -163,9 +163,6 @@ nnoremap <C-L> :nohl<CR><C-L>
 set cmdheight=1  " 2 is to more
 set number! " unset number
 
-" custom plugins
-execute pathogen#infect()
-
 " to save history between vim session
 set history=1000
 " search grep current word

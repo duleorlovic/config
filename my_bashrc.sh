@@ -26,8 +26,11 @@ done
 if is_mac_os; then
   source ~/config/bashrc/mac_scripts/mac_window_shortcuts.sh
   source ~/config/my_bashrc_mac.sh
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 else
   source ~/config/bashrc/window_shortcuts.sh
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  eval "$(rbenv init - bash)"
 fi
 
 # if [ "`pgrep dbus-monitor`" == "" ];then
@@ -158,4 +161,7 @@ PATH=".git/safe/../../bin:$PATH"
 
 # https://github.com/titusfortner/webdrivers
 # export PATH="$HOME/.webdrivers:$PATH"
-export DISPLAY=":0.0"
+
+# xsel raise error when DISPLAY is defined
+# Invalid MIT-MAGIC-COOKIE-1 keyxsel: Can't open display: (null)
+# export DISPLAY=":0.0"

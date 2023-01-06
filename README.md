@@ -13,9 +13,12 @@ If you already made a lot of changes to initial .dot files make sure you mv
 those original files to backup location
 
 ```
+cd ~
 find ~/config/ -maxdepth 1 -type f -printf "%f\n" | xargs mv -t ~/config/backup/
+# alternative
 find ~/config/ -maxdepth 1 -type f -exec basename {} \; | xargs mv -t ~/config/backup/
-# ignore errors if some file does not exists because we will create those files
+ls -la config/backup
+# ignore errors since initially some file does not exists (we will create those files)
 ```
 
 Now create a link for each file in config root folder
@@ -55,36 +58,42 @@ https://stackoverflow.com/a/71826193/287166
 
 ## Vim plugin
 
-Install vim pathogen and plugins
+Install vim and plugins
 
 ```
-sudo apt install vim curl xsel git vim-gtk xdotool
-mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+sudo apt install vim curl git vim-gtk
 source ~/config/vim/update_vim_bundle.sh --install
 # also links ftplugins
-ln -s /home/orlovic/config/vim/ftplugin/ /home/orlovic/.vim/
+# ln -s /home/orlovic/config/vim/ftplugin/ /home/orlovic/.vim/
 ```
 
 ## Secret keys
 
-Edit `config/my_bashrc.sh` to include your `~/config/keys/project_keys.sh`
-
+Edit `config/keys/myapp.sh`
 ```
-cat > ~/config/keys/my_keys.sh <<HERE_DOC
+# config/keys/myapp.sh
 export AWS_ACCESS_KEY_ID=asdasd
-export AWS_SECRET_ACCESS_KEY=asdasd
-export MAIL_INTERCEPTOR_EMAIL=asd@asd.asd
-export MANDRILL_API_KEY=asdasd
-HERE_DOC
+```
+so you can use it
+```
+cd path/myapp
+# edit
+keys
+# source
+keys -s
 ```
 
-## Keyboard shortcuts for windows
+## Keyboard shortcuts to jump between windows
 
 I am using some
 [xdotool](http://www.semicomplete.com/projects/xdotool)
 https://github.com/jordansissel/xdotool
 so you need to manually add some [keyboard
 shortcuts](https://github.com/duleorlovic/config/blob/master/bashrc/window_shortcuts.sh#L34)
+
+```
+sudo apt install wmctrl xdotool xsel silversearcher-ag
+```
 
 ## Keyboard remapping
 
