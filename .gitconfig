@@ -13,13 +13,8 @@
 	st = status
 	o = show
 	cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|main' | xargs -n 1 -r git branch -d"
-[credential]
-	helper = store --file /home/orlovic/.fastlane/.tmp/git-auth-1e0f9c5236e77c8efef9ae6d3031be715e424e8c314acbc5723828691d118842
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+	mgd = "!git merge $1 && git branch -d $1; #"
+	mgdd = "!git merge $1 && git branch -d $1 && git push origin -d $1; #"
 [pull]
 	ff = only
 [init]

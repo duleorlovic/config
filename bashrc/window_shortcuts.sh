@@ -267,6 +267,9 @@ b()
     else
       key=$char
     fi
+    # instead of xdotool we should use swaymsg https://unix.stackexchange.com/questions/362731/how-to-identify-window-by-clicking-in-wayland
+    # https://github.com/swaywm/sway/wiki
+    echo xprop -f WM_CLASS 8s -set WM_CLASS vp_$(get_current_viewport)_class_$key -id `xdotool getwindowfocus`
     xprop -f WM_CLASS 8s -set WM_CLASS vp_$(get_current_viewport)_class_$key -id `xdotool getwindowfocus`
     echo " ... thanks. shortcut is ALT+$key for window WM_CLASS vp_$(get_current_viewport)_class_$key"
   else

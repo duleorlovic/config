@@ -23,16 +23,6 @@ for my_file in ${MY_FILES[*]}; do
   fi
 done
 
-if is_mac_os; then
-  source ~/config/bashrc/mac_scripts/mac_window_shortcuts.sh
-  source ~/config/my_bashrc_mac.sh
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-  source ~/config/bashrc/window_shortcuts.sh
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  eval "$(rbenv init - bash)"
-fi
-
 # if [ "`pgrep dbus-monitor`" == "" ];then
 #   echo Starting monitor_lock_hooks
 #   /home/orlovic/config/bashrc/monitor_lock_hooks.sh
@@ -164,7 +154,9 @@ alias t=terraform
 complete -C /opt/homebrew/bin/terraform terraform
 
 # add bin to path, but only for project where you  run mkdir -p .git/safe
-PATH=".git/safe/../../bin:$PATH"
+export PATH=".git/safe/../../bin:$PATH"
+
+export PATH="~/Programs/bin:$PATH"
 
 # https://github.com/titusfortner/webdrivers
 # export PATH="$HOME/.webdrivers:$PATH"
@@ -186,3 +178,22 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - bash)"
+
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+# simplest is to attach branch name
+# export PS1="$PS1\$(parse_git_branch)>"
+# echo '$PS1'
+# \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ 
+export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\$(parse_git_branch)\[\033[00m\]\$ "
+
+if is_mac_os; then
+  source ~/config/bashrc/mac_scripts/mac_window_shortcuts.sh
+  source ~/config/my_bashrc_mac.sh
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  source ~/config/bashrc/window_shortcuts.sh
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  eval "$(rbenv init - bash)"
+fi
