@@ -4,7 +4,7 @@
 	email = dule@hey.com
 	name = Dusan Orlovic
 [core]
-	excludesfile = /home/orlovic/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [alias]
 	add-commit = !git add -A && git commit
 	d = diff
@@ -12,6 +12,14 @@
 	s = status
 	st = status
 	o = show
+	cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|main' | xargs -n 1 -r git branch -d"
+[credential]
+	helper = store --file /home/orlovic/.fastlane/.tmp/git-auth-1e0f9c5236e77c8efef9ae6d3031be715e424e8c314acbc5723828691d118842
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [pull]
 	ff = only
 [init]

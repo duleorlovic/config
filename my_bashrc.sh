@@ -155,6 +155,7 @@ alias be='bundle exec'
 alias dokku='$HOME/.dokku/contrib/dokku_client.sh'
 
 alias t=terraform
+complete -C /opt/homebrew/bin/terraform terraform
 
 # add bin to path, but only for project where you  run mkdir -p .git/safe
 PATH=".git/safe/../../bin:$PATH"
@@ -166,6 +167,16 @@ PATH=".git/safe/../../bin:$PATH"
 # Invalid MIT-MAGIC-COOKIE-1 keyxsel: Can't open display: (null)
 # export DISPLAY=":0.0"
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - bash)"
