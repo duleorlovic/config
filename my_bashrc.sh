@@ -165,3 +165,7 @@ PATH=".git/safe/../../bin:$PATH"
 # xsel raise error when DISPLAY is defined
 # Invalid MIT-MAGIC-COOKIE-1 keyxsel: Can't open display: (null)
 # export DISPLAY=":0.0"
+
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - bash)"
