@@ -18,7 +18,7 @@ list=(
   https://github.com/kchmck/vim-coffee-script.git # coffe files
   # https://github.com/scrooloose/syntastic.git # syntax check jscs, rubocop
   https://github.com/ngmy/vim-rubocop # autofix
-  https://github.com/bling/vim-airline#  ~/.vim/pack/plugins/start/vim-airline # nice statusline toolbar
+  https://github.com/bling/vim-airline#  ~/.vim/pack/my_start_plugins/start/vim-airline # nice statusline toolbar
   git@github.com:tpope/vim-repeat.git # repeat some plugin commands
   https://github.com/tpope/vim-unimpaired.git # [l ]q [a ]<space>
   https://github.com/ctrlpvim/ctrlp.vim.git # <c-p> <c-j> <c-k> <c-f> <c-b> <c-v>
@@ -48,7 +48,7 @@ list=(
   https://github.com/mileszs/ack.vim.git # ack instead of grep
   https://github.com/w0rp/ale # instead of syntastic
   https://github.com/tpope/vim-ragtag.git # <%= %> tags
-  https://github.com/kana/vim-textobj-user # base for some plugins
+  https://github.com/kana/vim-textobj-user # base for some my_start_plugins
   https://github.com/kana/vim-textobj-line # vil val   # inner line without "\n" docs https://github.com/kana/vim-textobj-line/blob/master/doc/textobj-line.txt
   https://github.com/nelstrom/vim-textobj-rubyblock # vir
   https://github.com/lilydjwg/colorizer # colorize rgb colors
@@ -60,7 +60,8 @@ list=(
   https://github.com/morhetz/gruvbox.git  # new color scheme
 )
 
-# manually install https://github.com/kana/vim-textobj-user and some plugins
+# manually install https://github.com/kana/vim-textobj-user and some
+# my_start_plugins
 # https://github.com/nelstrom/vim-textobj-rubyblock # var vir visualy select inner ruby code
 # https://github.com/kana/vim-textobj-line
 #   cd ~/.vim/autoload
@@ -86,12 +87,13 @@ install_commands=(
   # https://github.com/tpope/vim-rhubarb
   "vim -u NONE -c 'helptags vim-rhubarb/doc' -c q"
   "vim -u NONE -c 'helptags vim-ragtag/doc' -c q"
+  "cd ~/.vim/pack/my_start_plugins/start/coc.nvim/ && yarn install && cd -"
 )
 if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
   # Vim 8+ autoloads pack/*/start directory `:help packages`
-  mkdir -p ~/.vim/pack/plugins/start
+  mkdir -p ~/.vim/pack/my_start_plugins/start
 
-  cd ~/.vim/pack/plugins/start
+  cd ~/.vim/pack/my_start_plugins/start
   # http://www.cyberciti.biz/faq/bash-for-loop-array/
   for bundle_link in "${list[@]}"
   do
@@ -107,8 +109,8 @@ if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
   done
   cd -
 fi
-echo start updating: `ls ~/.vim/pack/plugins/start`
-for d in `ls -d ~/.vim/pack/plugins/start/*`; do
+echo start updating: `ls ~/.vim/pack/my_start_plugins/start`
+for d in `ls -d ~/.vim/pack/my_start_plugins/start/*`; do
   if [[ -d "${d}/.git" ]]; then
     echo "cd ${d}"
     cd $d

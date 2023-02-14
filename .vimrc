@@ -571,3 +571,7 @@ augroup BgHighlight
     autocmd WinEnter * set cul
     autocmd WinLeave * set nocul
 augroup END
+
+" reneable <c-[> since in karabiner we swap [ and {
+nnoremap <c-{> <c-[>
+nnoremap <c-}> <c-]>
