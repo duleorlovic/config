@@ -151,6 +151,12 @@ fi
 
 alias be='bundle exec'
 
+
+if [[ $(which aws_completer) ]]; then
+  # enable aws completion
+  complete -C $(which aws_completer) aws
+fi
+
 # http://dokku.viewdocs.io/dokku/community/clients/
 alias dokku='$HOME/.dokku/contrib/dokku_client.sh'
 
