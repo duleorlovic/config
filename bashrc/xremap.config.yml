@@ -1,0 +1,15 @@
+modmap:
+  - name: Except Chrome
+    application:
+      not: Google-chrome
+    remap:
+      CapsLock: Esc
+keymap:
+  - name: Emacs binding
+    application:
+      only: Slack
+    remap:
+      C-b: left
+      C-f: right
+      C-p: up
+      C-n: down
