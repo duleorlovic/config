@@ -14,6 +14,7 @@ those original files to backup location
 
 ```
 cd ~
+mkdir config/backup
 find ~/config/ -maxdepth 1 -type f -printf "%f\n" | xargs mv -t ~/config/backup/
 # alternative
 find ~/config/ -maxdepth 1 -type f -exec basename {} \; | xargs mv -t ~/config/backup/
@@ -35,6 +36,8 @@ if [ -f ~/config/my_bashrc.sh ]; then
 fi
 HERE_DOC
 ```
+
+# MAC specifics
 
 Mac README is located `~/config/bashrc/mac_scripts/README.md` but here are
 brief description:
