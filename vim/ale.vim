@@ -1,14 +1,14 @@
 " let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:airline#extensions#ale#enabled = 1
-" keep `ruby` linter because I do not know how to disable
-" warning: ambiguous first argument; put parentheses or a space even after `/' operator
-" but can replace /#{var}/ with %r[#{var}]
-" disable brakeman since it returns errors for all files so next location jumps
-" to other file
+
+" ['brakeman', 'cspell', 'debride', 'rails_best_practices', 'reek', 'rubocop', 'ruby', 'solargraph', 'sorbet', 'standardrb']
+" disable rubocop when standardrb is used
+" disable 'rails_best_practices' since it is not maintaned
 " disable 'reek', since it is too much to fix it's checkings
-let g:ale_linters = {'ruby':['rails_best_practices', 'rubocop', 'solargraph'],
-\   'javascript': ['eslint'],
-\}
+let g:ale_linters = {
+      \ "ruby":  ['brakeman', 'cspell', 'debride',  'reek', 'ruby', 'solargraph', 'sorbet', 'standardrb'],
+      \   'javascript': ['eslint'],
+      \}
 " let g:ale_linters = {
 " \   'javascript': ['eslint'],
 " \   'eruby': ['erubylint'],
@@ -20,9 +20,13 @@ let g:ale_pattern_options = {
 \}
 
 " fix errors :help ale-fix-configuration you can run :ALEFix
+"\    'rubocop --auto-correct --disable-uncorrectable'
 nmap <F8> <Plug>(ale_fix)
 let g:ale_fixers = {
 \  'ruby': [
-\    'rubocop --auto-correct --disable-uncorrectable'
+\    "standardrb"
 \  ]
 \}
+
+" https://github.com/testdouble/standard/wiki/IDE:-vim
+let g:ruby_indent_assignment_style = 'variable'

@@ -492,6 +492,10 @@ source $HOME/config/vim/snippets/snippets.vim
 source $HOME/config/vim/vim_rails.vim
 source $HOME/config/vim/vim-test.vim
 
+" overwrite default ERB linter untill this is fixed
+" https://github.com/dense-analysis/ale/issues/4167
+source ~/.vim/ale_linters/eruby/erb.vim
+
 " for docker kubernetes yaml files, for terraform .tf files
 " source $HOME/config/vim/coc.vim
 " https://github.com/neoclide/coc.nvim/issues/617
