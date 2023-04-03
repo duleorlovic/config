@@ -9,6 +9,11 @@ let g:ale_linters = {
       \ "ruby":  ['brakeman', 'cspell', 'debride',  'reek', 'ruby', 'solargraph', 'sorbet', 'standardrb'],
       \   'javascript': ['eslint'],
       \}
+
+" overwrite default ERB linter untill this is fixed
+" https://github.com/dense-analysis/ale/issues/4167#issuecomment-1493808487
+source ~/config/vim/ale_linters/eruby/erb.vim
+
 " let g:ale_linters = {
 " \   'javascript': ['eslint'],
 " \   'eruby': ['erubylint'],
