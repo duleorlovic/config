@@ -40,9 +40,6 @@ let g:rails_projections = {
 \  "spec/factories/*": {
 \    "command": "factories",
 \  },
-\  "app/datatables/*.rb": {
-\    "command": "datatables",
-\  },
 \  "app/controllers/api/v1/*_controller.rb": {
 \    "command": "controllerapi"
 \  },
@@ -53,3 +50,6 @@ let g:rails_projections = {
 \    "command": "javascriptcontrollers"
 \  }
 \}
+" \  "app/datatables/*.rb": {
+" \    "command": "datatables",
+" \  },

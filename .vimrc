@@ -206,10 +206,12 @@ nnoremap <leader># /^#.*\n\n<cr>
 " open some common rails files
 nnoremap <leader>d :e config/database.yml<cr>
 nnoremap <leader>s :e db/schema.rb<cr>
+nnoremap <leader>r :e README.md<cr>
 " nnoremap <leader>f :e spec/factories.rb<cr>
 " nnoremap <leader>r :e config/routes.rb<cr> I use r for rubocop autofix
 " https://github.com/ngmy/vim-rubocop
-nnoremap <leader>r :RuboCop --auto-correct<cr>
+" nnoremap <leader>r :RuboCop --auto-correct<cr>
+nnoremap <leader>f :ALEFix<cr>
 nnoremap <leader>ed :e config/environments/development.rb<cr>
 nnoremap <leader>ep :e config/environments/production.rb<cr>
 " close search result window
