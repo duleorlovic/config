@@ -33,5 +33,6 @@ arduino-cli-upload() {
   port=${2}
   arduino-cli compile --fqbn $fqbn || return 1
   arduino-cli upload --fqbn $fqbn -p $port || return 1
-  arduino-cli monitor -p $port
+  # sleep 3 # sleep 2 does not work
+  # arduino-cli monitor -p $port
 }

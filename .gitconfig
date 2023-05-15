@@ -12,10 +12,12 @@
 	s = status
 	st = status
 	o = show
-	cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|main' | xargs -n 1 -r git branch -d"
+	cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|main\\|dev\\|develop' | xargs -n 1 -r git branch -d"
 	mgd = "!git merge $1 && git branch -d $1; #"
 	mgdd = "!git merge $1 && git branch -d $1 && git push origin -d $1; #"
 [pull]
 	ff = only
 [init]
 	defaultBranch = main
+[merge]
+	tool = meld

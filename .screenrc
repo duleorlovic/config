@@ -1,1 +1,25 @@
-bindkey ^C kill
+# not used since it is better to keep defaults
+# instead Ctrl-a use `
+# escape ``
+
+# disable "Screen used by ..." lock screen
+# note that c-a X still works (close current region)
+bind x
+
+# https://unix.stackexchange.com/a/96022/150895
+# bindkey ^C kill
+layout new "horizontal"
+split
+layout new "vertical"
+split -v
+layout new "main"
+# bind control sequences for new layouts
+bind V layout select 'vertical'
+bind H layout select 'horizontal'
+# bind ' ' layout next # <- actually means Ctrl-a + Space
+
+# copy the screen pastbuffer to the MacOSX pastebord
+bufferfile screen/screen-exchange
+bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "/usr/bin/pbcopy < screen/screen-exchange"'
+bindkey -m Y   eval 'stuff Y'    'writebuf' 'exec sh -c "/usr/bin/pbcopy < screen/screen-exchange"'
+bindkey -m W   eval 'stuff W'    'writebuf' 'exec sh -c "/usr/bin/pbcopy < screen/screen-exchange"'

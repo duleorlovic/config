@@ -171,6 +171,10 @@ nnoremap gw :Ack <cword><CR>
 " search grep yanked word
 " nnoremap gy :grep "<c-r>"" * --exclude-dir={log,public,tmp,vendor,db,bower_components,coverage,node_modules,dist,_site} -R -I --exclude={_coffeescript_build.js,tags}<CR>
 nnoremap gy :Ack "<c-r>""<CR>
+" https://github.com/beyondgrep/ack3/issues/330
+let g:ackprg = 'ag --nogroup --nocolor --column --follow'
+nnoremap // :Ack 
+
 " this is for tab completion , to stop cycle press CTRL+E than tab
 set wildmode=longest,list,full
 " search selected text, press // while in visual mode
@@ -445,10 +449,6 @@ inoremap (<cr> (<cr>)<c-o><s-o>
 " write to another file and edit that file using command
 " https://vi.stackexchange.com/questions/3458/save-current-file-and-open-another-for-editing
 command! -nargs=1 -complete=file WE write <args> | edit <args>
-
-let g:ackprg = 'ag --nogroup --nocolor --column --follow'
-
-nnoremap // :Ack 
 
 " https://stackoverflow.com/questions/2250011/can-i-have-vim-ignore-a-license-block-at-the-top-of-a-file
 function! FoldCopyright()
