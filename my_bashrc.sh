@@ -195,3 +195,6 @@ fi
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - bash)"
+
+# add globally installed packages `yarn add global ...` to PATH
+export PATH="$PATH:$(yarn global bin)"

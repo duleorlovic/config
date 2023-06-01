@@ -577,3 +577,6 @@ augroup END
 " reneable <c-[> since in karabiner we swap [ and {
 nnoremap <c-{> <c-[>
 nnoremap <c-}> <c-]>
+
+" enable AutoSaveToggle automatically
+let g:auto_save = 1
