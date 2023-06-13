@@ -13,6 +13,18 @@
 	st = status
 	o = show
 	cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|main\\|dev\\|develop' | xargs -n 1 -r git branch -d"
+	cleanupnotmine = "!bash -c 'current_user=$(git config user.email);\
+  for branch in $(git branch --format=\"%(refname:short)\"); do \
+    if [[ \"$branch\" =~ ^(main|develop|master)$ ]]; then \
+      continue; \
+    fi; \
+    author=$(git log -1 --format=\"%ae\" $branch); \
+    if [ \"$author\" != \"$current_user\" ]; then \
+      echo removing *$branch* since author is $author; \
+      git branch -D $branch; \
+      echo; \
+    fi; \
+  done'"
 	mgd = "!git merge $1 && git branch -d $1; #"
 	mgdd = "!git merge $1 && git branch -d $1 && git push origin -d $1; #"
 [pull]
