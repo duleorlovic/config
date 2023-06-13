@@ -6,13 +6,13 @@ if [ "$1" = "-h" ]; then
   exit 1
 fi
 list=(
-  https://github.com/w0rp/ale # instead of syntastic
+  git@github.com:dense-analysis/ale.git # instead of syntastic
   git@github.com:907th/vim-auto-save.git
   git@github.com:tpope/vim-rails.git # example: Rview
   git@github.com:tpope/vim-bundler.git # Bopen
   git@github.com:tpope/vim-fugitive.git # Gblame, Gbrowse: vim -u NONE -c "helptags vim-fugitive/doc" -c q
-  https://github.com/tpope/vim-rhubarb.git # fugitive support for github
-  https://github.com/tommcdo/vim-fubitive # support for bitbucket
+  git@github.com:tpope/vim-rhubarb.git # fugitive support for github
+  git@github.com:tommcdo/vim-fubitive.git # support for bitbucket
   git@github.com:tpope/vim-sensible.git # default vimrc conf like search before enter
   git@github.com:tpope/vim-cucumber.git # cucumber syntax highlight
   git@github.com:tpope/vim-endwise.git # auto insert end keyword
@@ -21,45 +21,45 @@ list=(
   # https://github.com/scrooloose/syntastic.git # syntax check jscs, rubocop
   # git://github.com/vim-ruby/vim-ruby.git
   # https://github.com/ngmy/vim-rubocop # autofix
-  https://github.com/bling/vim-airline#  ~/.vim/pack/my_start_plugins/start/vim-airline # nice statusline toolbar
+  git@github.com:vim-airline/vim-airline.git #  ~/.vim/pack/my_start_plugins/start/vim-airline # nice statusline toolbar
   git@github.com:tpope/vim-repeat.git # repeat some plugin commands
-  https://github.com/tpope/vim-unimpaired.git # [l ]q [a ]<space>
-  https://github.com/ctrlpvim/ctrlp.vim.git # <c-p> <c-j> <c-k> <c-f> <c-b> <c-v>
-  https://github.com/othree/html5.vim # html5 indent correct
+  git@github.com:tpope/vim-unimpaired.git # [l ]q [a ]<space>
+  git@github.com:ctrlpvim/ctrlp.vim.git # <c-p> <c-j> <c-k> <c-f> <c-b> <c-v>
+  git@github.com:othree/html5.vim.git # html5 indent correct
   git@github.com:digitaltoad/vim-pug.git # jade syntax highlight
   # https://github.com/tpope/vim-markdown.git # is not used, since next one can
   # properly indent with 2 spaces
-  https://github.com/michaeljsmith/vim-indent-object # text object based on indent
-  https://github.com/plasticboy/vim-markdown.git # better since `` is properly
+  git@github.com:michaeljsmith/vim-indent-object.git # text object based on indent
+  git@github.com:preservim/vim-markdown.git # better since `` is properly
   # highlighted when intent is 4 spaces for multiline list item
   # https://github.com/plasticboy/vim-markdown/issues/126
   # https://github.com/tomtom/tlib_vim.git # snipmate requirement
   # https://github.com/MarcWeber/vim-addon-mw-utils.git # snipmate requirement
   # https://github.com/garbas/vim-snipmate.git # snipmate
   # https://github.com/honza/vim-snippets.git # spipmate snippets
-  https://github.com/scrooloose/nerdtree.git # file explorer better than netrw
+  git@github.com:preservim/nerdtree.git # file explorer better than netrw
   # git@github.com:tonekk/vim-ruby-capybara.git # capybara highlight
-  https://github.com/sheerun/vim-polyglot.git # syntax & indent for multiple lang
+  git@github.com:sheerun/vim-polyglot.git # syntax & indent for multiple lang
   # git@github.com:mbbill/undotree.git # vim graphical undo tree
-  https://github.com/leafgarland/typescript-vim.git # typescript syntax
+  git@github.com:leafgarland/typescript-vim.git # typescript syntax
   git@github.com:mwise/vim-rspec-focus.git # add focus tag for rspec
   git@github.com:tpope/vim-commentary.git # comment code: gc
-  git://github.com/tpope/vim-dispatch.git # async background task make test
+  git@github.com:tpope/vim-dispatch.git # async background task make test
   git@github.com:janko-m/vim-test.git # <leader>tTalg
   # git@github.com:skywind3000/asyncrun.vim.git # replacement for dispatch
-  https://github.com/alvan/vim-closetag.git # auto insert closing html tag( follow with > for new line)
-  https://github.com/mileszs/ack.vim.git # ack instead of grep
-  https://github.com/tpope/vim-ragtag.git # <%= %> tags
-  https://github.com/kana/vim-textobj-user # base for some my_start_plugins
-  https://github.com/kana/vim-textobj-line # vil val   # inner line without "\n" docs https://github.com/kana/vim-textobj-line/blob/master/doc/textobj-line.txt
-  https://github.com/nelstrom/vim-textobj-rubyblock # vir
-  https://github.com/lilydjwg/colorizer # colorize rgb colors
-  https://github.com/stevearc/vim-arduino # arduino compile, flash and serial
-  https://github.com/chrisbra/csv.vim # :Header vG:ArrangeColumn
-  # https://github.com/ervandew/supertab.git # tab completion error when enabled
-  https://github.com/yegappan/taglist
-  https://github.com/neoclide/coc.nvim.git # vscode
-  https://github.com/morhetz/gruvbox.git  # new color scheme
+  git@github.com:alvan/vim-closetag.git # auto insert closing html tag( follow with > for new line)
+  git@github.com:mileszs/ack.vim.git # ack instead of grep
+  git@github.com:tpope/vim-ragtag.git # <%= %> tags
+  git@github.com:kana/vim-textobj-user.git # base for some my_start_plugins
+  git@github.com:kana/vim-textobj-line.git # vil val   # inner line without "\n" docs https://github.com/kana/vim-textobj-line/blob/master/doc/textobj-line.txt
+  git@github.com:nelstrom/vim-textobj-rubyblock.git # vir
+  git@github.com:lilydjwg/colorizer.git # colorize rgb colors
+  git@github.com:stevearc/vim-arduino.git # arduino compile, flash and serial
+  git@github.com:chrisbra/csv.vim.git # :Header vG:ArrangeColumn
+  # git@github.com:ervandew/supertab.git # tab completion error when enabled
+  git@github.com:yegappan/taglist.git
+  git@github.com:neoclide/coc.nvim.git # vscode
+  git@github.com:morhetz/gruvbox.git  # new color scheme
 )
 
 # manually install https://github.com/kana/vim-textobj-user and some
@@ -100,7 +100,9 @@ if [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
   for bundle_link in "${list[@]}"
   do
     echo git clone $bundle_link
-    git clone $bundle_link
+    folder=$(basename $bundle_link)
+    folder_without_extension="${folder%.*}"
+    [ ! -d $folder_without_extension ] && git clone $bundle_link
     echo git clone $bundle_link done
   done
 
