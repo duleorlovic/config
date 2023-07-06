@@ -33,3 +33,5 @@
 	defaultBranch = main
 [merge]
 	tool = meld
+[safe]
+	directory = /home/dule/trk/xceednet

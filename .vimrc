@@ -557,15 +557,6 @@ set grepprg=~/config/bin/whereami.rb
 " three <cr> one for execute, one for grep and one for copen to jump back to line
 nnoremap <leader>w :execute ":grep %:p " . line('.') .  "\|clast\|copen"<cr><cr><cr>
 
-let g:gtm_plugin_status_enabled = 1
-function! AirlineInit()
-  if exists('*GTMStatusline')
-    call airline#parts#define_function('gtmstatus', 'GTMStatusline')
-    let g:airline_section_b = airline#section#create([g:airline_section_b, ' ', '[', 'gtmstatus', ']'])
-  endif
-endfunction
-autocmd User AirlineAfterInit call AirlineInit()
-
 " https://superuser.com/a/393948/877698
 " use current line highlight inside current buffer
 augroup BgHighlight
