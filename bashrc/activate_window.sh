@@ -17,6 +17,17 @@ if [ "$1" == "" ]; then
   echo Please provide key name, for example
   echo source activate_window.sh k
 else
-  source ~/config/bashrc/get_current_viewport.sh
-  xdotool search --classname vp_$(get_current_viewport)_class_$1 windowactivate
+  if [ "$WAYLAND_DISPLAY" == "" ]; then
+    # Xorg
+    source ~/config/bashrc/get_current_viewport.sh
+    xdotool search --classname vp_$(get_current_viewport)_class_$1 windowactivate
+  else
+    # https://github.com/rvaiya/keyd#sample-config
+    # git clone git@github.com:lucaswerkmeister/activate-window-by-title.git ~/.local/share/gnome-shell/extensions/
+    gdbus call --session \
+    --dest org.gnome.Shell \
+    --object-path /de/lucaswerkmeister/ActivateWindowByTitle \
+    --method de.lucaswerkmeister.ActivateWindowByTitle.activateByWmClass \
+    'gedit'
+  fi
 fi

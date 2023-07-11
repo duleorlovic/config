@@ -98,6 +98,16 @@ shortcuts](https://github.com/duleorlovic/config/blob/master/bashrc/window_short
 sudo apt install wmctrl xdotool xsel silversearcher-ag
 ```
 
+On new ubuntu we use ydotool
+https://github.com/ReimuNotMoe/ydotool/issues/36#issuecomment-788148567
+https://askubuntu.com/questions/1400834/how-to-snap-minimize-maximize-window-below-cursor#comment2430196_1400835
+but ydotool can issue keyboard strokes and mouse clicks, but lacks window
+management features. A more severe Wayland problem: there is no uniform way to
+obtain information about the running windows: it is the compositor that
+implements that, so methods to achieve that are different between, Gnome Shell,
+Plasma and Sway. – 
+
+
 ## Keyboard remapping
 
 [xbindkeys](https://wiki.archlinux.org/index.php/Xbindkeys)
