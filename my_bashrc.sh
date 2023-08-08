@@ -193,8 +193,15 @@ if which pyenv; then
   eval "$(pyenv init -)"
 fi
 
+# add following two lines to ~/.bashrc if you want to move to external drive
+# export RBENV_ROOT=/Volumes/eksterni/rbenv
+# export PATH="$RBENV_ROOT/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - bash)"
 
 # add globally installed packages `yarn add global ...` to PATH
 export PATH="$PATH:$(yarn global bin)"
+
+# add pip installed packages: python3 -m pip install --user ansible
+export PATH="$(python3 -m site --user-base)/bin:${PATH}"
+alias a="ansible -i inventory.txt"

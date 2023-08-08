@@ -37,3 +37,6 @@ nnoremap ,en i<% end %><ESC>
 nnoremap ,a yiWi<a href='<C-R>*'><esc>Ea</a><esc>
 " to make an email into <a href='mailto:email'>email</a>
 nnoremap ,m yiWi<a href='mailto:<C-R>*'><esc>Ea</a><esc>
+
+" in ruby string interpolation #[ replace with #{
+inoremap #[ #{}<Left>
