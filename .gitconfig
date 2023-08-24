@@ -1,5 +1,5 @@
 [push]
-	default = simple
+	default = current
 [user]
 	email = dule@hey.com
 	name = Dusan Orlovic

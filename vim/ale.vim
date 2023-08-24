@@ -7,7 +7,8 @@ let g:ale_linters = {}
 " disable rubocop when standardrb is used
 " disable 'rails_best_practices' since it is not maintaned
 " disable 'reek', since it is too much to fix it's checkings
-let g:ale_linters.ruby = ['brakeman', 'cspell', 'debride',  'reek', 'ruby', 'solargraph', 'sorbet', 'standardrb']
+" disable 'brakeman', since it is slow
+let g:ale_linters.ruby = ['cspell', 'debride',  'reek', 'ruby', 'solargraph', 'sorbet', 'standardrb']
 
 " Current Filetype: eruby
 " Available Linters: ['erb', 'erblint', 'erubi', 'erubis', 'ruumba']
