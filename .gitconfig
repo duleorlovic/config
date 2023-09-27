@@ -25,6 +25,23 @@
       echo; \
     fi; \
   done'"
+	cleanupminesamecommitmessage = "!bash -c 'current_user=$(git config user.email);\
+  for branch in $(git branch --format=\"%(refname:short)\"); do \
+    if [[ \"$branch\" =~ ^(main|develop|master)$ ]]; then \
+      continue; \
+    fi; \
+    author=$(git log -1 --format=\"%ae\" $branch); \
+    if [ \"$author\" == \"$current_user\" ]; then \
+		  last_commit_title=$(git log -1 --format=%s $branch); \
+			if  git log --format=\"%s\" | grep -q \"$last_commit_title\" ; then \
+				echo removing *$branch* since author is *$author* and existing title *$last_commit_title*; \
+				git branch -D $branch; \
+		  else \
+				echo skip removing *$branch* since author is *$author* and no existing title *$last_commit_title*; \
+		  fi; \
+      echo; \
+    fi; \
+  done'"
 	mgd = "!git merge $1 && git branch -d $1; #"
 	mgdd = "!git merge $1 && git branch -d $1 && git push origin -d $1; #"
 [pull]
