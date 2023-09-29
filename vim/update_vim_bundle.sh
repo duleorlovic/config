@@ -60,6 +60,7 @@ list=(
   git@github.com:yegappan/taglist.git
   git@github.com:neoclide/coc.nvim.git # vscode
   git@github.com:morhetz/gruvbox.git  # new color scheme
+  git@github.com:pearofducks/ansible-vim.git
 )
 
 # manually install https://github.com/kana/vim-textobj-user and some

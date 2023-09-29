@@ -72,8 +72,10 @@ alias dim=d
 
 # copy line to clipboard
 if is_mac_os; then
+  # to copy from grep result you can use: grep asd README.md | pbcopy
   bind '"\C-l": "\C-e\C-u pbcopy <<"EOF"\n\C-y\nEOF\n\C-y"'
 else
+  # to copy from grep result you can use: grep asd README.md | xclip
   bind '"\C-l": "\C-e\C-u xsel --clipboard <<"EOF"\n\C-y\nEOF\n\C-y"'
 fi
 
@@ -196,6 +198,7 @@ fi
 # add following two lines to ~/.bashrc if you want to move to external drive
 # export RBENV_ROOT=/Volumes/eksterni/rbenv
 # export PATH="$RBENV_ROOT/bin:$PATH"
+eval "$(rbenv init - bash)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - bash)"
 
@@ -204,4 +207,8 @@ export PATH="$PATH:$(yarn global bin)"
 
 # add pip installed packages: python3 -m pip install --user ansible
 export PATH="$(python3 -m site --user-base)/bin:${PATH}"
-alias a="ansible -i inventory.txt"
+alias a="ansible -i inventory.yml"
+
+# history size
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
