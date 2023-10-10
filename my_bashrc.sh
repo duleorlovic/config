@@ -198,7 +198,6 @@ fi
 # add following two lines to ~/.bashrc if you want to move to external drive
 # export RBENV_ROOT=/Volumes/eksterni/rbenv
 # export PATH="$RBENV_ROOT/bin:$PATH"
-eval "$(rbenv init - bash)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - bash)"
 
@@ -212,3 +211,6 @@ alias a="ansible -i inventory.yml"
 # history size
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
+
+# access sibling folders
+export CDPATH="..:"
