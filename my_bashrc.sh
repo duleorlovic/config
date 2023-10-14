@@ -213,7 +213,8 @@ export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
 # access sibling folders
-export CDPATH="..:"
 
 # pip installed ansible command should be accessible
 export PATH=~/.local/bin:$PATH
+
+export CDPATH=".:.."
