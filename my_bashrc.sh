@@ -189,7 +189,9 @@ else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-if which pyenv; then
+if command -v "pyenv"; then
+  # instead of manually adding python3 packages to path, use pyenv
+  # export PATH="$(python3 -m site --user-base)/bin:${PATH}"
   export PYENV_ROOT="$HOME/.pyenv"
   command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
@@ -204,17 +206,13 @@ eval "$(rbenv init - bash)"
 # add globally installed packages `yarn add global ...` to PATH
 export PATH="$PATH:$(yarn global bin)"
 
-# add pip installed packages: python3 -m pip install --user ansible
-export PATH="$(python3 -m site --user-base)/bin:${PATH}"
-alias a="ansible -i inventory.yml"
-
 # history size
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
 # access sibling folders
-
-# pip installed ansible command should be accessible
-export PATH=~/.local/bin:$PATH
-
 export CDPATH=".:.."
+
+# error while running tests: Chromedriver / Capybara Too many open files - socket(2) for "127.0.0.1" port 9518
+# https://stackoverflow.com/a/61892983/287166
+ulimit -Sn 10240
