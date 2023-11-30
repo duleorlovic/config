@@ -45,7 +45,7 @@
   done'"
 	mgd = "!git merge $1 && git branch -d $1; #"
 	mgdd = "!git merge $1 && git branch -d $1 && git push origin -d $1; #"
-	loglasttwotags = "!echo  $BASH ;source ~/config/my_bashrc.sh && echo_and_run git log $(git tag --sort=-v:refname | head -n 2 | tail -n 1)..$(git tag --sort=-v:refname | head -n 1) --format='%an %s' | sort"
+	loglasttwotags = "!echo git log $(git tag --sort=-v:refname | head -n 2 | tail -n 1)..$(git tag --sort=-v:refname | head -n 1) --format='\"%an %s\"' | sort;git log $(git tag --sort=-v:refname | head -n 2 | tail -n 1)..$(git tag --sort=-v:refname | head -n 1) --format='%an %s' | sort"
 
 
 [pull]
