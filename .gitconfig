@@ -13,7 +13,37 @@
 	s = status
 	st = status
 	o = show
-	cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|main\\|dev\\|develop' | xargs -n 1 -r git branch -d"
+  pull-reset = !sh -c 'git fetch origin "$(git rev-parse --abbrev-ref HEAD)" && git reset --hard origin/"$(git rev-parse --abbrev-ref HEAD)"'
+	cleanup = "!bash -c 'git branch --merged | grep  -v \"\\*\\|master\\|main\\|dev\\|develop\" | xargs -n 1 -r git branch -d;\
+  current_user=$(git config user.email);\
+  for branch in $(git branch --format=\"%(refname:short)\"); do \
+    if [[ \"$branch\" =~ ^(main|develop|master)$ ]]; then \
+      continue; \
+    fi; \
+    author=$(git log -1 --format=\"%ae\" $branch); \
+    if [ \"$author\" != \"$current_user\" ]; then \
+      echo removing *$branch* since author is $author; \
+      git branch -D $branch; \
+      echo; \
+    fi; \
+  done; \
+  current_user=$(git config user.email);\
+  for branch in $(git branch --format=\"%(refname:short)\"); do \
+    if [[ \"$branch\" =~ ^(main|develop|master)$ ]]; then \
+      continue; \
+    fi; \
+    author=$(git log -1 --format=\"%ae\" $branch); \
+    if [ \"$author\" == \"$current_user\" ]; then \
+		  last_commit_title=$(git log -1 --format=%s $branch); \
+			if  git log --format=\"%s\" | grep -q \"$last_commit_title\" ; then \
+				echo removing *$branch* since author is *$author* and existing title *$last_commit_title*; \
+				git branch -D $branch; \
+		  else \
+				echo skip removing *$branch* since author is *$author* and no existing title *$last_commit_title*; \
+		  fi; \
+      echo; \
+    fi; \
+  done'"
 	cleanupnotmine = "!bash -c 'current_user=$(git config user.email);\
   for branch in $(git branch --format=\"%(refname:short)\"); do \
     if [[ \"$branch\" =~ ^(main|develop|master)$ ]]; then \

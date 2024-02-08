@@ -46,11 +46,11 @@ Key remap use karabiner
 cp ~/config/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
 ~~~
 
-For Keyboard Shortcuts we use Automator to create services which copied to
+For Keyboard Shortcuts we use **Automator** to create services which copied to
 `~/config/bashrc/mac_scripts/Library/Services/activateWindowH.workflow`
 
 Services are called on Keyboard Shortcuts. Inside service we call scripts which
-are written using Script Editor like
+are written using **Script Editor** like
 `~/config/bashrc/mac_scripts/mac_activate_window.scpt`
 
 We call scpt file from shell using osascript but we need to enable Privacy ->

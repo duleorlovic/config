@@ -174,7 +174,7 @@ export NVM_DIR="$HOME/.nvm"
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-# simplest is to attach branch name
+# simplest is to attach current branch name
 # export PS1="$PS1\$(parse_git_branch)>"
 # echo '$PS1'
 # \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ 
@@ -209,9 +209,6 @@ export PATH="$PATH:$(yarn global bin)"
 # history size
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
-
-# access sibling folders
-export CDPATH=".:.."
 
 # error while running tests: Chromedriver / Capybara Too many open files - socket(2) for "127.0.0.1" port 9518
 # https://stackoverflow.com/a/61892983/287166
