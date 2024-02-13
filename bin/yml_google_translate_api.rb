@@ -12,16 +12,16 @@ gemfile do
   gem 'google-cloud-translate' # 3.0.0
   gem 'cyrillizer'
   gem 'activesupport'
-  gem 'byebug'
+  gem 'debug'
 end
 require 'google/cloud/translate'
 require 'cyrillizer'
 require 'active_support'
 require 'active_support/core_ext'
-require 'byebug'
+require 'debug'
 
 project_id = ENV['GOOGLE_PROJECT_ID']
-$google_cloud_translate = Google::Cloud::Translate.translation_v2_service project_id: project_id
+# $google_cloud_translate = Google::Cloud::Translate.translation_v2_service project_id: project_id
 Cyrillizer.language = :serbian
 
 if ARGV[0] == '-h' || ARGV.length < 2
@@ -72,7 +72,7 @@ def perform_translate(string, from_lang, to_lang, key)
       from_lang = 'sr' if from_lang == 'sr-latin' # google does not use latin
       $google_cloud_translate.translate string, from: from_lang, to: to_lang
     rescue Google::Cloud::InvalidArgumentError => e
-      # byebug
+      # debugger
       raise e
     end
   end
