@@ -114,6 +114,9 @@ Plasma and Sway. –
 Add as [startup
 application](https://github.com/duleorlovic/config/blob/master/.xbindkeysrc#L3)
 
+Xmodmap works on Wayland inside Konsole terminal
+Update .screenrc file
+
 
 ## Contributing
 
