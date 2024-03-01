@@ -16,6 +16,8 @@
 ! NOTE that this has to be after we redefine Alt_L for apple keyboard
 clear mod1
 add mod1 = Alt_L
+clear mod2
+! add mod2 = Alt_L
 
 ! remove caps lock modifier
 clear Lock
@@ -32,9 +34,10 @@ keycode  17 = asterisk 8 8 asterisk
 keycode  18 = parenleft 9 9 parenleft
 keycode  19 = parenright 0 0 parenright
 
+! this is not longer true, so comment out braces remapping
 ! in ruby we use more often {} than []
-keycode  34 = braceleft bracketleft bracketleft braceleft
-keycode  35 = braceright bracketright bracketright braceright
+! keycode  34 = braceleft bracketleft bracketleft braceleft
+! keycode  35 = braceright bracketright bracketright braceright
 
 ! bar | and backslash \
 keycode  51 = bar backslash backslash bar

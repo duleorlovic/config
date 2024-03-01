@@ -167,10 +167,6 @@ export PATH="~/Programs/bin:$PATH"
 # Invalid MIT-MAGIC-COOKIE-1 keyxsel: Can't open display: (null)
 # export DISPLAY=":0.0"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
@@ -188,6 +184,12 @@ else
   source ~/config/bashrc/window_shortcuts.sh
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# nodenv is better since it reads .node-version file
+eval "$(nodenv init -)"
 
 if command -v "pyenv"; then
   # instead of manually adding python3 packages to path, use pyenv
