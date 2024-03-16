@@ -215,3 +215,6 @@ export HISTSIZE=1000000
 # error while running tests: Chromedriver / Capybara Too many open files - socket(2) for "127.0.0.1" port 9518
 # https://stackoverflow.com/a/61892983/287166
 ulimit -Sn 10240
+
+# https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
+export FZF_DEFAULT_OPTS="--bind ctrl-j:accept --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"

@@ -75,6 +75,7 @@
   done'"
 	mgd = "!git merge $1 && git branch -d $1; #"
 	mgdd = "!git merge $1 && git branch -d $1 && git push origin -d $1; #"
+  push-and-merge = "!git push && gh pr create --fill ; gh pr merge --rebase --delete-branch"
 	loglasttwotags = "!echo git log $(git tag --sort=-v:refname | head -n 2 | tail -n 1)..$(git tag --sort=-v:refname | head -n 1) --format='\"%an %s\"' | sort;git log $(git tag --sort=-v:refname | head -n 2 | tail -n 1)..$(git tag --sort=-v:refname | head -n 1) --format='%an %s' | sort"
 
 

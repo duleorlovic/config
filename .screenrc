@@ -1,10 +1,14 @@
 # not used since it is better to keep defaults
 # instead Ctrl-a use `
 # escape ``
+escape ^gg
 
 # disable "Screen used by ..." lock screen
 # note that c-a X still works (close current region)
 bind x
+
+defscrollback 99999
+scrollback 99999
 
 # https://unix.stackexchange.com/a/96022/150895
 # bindkey ^C kill
@@ -18,10 +22,9 @@ bind V layout select 'vertical'
 bind H layout select 'horizontal'
 # bind ' ' layout next # <- actually means Ctrl-a + Space
 
+# https://superuser.com/a/331181
 # copy the screen pastbuffer to the MacOSX pastebord
+# create this file manually
+# touch /tmp/screen-exchange
 bufferfile /tmp/screen-exchange
-bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "/usr/bin/xsel < /tmp/screen-exchange"'
-bindkey -m Y   eval 'stuff Y'    'writebuf' 'exec sh -c "/usr/bin/xsel < /tmp/screen-exchange"'
-bindkey -m W   eval 'stuff W'    'writebuf' 'exec sh -c "/usr/bin/xsel < /tmp/screen-exchange"'
-
-scrollback 10000
+bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "[ -f /usr/bin/pbcopy ] && /usr/bin/pbcopy < /tmp/screen-exchange || ([ -f /usr/bin/xsel ] && /usr/bin/xsel --clipboard --input < /tmp/screen-exchange)"'
