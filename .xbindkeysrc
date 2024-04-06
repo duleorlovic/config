@@ -47,3 +47,8 @@
 "echo -e 'KeyStrRelease F6\nKeyStrPress t\nKeyStrRelease t' | xmacroplay :0 &"
   F6
 
+"xdotool keydown Tab; xdotool keydown j; xdotool keyup j; xdotool keyup Tab; xdotool key Down"
+  release + tab + j
+
+"echo -e 'KeyStrPress Down\nKeyStrRelease Down' | xmacroplay $DISPLAY"
+  Mod4 + j

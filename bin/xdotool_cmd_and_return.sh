@@ -5,10 +5,12 @@
 # return to current window.
 # Typing is done in separate script so we return immediatelly
 
+# DO NOT TEST WITH CTR+J, use Enter instead (CTRL closes the target_window)
+
 if [ "$1" == "" ]; then
   cat <<HERE_DOC
   Please provide a command, for examle:
-     xdotool_cmd_and_return "date"
+     xdotool_cmd_and_return.sh "date"
 HERE_DOC
   exit 1
 fi
@@ -16,7 +18,7 @@ fi
 if [ "$2" != "" ]; then
   cat <<HERE_DOC
   Please wrap command inside brackets
-     xdotool_cmd_and_return "rspec spec"
+     xdotool_cmd_and_return.sh "rspec spec"
 HERE_DOC
   exit 1
 fi

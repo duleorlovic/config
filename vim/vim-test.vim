@@ -7,9 +7,10 @@ nmap <silent> <leader>T :TestFile<CR>
 
 function! EchoStrategy(cmd)
   " on ubuntu we use xdotool_cmd_and_return
-  " execute 'Dispatch! xdotool_cmd_and_return.sh "'.a:cmd.'"'
   " on mac we use apple script
-  execute 'Dispatch! osascript ~/config/bashrc/mac_scripts/mac_run_command_in_slash_window.scpt "'.a:cmd.'"'
+  " execute 'Dispatch! xdotool_cmd_and_return.sh "'.a:cmd.'"'
+  " execute 'Dispatch! osascript ~/config/bashrc/mac_scripts/mac_run_command_in_slash_window.scpt "'.a:cmd.'"'
+  execute 'Dispatch! is_mac_os && osascript ~/config/bashrc/mac_scripts/mac_run_command_in_slash_window.scpt "'.a:cmd.'" || xdotool_cmd_and_return.sh "'.a:cmd.'"'
 endfunction
 
 let g:test#custom_strategies = {'echo': function('EchoStrategy')}
