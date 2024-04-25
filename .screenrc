@@ -15,18 +15,23 @@ scrollback 99999
 # https://unix.stackexchange.com/a/96022/150895
 # bindkey ^C kill
 layout new "horizontal"
-split
+split # add new region horizontally
 layout new "vertical"
-split -v
+split -v # add new region vertically
 layout new "main"
 # bind control sequences for new layouts
 bind V layout select 'vertical'
 bind H layout select 'horizontal'
-# bind ' ' layout next # <- actually means Ctrl-a + Space
+# go to next region with ctrl-a + Tab
+# close a region with ctrl-a + X (windows will stay)
+# bind ' ' layout next # <- actually means Ctrl-a + Space, go to next layout
+# (currenyl bind ' ' next # ctrl-a + space is go to next window)
+# with ctrl-a + " you can see all available windows
+# ctrl-a + k is to kill window (and it's proccess)
 
 # https://superuser.com/a/331181
 # copy the screen pastbuffer to the MacOSX pastebord
 # create this file manually
-# touch /tmp/screen-exchange
-bufferfile /tmp/screen-exchange
-bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "[ -f /usr/bin/pbcopy ] && /usr/bin/pbcopy < /tmp/screen-exchange || ([ -f /usr/bin/xsel ] && /usr/bin/xsel --clipboard --input < /tmp/screen-exchange)"'
+# touch /tmp/please-touch-me-if-i-do-not-exists
+bufferfile /tmp/please-touch-me-if-i-do-not-exists
+bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "[ -f /usr/bin/pbcopy ] && /usr/bin/pbcopy < /tmp/please-touch-me-if-i-do-not-exists || ([ -f /usr/bin/xsel ] && /usr/bin/xsel --clipboard --input < /tmp/please-touch-me-if-i-do-not-exists)"'

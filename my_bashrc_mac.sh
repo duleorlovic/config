@@ -27,3 +27,9 @@ function pkill() {
     kill -9 $pid
     echo -n "Killed $1 (process $pid)"
 }
+
+function _notify_send(){
+    echo "display notification params $1 param2 $2"
+    osascript -e "display notification \"$2\" with title \"$1\"";
+}
+alias notify-send="_notify_send"
