@@ -37,6 +37,11 @@ fi
 HERE_DOC
 ```
 
+Also `.config` files
+```
+ln -s ~/config/.config/gh/config.yml ~/.config/gh
+```
+
 # MAC specifics
 
 Mac README is located `~/config/bashrc/mac_scripts/README.md` but here are

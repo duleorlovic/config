@@ -6,7 +6,6 @@ rescue LoadError
   puts 'gem install rmagick'
   exit
 end
-require 'byebug'
 
 print_help if ARGV[0] == '-h' || ARGV.empty?
 
@@ -64,21 +63,13 @@ BEGIN {
     draw.font_weight = 900
     draw.pointsize = 33
     draw.gravity = Magick::SouthGravity
-    draw.annotate i, 0, 0, 1, 1, text do
-      self.fill = 'gray43'
-    end
-    draw.annotate i, 0, 0, 1, -1, text do
-      self.fill = 'gray43'
-    end
-    draw.annotate i, 0, 0, -1, -1, text do
-      self.fill = 'gray43'
-    end
-    draw.annotate i, 0, 0, -1, 1, text do
-      self.fill = 'gray43'
-    end
-    draw.annotate i, 0, 0, 0, 0, text do
-      self.fill = 'white'
-    end
+    draw.fill = 'gray43'
+    draw.annotate i, 0, 0, 1, 1, text
+    draw.annotate i, 0, 0, 1, -1, text
+    draw.annotate i, 0, 0, -1, -1, text
+    draw.annotate i, 0, 0, -1, 1, text
+    draw.fill = 'white'
+    draw.annotate i, 0, 0, 0, 0, text
     puts "Adding watermark to #{file_name}"
     i.write file_name
   end

@@ -156,6 +156,7 @@ alias t=terraform
 complete -C /opt/homebrew/bin/terraform terraform
 
 # add bin to path, but only for project where you  run mkdir -p .git/safe
+# this is usefull for rails projects so instead bin/rspec use rspec
 export PATH=".git/safe/../../bin:$PATH"
 
 export PATH="~/Programs/bin:$PATH"
