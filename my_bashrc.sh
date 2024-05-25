@@ -7,6 +7,8 @@ function is_mac_os {
     return 1
   fi
 }
+# we need to export so it is available in subshell, eg vim :!
+export -f is_mac_os
 
 MY_FILES=(
   ~/config/keys/my_keys.sh
