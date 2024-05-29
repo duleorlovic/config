@@ -55,6 +55,8 @@ export PATH="$PATH:$HOME/Programs/gradle/bin"
 export PATH="$PATH:$HOME/Programs/glass"
 # for my scripts
 export PATH="$PATH:$HOME/config/bin"
+# for pipx installed packages
+export PATH="$PATH:$HOME/.local/bin"
 
 export SECRET_KEY_BASE=123asd
 
