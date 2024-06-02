@@ -193,7 +193,7 @@ nnoremap <leader>e :NERDTreeToggle<CR>
 
 
 " http://vim.wikia.com/wiki/Saving_a_file
-noremap <Leader>q :q<CR>
+nnoremap <Leader>q :q<CR>
 "map <Esc><Esc> :w<CR> this move to insert move when I press up down arrows
 nnoremap <leader>w :w<cr>
 
@@ -210,7 +210,7 @@ nnoremap <leader># /^#.*\n\n<cr>
 " open some common rails files
 nnoremap <leader>d :e config/database.yml<cr>
 nnoremap <leader>s :e db/schema.rb<cr>
-nnoremap <leader>r :e README.md<cr>
+nnoremap <leader>r :e config/routes.rb<cr>
 " nnoremap <leader>f :e spec/factories.rb<cr>
 " nnoremap <leader>r :e config/routes.rb<cr> I use r for rubocop autofix
 " https://github.com/ngmy/vim-rubocop
@@ -225,7 +225,12 @@ nnoremap <leader>c :cclose<cr>
 
 " http://stackoverflow.com/questions/10723700/how-can-vim-keep-the-content-of-register-when-pasting-over-selected-text
 " keep current content of register when pasting
-vnoremap <Leader>p "_dP
+" vnoremap <Leader>p "_dP
+
+" Map space to start visual selection same as it is in gnu screen
+nnoremap <leader> v
+" map space to yank so it is the same as in gnu screen
+xnoremap <leader> y
 
 " source current (probably) vim file
 " nnoremap <leader>sop :source %<cr>
