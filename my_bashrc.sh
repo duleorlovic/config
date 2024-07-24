@@ -223,3 +223,6 @@ ulimit -Sn 10240
 
 # https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
 export FZF_DEFAULT_OPTS="--bind ctrl-j:accept --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
+
+# used for: ssh $LAN.123 instead of long: ssh 192.168.88.123
+export LAN=192.168.88
