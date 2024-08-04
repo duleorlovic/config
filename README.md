@@ -64,6 +64,12 @@ otherwise we get an error:
 > /Users/dule/config/bashrc/mac_scripts/mac_run_command_in_slash_window.scpt: execution error: System Events got an error: osascript is not allowed to send keystrokes. (1002)
 https://stackoverflow.com/a/71826193/287166
 
+Mac will keep windowId and windowName inside `bashrc/mac_scripts/data.plist` so
+you should
+```
+git update-index --no-assume-unchanged bashrc/mac_scripts/data.plist
+```
+
 ## Vim plugin
 
 Install vim and plugins
