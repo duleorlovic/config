@@ -24,6 +24,8 @@
 	<integer>2139</integer>
 	<key>windowId-o</key>
 	<integer>11932</integer>
+	<key>windowId-p</key>
+	<integer>11932</integer>
 	<key>windowId-slash</key>
 	<integer>47</integer>
 	<key>windowId-u</key>
@@ -51,6 +53,8 @@
 	<key>windowName-n</key>
 	<string>Terminal</string>
 	<key>windowName-o</key>
+	<string>Safari</string>
+	<key>windowName-p</key>
 	<string>Safari</string>
 	<key>windowName-slash</key>
 	<string>Terminal</string>
