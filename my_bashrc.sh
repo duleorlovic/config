@@ -79,6 +79,7 @@ if is_mac_os; then
   # to copy from grep result you can use: grep asd README.md | pbcopy
   bind '"\C-l": "\C-e\C-u pbcopy <<"EOF"\n\C-y\nEOF\n\C-y"'
 else
+  alias pbcopy="xsel --clipboard"
   # to copy from grep result you can use: grep asd README.md | xclip
   bind '"\C-l": "\C-e\C-u xsel --clipboard <<"EOF"\n\C-y\nEOF\n\C-y"'
 fi
@@ -226,3 +227,8 @@ export FZF_DEFAULT_OPTS="--bind ctrl-j:accept --bind 'ctrl-y:execute-silent(echo
 
 # used for: ssh $LAN.123 instead of long: ssh 192.168.88.123
 export LAN=192.168.88
+
+
+function bbrew() {
+ ssh brew@localhost 'bash  --login -c "export PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH && brew '"$@"'"'
+ }

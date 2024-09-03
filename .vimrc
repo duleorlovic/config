@@ -576,3 +576,8 @@ nnoremap <c-}> <c-]>
 
 " enable AutoSaveToggle automatically
 let g:auto_save = 1
+
+" when running inside screen with escape ^gg
+" https://github.com/vim/vim/issues/15458#issuecomment-2277451413
+set t_RB=
+

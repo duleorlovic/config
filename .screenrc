@@ -1,13 +1,6 @@
-# not used since it is better to keep defaults
 # instead Ctrl-a use Ctrl-g
 # second g is used if you really need to sent Ctrl-g
-# it does not work well with rails credentials:edit so you can avoid with
-# EDITOR=nano rails credentials:edit
-escape ^gg
-
-# disable "Screen used by ..." lock screen
-# note that c-a X still works (close current region)
-bind x
+escape ^Gf
 
 defscrollback 99999
 scrollback 99999
@@ -35,3 +28,15 @@ bind H layout select 'horizontal'
 # touch /tmp/please-touch-me-if-i-do-not-exists
 bufferfile /tmp/please-touch-me-if-i-do-not-exists
 bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "[ -f /usr/bin/pbcopy ] && /usr/bin/pbcopy < /tmp/please-touch-me-if-i-do-not-exists || ([ -f /usr/bin/xsel ] && /usr/bin/xsel --clipboard --input < /tmp/please-touch-me-if-i-do-not-exists)"'
+
+
+# http://superuser.com/questions/126606/how-to-get-mac-os-x-terminal-app-and-screen-vim-scrolling-to-play-nice/316900#316900
+termcapinfo xterm-256color|xterm-color|xterm|xterms|xs|rxvt ti@:te@
+
+# Allow bold colors - necessary for some reason
+attrcolor b ".I"
+
+# Change the hardstatus settings to give an window list at the bottom of the
+# screen with the current window highlighted
+hardstatus alwayslastline 
+hardstatus string '%{= kG}%{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}'
