@@ -7,14 +7,8 @@ scrollback 99999
 
 # https://unix.stackexchange.com/a/96022/150895
 # bindkey ^C kill
-layout new "horizontal"
-split # add new region horizontally
-layout new "vertical"
-split -v # add new region vertically
-layout new "main"
-# bind control sequences for new layouts
-bind V layout select 'vertical'
-bind H layout select 'horizontal'
+#
+# create new region ctrl-a+|
 # go to next region with ctrl-a + Tab
 # close a region with ctrl-a + X (windows will stay)
 # bind ' ' layout next # <- actually means Ctrl-a + Space, go to next layout
@@ -25,9 +19,9 @@ bind H layout select 'horizontal'
 # https://superuser.com/a/331181
 # copy the screen pastbuffer to the MacOSX pastebord
 # create this file manually
-# touch /tmp/please-touch-me-if-i-do-not-exists
-bufferfile /tmp/please-touch-me-if-i-do-not-exists
-bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "[ -f /usr/bin/pbcopy ] && /usr/bin/pbcopy < /tmp/please-touch-me-if-i-do-not-exists || ([ -f /usr/bin/xsel ] && /usr/bin/xsel --clipboard --input < /tmp/please-touch-me-if-i-do-not-exists)"'
+# touch /tmp/please-touch-me
+bufferfile /tmp/please-touch-me
+bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "[ -f /usr/bin/pbcopy ] && /usr/bin/pbcopy < /tmp/please-touch-me || ([ -f /usr/bin/xsel ] && /usr/bin/xsel --clipboard --input < /tmp/please-touch-me)"'
 
 
 # http://superuser.com/questions/126606/how-to-get-mac-os-x-terminal-app-and-screen-vim-scrolling-to-play-nice/316900#316900
