@@ -81,6 +81,9 @@ Bind new key with a `b` function.
 TODO: add desktop number to window-number (no need to chrome since it will
 automatically load current desktop window)
 TODO: map ctrl + jk to up and down keys only inside safari and chrome
+TODO: all_mac.sh should see enable variation of number of monitors
+system_profiler SPDisplaysDataType | grep -w "Mirror:" | wc -l
+
 
 Adding new key is by adding a property on `data.plist`
 ```
