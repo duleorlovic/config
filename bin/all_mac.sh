@@ -9,7 +9,7 @@ osascript -e 'tell application "Terminal" to do script "mac_start_screen.sh k 15
 sleep $DELAY_BETWEEN_TERMINALS
 osascript -e 'tell application "Terminal" to do script "mac_start_screen.sh comma 0,800,2560,1440"'
 sleep $DELAY_BETWEEN_TERMINALS
-osascript -e 'tell application "Terminal" to do script "mac_start_screen.sh l 3300,900,3890,1340 \"cd ~/jekyll/blog && vi\""'
+osascript -e 'tell application "Terminal" to do script "mac_start_screen.sh l 3300,1000,3890,1440 \"cd ~/jekyll/blog && vi\""'
 sleep $DELAY_BETWEEN_TERMINALS
 osascript -e 'tell application "Terminal" to do script "mac_start_screen.sh dot 2560,1000,3300,1440"'
 sleep $DELAY_BETWEEN_TERMINALS
@@ -21,4 +21,4 @@ osascript -e 'tell application "Terminal" to do script "mac_start_screen.sh j -7
 sleep $DELAY_BETWEEN_TERMINALS
 osascript -e 'tell application "Terminal" to do script "mac_start_screen.sh h -820,50,-50,600"'
 sleep $DELAY_BETWEEN_TERMINALS
-osascript -e 'tell application "Terminal" to do script "mac_start_screen.sh m -1920,600,0,1000"'
+osascript -e 'tell application "Terminal" to do script "mac_start_screen.sh m -1920,600,0,1080"'

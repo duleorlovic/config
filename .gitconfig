@@ -2,7 +2,7 @@
 [push]
 	default = current
 [user]
-	email = dule@hey.com
+	email = dule@trk.in.rs
 	name = Dusan Orlovic
 [core]
 	excludesfile = ~/.gitignore_global
