@@ -127,7 +127,8 @@ s()
     Hi, this is start function for windows with shortcut keys ALT+hjkl semicolon
         with help of System Settings-Keyboard-Shortcuts and command
         xdotool search --classname vp_$(get_current_viewport)_class_j windowactivate
-    example usage: s folder key geometry command
+    example usage:
+      s folder key geometry command
     folder: default is .
     key: default is i, could be h,j,k,l,semicolon... you can add any shortcut
     geometry: chars x rows x pixels_from_left x pixels_from_top

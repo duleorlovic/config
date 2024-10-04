@@ -21,6 +21,7 @@ else
     # Xorg
     source ~/config/bashrc/get_current_viewport.sh
     xdotool search --classname vp_$(get_current_viewport)_class_$1 windowactivate
+    # wmtctrl -a title can be used, but it matches only window title which could change, so better is to use xdotool
   #else
   #  # https://github.com/rvaiya/keyd#sample-config
   #  # git clone git@github.com:lucaswerkmeister/activate-window-by-title.git ~/.local/share/gnome-shell/extensions/
