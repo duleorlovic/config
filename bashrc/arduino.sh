@@ -3,7 +3,7 @@ source ~/config/bashrc/arduino-cli.sh
 
 # https://github.com/sudar/Arduino-Makefile/blob/master/Arduino.mk#L58
 if is_mac_os; then
-  export ARDMK_DIR=`/opt/homebrew/bin/brew --prefix arduino-mk`
+  export ARDMK_DIR=`brew --prefix arduino-mk`
   export ARDUINO_DIR=/Applications/Arduino.app/Contents/Java
   export AVR_TOOLS_DIR=$ARDUINO_DIR/hardware/tools/avr
 else

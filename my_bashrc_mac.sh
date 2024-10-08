@@ -2,10 +2,10 @@
 
 # for brew so this command works; echo $(brew --prefix)
 # export PATH="/opt/homebrew/bin:$PATH"
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(brew shellenv)"
 
 # postgresql@15 is keg-only, which means it was not symlinked into /opt/homebrew,
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+export PATH="$(brew --prefix)/opt/postgresql@15/bin:$PATH"
 
 # Enable colors in bash
 export CLICOLOR=1

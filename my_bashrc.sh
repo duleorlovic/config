@@ -158,7 +158,7 @@ fi
 alias dokku='$HOME/.dokku/contrib/dokku_client.sh'
 
 alias t=terraform
-complete -C /opt/homebrew/bin/terraform terraform
+complete -C $(brew --prefix)/bin/terraform terraform
 
 # add bin to path, but only for project where you  run mkdir -p .git/safe
 # this is usefull for rails projects so instead bin/rspec use rspec
@@ -185,7 +185,7 @@ export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\
 if is_mac_os; then
   source ~/config/bashrc/mac_scripts/mac_window_shortcuts.sh
   source ~/config/my_bashrc_mac.sh
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval "$(brew shellenv)"
 else
   source ~/config/bashrc/window_shortcuts.sh
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
