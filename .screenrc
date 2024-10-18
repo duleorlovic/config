@@ -2,6 +2,16 @@
 # second g is used if you really need to sent Ctrl-g
 escape ^Gf
 
+# https://github.com/tpope/dotfiles/blob/master/.screenrc
+startup_message off
+shell -$SHELL
+bind  j next
+bind ^J next
+bind  k prev
+# ctrl+g+y copy above line
+bind ^Y eval "copy" "stuff kY" "paste ."
+bind  y eval "copy" "stuff kY" "paste ."
+
 defscrollback 99999
 scrollback 99999
 
@@ -18,8 +28,8 @@ scrollback 99999
 
 # https://superuser.com/a/331181
 # copy the screen pastbuffer to the MacOSX pastebord
-# create this file manually
-# touch /tmp/please-touch-me
+# create tmp file which will be a buffer location
+screen bash -c "touch /tmp/please-touch-me; exec bash"
 bufferfile /tmp/please-touch-me
 bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "[ -f /usr/bin/pbcopy ] && /usr/bin/pbcopy < /tmp/please-touch-me || ([ -f /usr/bin/xsel ] && /usr/bin/xsel --clipboard --input < /tmp/please-touch-me)"'
 
