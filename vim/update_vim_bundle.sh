@@ -29,9 +29,10 @@ list=(
   git@github.com:digitaltoad/vim-pug.git # jade syntax highlight
   # https://github.com/tpope/vim-markdown.git # is not used, since next one can
   # properly indent with 2 spaces
-  git@github.com:michaeljsmith/vim-indent-object.git # text object based on indent
-  git@github.com:preservim/vim-markdown.git # better since `` is properly
+  # git@github.com:michaeljsmith/vim-indent-object.git # text object based on indent
+  # git@github.com:preservim/vim-markdown.git # better since `` is properly
   # highlighted when intent is 4 spaces for multiline list item
+  # but it always fold headers so we will not use this plugin
   # https://github.com/plasticboy/vim-markdown/issues/126
   # https://github.com/tomtom/tlib_vim.git # snipmate requirement
   # https://github.com/MarcWeber/vim-addon-mw-utils.git # snipmate requirement

@@ -1,3 +1,10 @@
+# when there is "echo" in bashrc then scp file this mashine produces error
+# "scp: Ensure the remote shell produces no output for non-interactive sessions"
+# so we need to check if it is interactive or not, so scp is not broken
+if [[ $- == *i* ]]; then
+  echo "hello from my_bashrc.sh in interactive shell"
+fi
+
 function is_mac_os {
   if [ "$(uname)" == "Darwin" ]; then
     # 0 is true
@@ -191,12 +198,6 @@ else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# nodenv is better since it reads .node-version file
-eval "$(nodenv init -)"
-
 if command -v "pyenv"; then
   # instead of manually adding python3 packages to path, use pyenv
   # export PATH="$(python3 -m site --user-base)/bin:${PATH}"
@@ -204,12 +205,6 @@ if command -v "pyenv"; then
   command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
 fi
-
-# add following two lines to ~/.bashrc if you want to move to external drive
-# export RBENV_ROOT=/Volumes/eksterni/rbenv
-# export PATH="$RBENV_ROOT/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init - bash)"
 
 # add globally installed packages `yarn add global ...` to PATH
 export PATH="$PATH:$(yarn global bin)"

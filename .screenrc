@@ -5,9 +5,6 @@ escape ^Gf
 # https://github.com/tpope/dotfiles/blob/master/.screenrc
 startup_message off
 shell -$SHELL
-bind  j next
-bind ^J next
-bind  k prev
 # ctrl+g+y copy above line
 bind ^Y eval "copy" "stuff kY" "paste ."
 bind  y eval "copy" "stuff kY" "paste ."
