@@ -101,7 +101,9 @@ Plasma and Sway. –
 Add as [startup
 application](https://github.com/duleorlovic/config/blob/master/.xbindkeysrc#L3)
 
-Xmodmap works on Wayland inside Konsole terminal
+Xmodmap works on Wayland inside Konsole (not default Terminal) app
+Hide Menubar Ctrl+Shift+M (revert to show menubar on right click )
+
 Update .screenrc file
 
 
