@@ -190,7 +190,6 @@ parse_git_branch() {
 export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\$(parse_git_branch)\[\033[00m\]\$ "
 
 if is_mac_os; then
-  source ~/config/bashrc/mac_scripts/mac_window_shortcuts.sh
   source ~/config/my_bashrc_mac.sh
   eval "$(brew shellenv)"
 else

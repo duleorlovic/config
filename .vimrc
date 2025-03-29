@@ -209,7 +209,7 @@ nnoremap <Leader>/ :nohl<CR>
 nnoremap <leader># /^#.*\n\n<cr>
 " open some common rails files
 nnoremap <leader>d :e config/database.yml<cr>
-nnoremap <leader>s :e db/schema.rb<cr>
+nnoremap <leader>ds :e db/schema.rb<cr>
 nnoremap <leader>r :e config/routes.rb<cr>
 " nnoremap <leader>f :e spec/factories.rb<cr>
 " nnoremap <leader>r :e config/routes.rb<cr> I use r for rubocop autofix
@@ -512,7 +512,23 @@ source $HOME/config/vim/vim-test.vim
 " https://stackoverflow.com/a/9645147/287166
 " nnoremap <silent> <leader>! :set opfunc=ProgramFilter<cr>g@
 " vnoremap <silent> <leader>! :<c-u>call ProgramFilter(visualmode(), 1)<cr>
-function! ProgramFilter(prog, vt, ...)
+"function! ProgramFilter(prog, vt, ...)
+"    let [qr, qt] = [getreg('"'), getregtype('"')]
+"    let [oai, ocin, osi, oinde] = [&ai, &cin, &si, &inde]
+"    setl noai nocin nosi inde=
+
+"    let [sm, em] = ['[<'[a:0], ']>'[a:0]]
+"    exe 'norm!`' . sm . a:vt . '`' . em . 'x'
+
+"    let out = system(a:prog, @")
+"    "let out = substitute(out, '\n$', '', '')
+"    exe "norm!i\<c-r>=out\r"
+
+"    let [&ai, &cin, &si, &inde] = [oai, ocin, osi, oinde]
+"    call setreg('"', qr, qt)
+"endfunction
+
+function! ProgramFilter(vt, ...)
     let [qr, qt] = [getreg('"'), getregtype('"')]
     let [oai, ocin, osi, oinde] = [&ai, &cin, &si, &inde]
     setl noai nocin nosi inde=
@@ -520,7 +536,11 @@ function! ProgramFilter(prog, vt, ...)
     let [sm, em] = ['[<'[a:0], ']>'[a:0]]
     exe 'norm!`' . sm . a:vt . '`' . em . 'x'
 
-    let out = system(a:prog, @")
+    call inputsave()
+    let cmd = input('!')
+    call inputrestore()
+
+    let out = system(cmd, @")
     let out = substitute(out, '\n$', '', '')
     exe "norm!i\<c-r>=out\r"
 
@@ -528,7 +548,8 @@ function! ProgramFilter(prog, vt, ...)
     call setreg('"', qr, qt)
 endfunction
 
-" vnoremap <silent> <leader>ts :<c-u>call ProgramFilter('translate.rb sr', visualmode(), 1)<cr>
+vnoremap <silent> <leader>ts :<c-u>call ProgramFilter('~/config/bin/t.rb', visualmode(), 1)<cr>
+vnoremap <silent> <leader>! :<c-u>call ProgramFilter(visualmode(), 1)<cr>
 " vnoremap <silent> <leader>te :<c-u>call ProgramFilter('translate.rb en', visualmode(), 1)<cr>
 " vnoremap <silent> <leader>tc :<c-u>call ProgramFilter('cyrillizer.rb to_cyr', visualmode(), 1)<cr>
 " vnoremap <silent> <leader>tl :<c-u>call ProgramFilter('cyrillizer.rb to_lat', visualmode(), 1)<cr>
@@ -581,3 +602,5 @@ let g:auto_save = 1
 " https://github.com/vim/vim/issues/15458#issuecomment-2277451413
 set t_RB=
 
+nnoremap <leader>s :r !cd ~/trk.tools/app/trk-readme-source-links && bundle exec exe/trk link-show %:p<CR>
+nnoremap <leader>r :r !cd ~/trk.tools/app/trk-readme-source-links && bundle exec exe/trk link-show-raw %:p<CR>

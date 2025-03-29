@@ -1,1 +1,0 @@
-/Users/dule/config/bashrc/mac_scripts/activateWindow.workflow/

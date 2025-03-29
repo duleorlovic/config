@@ -1,14 +1,17 @@
+" ALEInfo will show all available linters
+"
 " let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:airline#extensions#ale#enabled = 1
 
 let g:ale_linters = {}
 " Current Filetype: ruby
 " ['brakeman', 'cspell', 'debride', 'rails_best_practices', 'reek', 'rubocop', 'ruby', 'solargraph', 'sorbet', 'standardrb']
-" disable rubocop when standardrb is used
+" enable rubocop since rails comes with default .rubocop
+" we can also use standardrb
 " disable 'rails_best_practices' since it is not maintaned
 " disable 'reek', since it is too much to fix it's checkings
 " disable 'brakeman', since it is slow
-let g:ale_linters.ruby = ['cspell', 'debride',  'reek', 'ruby', 'solargraph', 'sorbet', 'standardrb']
+let g:ale_linters.ruby = ['cspell', 'debride',  'reek', 'ruby', 'solargraph', 'sorbet', 'rubocop']
 
 " Current Filetype: eruby
 " Available Linters: ['erb', 'erblint', 'erubi', 'erubis', 'ruumba']
@@ -42,3 +45,6 @@ let g:ale_fixers = {
 
 " https://github.com/testdouble/standard/wiki/IDE:-vim
 let g:ruby_indent_assignment_style = 'variable'
+
+" disable yamllint since it gives document-start: missing document start
+let g:ale_linters.yaml = ['actionlint', 'yaml-language-server', 'spectral']

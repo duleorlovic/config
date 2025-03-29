@@ -91,3 +91,5 @@
 	directory = /home/dule/trk/xceednet
 	directory = /home/linuxbrew/.linuxbrew
 	directory = /home/linuxbrew/.linuxbrew/Homebrew
+[url "git@git.trk.tools:"]
+	insteadOf = http://trk.tools/

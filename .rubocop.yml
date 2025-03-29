@@ -1,3 +1,5 @@
+inherit_gem:
+  standard: config/base.yml
 # http://blog.trk.in.rs/2015/12/01/vim-tips/
 # ~/.rubocop.yml is used when there is no local .rubocop.yml
 # DISABLED since we are using standardrb now
